@@ -10,7 +10,7 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 Mira **Deployment** para conocer como desplegar el proyecto.
 
 
-### Pre-requisitos 📋
+### Pre-requisites 📋
 
 _Que cosas necesitas para instalar el software y como instalarlas_
 
@@ -18,30 +18,16 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 Da un ejemplo
 ```
 
-### Instalación 🔧
+### How to Install 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+Pending adding detail of installation.
 
-_Dí cómo será ese paso_
+## Deploy 📦
 
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
+Pending details of deploy
 
 
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-## Construido con 🛠️
+## Built with 🛠️
 
 
 * [NextJS](https://nextjs.org/docs/getting-started) - The React Framework for Production.
@@ -58,26 +44,23 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 
 
-## Versionado 📌
+## Version 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+We used [SemVer](http://semver.org/) for versioning. Check out the whole version list available [tagsRepo](https://github.com/tu/proyecto/tags).
 
-## Autores ✒️
+
+## Author ✒️
 
 * **Daniel Guglielmi** - *Designer, Architect, Front-End, Backend, Documentation, Translator* - [dguglielmi-git](https://github.com/dguglielmi-git)
 
 
-## Licencia 📄
+## License 📄
 
 There is not license available.
 
-## Expresiones de Gratitud 🎁
+## Thanks 🎁
 
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
+* To the owners of InnovandoLiving for choosing me for this project.
 
 
 ---
