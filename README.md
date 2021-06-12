@@ -1,5 +1,5 @@
 
-# InnovandoLiving Front-End - (Ecommerce)
+# InnovandoLiving Front-End - (e-Commerce Website)
 
 This is an eCommerce project for InnovandoLiving business in Argentina. InnovandoLiving is a Furniture seller and Armchair manufacturer pretty famous in Buenos Aires.
 
