@@ -33,6 +33,7 @@ Pending details of deploy
 * [NextJS](https://nextjs.org/docs/getting-started) - The React Framework for Production.
 * [Strapi](https://strapi.io/resource-center) - Design APIs fast, manage content easily.
 * [FontAwesome](https://fontawesome.com/) - Vector icons and social logos on your website.
+* [React Bootstrap](https://react-bootstrap.github.io/) - The most popular front-end framework.
 * [MaterialUI](https://material-ui.com/) - React components for faster and easier web development.
 * [PrimeReact - PrimeFaces](https://www.primefaces.org/primereact/) - The ultimate collection of design-agnostic, flexible and accessible React UI Components.
 * [SemanticUI](https://semantic-ui.com/) - Development framework that helps create beautiful, responsive layouts using human-friendly HTML.
