@@ -1,0 +1,23 @@
+.info-producto {
+    overflow: hidden;
+
+    &__video {
+        width: 100% !important;
+        height: 650px !important;
+    }
+
+    &__content {
+        padding: 14px;
+        color: $font-grey;
+
+        &-date{
+            display: flex;
+            margin-top: 20px;
+
+            h4 {
+                color: $cherry;
+                margin-right: 10px;
+            }
+        }
+    }
+}

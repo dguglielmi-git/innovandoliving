@@ -1,0 +1,57 @@
+.menu {
+  background-color: $background-tint-light;
+  border-radius: 0;
+
+  .dropdown {
+    align-self: center;
+  }
+
+  .ui.grid {
+    margin: 0;
+  }
+
+  &__left,
+  &__right {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+
+    .ui.menu {
+      border: 0;
+      box-shadow: none;
+      height: 100%;
+      background: transparent;
+
+      .icon {
+        margin-right: 10px !important;
+        color: $primary;
+      }
+
+      .item {
+        color: $font-dark;
+        border-radius: 0 !important;
+
+        &:hover {
+          color: $font-dark;
+          background-color: $background-salmon;
+
+          &:before {
+            background-color: $background-dark-absolute;
+          }
+        }
+        &.m-0 i {
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.items {
+  background-color: red;
+}

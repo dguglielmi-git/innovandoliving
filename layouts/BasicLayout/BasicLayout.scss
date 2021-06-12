@@ -1,0 +1,20 @@
+.basic-layout {
+  min-height: 100vh;
+  background: linear-gradient(0, #fbf8f8, #f0ebeb);
+  background-size: cover;
+  background-position: center;
+
+  .content {
+    //background-color: $background-tint-light;
+    background-color: white;
+    height: calc(100vh - 110px);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

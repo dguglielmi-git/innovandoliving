@@ -1,0 +1,22 @@
+.basic-modal {
+    .header {
+        background-color: $background-salmon !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 25px;
+            margin: 0;
+
+            &:hover {
+                cursor: pointer ;
+            }
+
+        }
+    }
+}

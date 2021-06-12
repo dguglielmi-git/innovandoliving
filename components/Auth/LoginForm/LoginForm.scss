@@ -1,0 +1,28 @@
+.login-form {
+  .actions {
+    justify-content: space-between !important;
+
+    .ui.basic.button {
+      margin: 0;
+    }
+
+    .ui.button.submit {
+      // margin-right: 10px !important;
+      background-color: $button-ok !important;
+      color: $font-light !important;
+    }
+  }
+}
+
+.login-forgot {
+  display: flex;
+  justify-content: flex-end;
+
+  span {
+    margin-top: 5px;
+    color: $dark-board;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

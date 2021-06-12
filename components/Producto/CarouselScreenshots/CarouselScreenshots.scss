@@ -1,0 +1,38 @@
+.carousel-box {
+  margin: 0 -5px;
+
+  &__image{
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+    .img {
+      height: 100%;
+      width: 220px;
+    }
+  }
+
+  .slick-slide {
+    padding: 5px;
+    height: 60px;
+    .ui.image:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+
+  .slick-arrow {
+    z-index: 1;
+
+    &:before {
+      font-size: 30px;
+    }
+
+    &.slick-next {
+      right: 20px;
+    }
+
+    &.slick-prev {
+      left: 20px;
+    }
+  }
+}
