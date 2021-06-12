@@ -65,4 +65,4 @@ There is not license available.
 
 
 ---
-⌨️ con ❤️ por [dguglielmi-git](https://github.com/dguglielmi-git) 😊
+⌨️ with ❤️ by [dguglielmi-git](https://github.com/dguglielmi-git) 😊
