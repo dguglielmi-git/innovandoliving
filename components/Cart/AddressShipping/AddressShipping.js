@@ -34,7 +34,7 @@ export default function AddressShipping(props) {
                 <RadioForm
                     deliveryOption={deliveryOption}
                     setDeliveryOption={setDeliveryOption}
-                    t={t}/>
+                    t={t} />
             </div>
 
             {deliveryOption === 'delivery' && (
@@ -65,7 +65,7 @@ export default function AddressShipping(props) {
 }
 
 function RadioForm(props) {
-    const { deliveryOption, setDeliveryOption,t } = props;
+    const { deliveryOption, setDeliveryOption, t } = props;
     return (
         <Form>
             <Form.Field>
