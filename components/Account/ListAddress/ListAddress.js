@@ -69,6 +69,7 @@ export default function ListAddress(props) {
                                             openModal={openModal}
                                             idSelected={idSelected}
                                             setIdSelected={setIdSelected}
+                                            t={t}
                                         />
                                     </Grid.Column>
                                 ))}
@@ -92,7 +93,8 @@ function Address(props) {
         setReloadAddresses,
         openModal,
         idSelected,
-        setIdSelected
+        setIdSelected,
+        t
     } = props;
     const [loadingDelete, setLoadingDelete] = useState(false);
     const [showDialog, setShowDialog] = useState(false);

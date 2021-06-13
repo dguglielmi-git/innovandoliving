@@ -47,7 +47,7 @@ Pending details of deploy
 
 ## Version 📌
 
-We used [SemVer](http://semver.org/) for versioning. Check out the whole version list available [tagsRepo](https://github.com/tu/proyecto/tags).
+We used [SemVer](http://semver.org/) for versioning. Check out the whole version list available [tagsRepo](https://github.com/dguglielmi-git/innovandoliving/tags).
 
 
 ## Author ✒️

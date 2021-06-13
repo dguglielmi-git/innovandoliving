@@ -45,13 +45,14 @@ export default function MenuWeb() {
             <Container>
                 <Grid>
                     <Grid.Column className="menu__left" computer={4} tablet={1} mobile={1}>
-                        <MenuPlatforms platforms={platforms} />
+                        <MenuPlatforms platforms={platforms} t={t} />
                     </Grid.Column>
                     <Grid.Column className="menu__right" computer={12} tablet={15} mobile={15}>
                         {user !== undefined && (
                             <MenuOptions onShowModal={onShowModal}
                                 user={user}
                                 logout={logout}
+                                t={t}
                             />
                         )}
                     </Grid.Column>
@@ -69,7 +70,7 @@ export default function MenuWeb() {
 }
 
 function MenuPlatforms(props) {
-    const { platforms } = props;
+    const { platforms, t } = props;
     return (
         <Dropdown icon="options" pointing="top left">
             <Dropdown.Menu>
@@ -87,7 +88,7 @@ function MenuPlatforms(props) {
 }
 
 function MenuOptions(props) {
-    const { onShowModal, user, logout } = props;
+    const { onShowModal, user, logout, t } = props;
     const [prodCounter, setProdCounter] = useState(0);
     const { productsCart } = useCart();
     const { width } = useWindowSize();
@@ -118,8 +119,8 @@ function MenuOptions(props) {
 
                             <Dropdown icon="cog" className="dropdown-options" pointing="top right">
                                 <Dropdown.Menu>
-                                    <ItemsOptions />
-                                    <ItemsAccount textUser={textUser} logout={logout} />
+                                    <ItemsOptions t={t} />
+                                    <ItemsAccount textUser={textUser} logout={logout} t={t} />
                                 </Dropdown.Menu>
                             </Dropdown>
                         </>
@@ -130,6 +131,7 @@ function MenuOptions(props) {
                             logout={logout}
                             productsCart={productsCart}
                             prodCounter={prodCounter}
+                            t={t}
                         />
 
                     )}
@@ -146,7 +148,8 @@ function MenuOptions(props) {
     )
 }
 
-function ItemsOptions() {
+function ItemsOptions(props) {
+    const { t } = props;
     return (
         <>
             <Label content={t('headerMenuOptions')} />
@@ -168,7 +171,7 @@ function ItemsOptions() {
 }
 
 function ItemsAccount(props) {
-    const { textUser, logout } = props;
+    const { textUser, logout, t } = props;
 
     return (
         <>
@@ -184,7 +187,7 @@ function ItemsAccount(props) {
 
 
 function LargeMenu(props) {
-    const { onShowModal, user, logout, prodCounter } = props;
+    const { onShowModal, user, logout, prodCounter, t } = props;
 
     return (
         <Menu secondary>
