@@ -10,10 +10,6 @@
   }
 }
 
-.active-box {
-  border:  solid  blue;
-  border-width: 0.01px;
-}
 
 .box-address {
   display: flex;
@@ -24,7 +20,18 @@
     flex-direction: column;
     border: 1px solid rgb(151, 150, 150);
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    
+    @media (min-width: $res-mobile) {
+      width: 31rem;
+    }
 
+    @media (max-width: $res-mobile) {
+      width: 21rem;
+    }     
+  
+    &.active {
+      border-color: blue;
+    }
     .card-header {
       display: flex;
       justify-content: space-between;
@@ -40,7 +47,7 @@
         z-index: 0;
         margin-left: 5px;
         margin-bottom: 5px;
-  
+
         .icon {
           margin-left: 10px;
           &:hover {
@@ -53,14 +60,12 @@
     .card-body {
       display: block;
       padding: 15px;
-      
+
       font-size: 1.2rem;
       font-weight: 400;
       line-height: 1.5;
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
     }
-
-    
   }
 }

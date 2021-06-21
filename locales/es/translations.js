@@ -75,14 +75,14 @@ export const TRANSLATION_ES = {
     authRegisterFormButtonRegister:         'Registrar',
         
     /* Cart - AddressShipping */
-    cartAddressShippingTitleOptions:        'Opciones de Entrega',
     cartAddressShippingBackToCart:          'Volver al carrito',
     cartAddressShippingSelectAddress:       'Seleccione el Domicilio de entrega:',
     cartAddressShippingNotAddress:          'No hay direcciones cargadas',
-    cartAddressShippingSelectPayment:       'Seleccionar Forma de Pago',
+    cartAddressShippingSelectPayment:       'Continuar',
     cartAddressShippingSelectDelivery:      'Seleccione Opción de Entrega:',
     cartAddressShippingTakeAway:            'Retiro en domicilio del vendedor.',
-    cartAddressShippingDeliveryHome:        'Envio a Domicilio',
+    cartAddressShippingDeliveryHome:        'Envio a Domicilio (Dentro de BSAS y Cap. Fed.)',
+    cartAddressShippingDeliveryExternal:    'Envio a Domicilio (Al Interior - Fuera de BSAS y Cap. Fed)',
 
     /* Cart - FormPayment */
     cartPaymentFormPaymentOkDelivery:       'Pedido completado',
@@ -93,7 +93,6 @@ export const TRANSLATION_ES = {
     cartPaymentTitlePay:                    'Pago',
 
     /* Cart - SummaryCart */
-    cartSummaryCartTitle:                   'Resumen del carrito',
     cartSummaryCartOrderDetail:             'Detalle del Pedido',
     cartSummaryCartUnitPrice:               'Precio Unitario:',
     cartSummaryCartQuantity:                'Cantidad:',

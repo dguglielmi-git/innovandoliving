@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { forEach, map } from "lodash";
-import { Image, Icon } from "semantic-ui-react";
+import React, {  useEffect } from 'react';
+import { forEach, map, size } from "lodash";
+import { Button, Icon } from "semantic-ui-react";
 import Typography from "@material-ui/core/Typography";
 import useCart from "../../../hooks/useCart";
 import { numToDollar } from "../../../utils/util";
-import { useTranslation } from "react-i18next";
-import "../../../locales/i18n";
+import SummaryDetail from "./SummaryDetail";
+
 
 export default function SummaryCart(props) {
-    const { products, reloadCart, setReloadCart, setStep } = props;
-    const { t } = useTranslation();
-    const [totalPrice, setTotalPrice] = useState(0);
+    const { t, products, reloadCart, setReloadCart, setStep, totalPrice, setTotalPrice } = props;
     const { removeProductCart } = useCart();
 
     useEffect(() => {
@@ -21,63 +19,43 @@ export default function SummaryCart(props) {
             });
         })()
         setTotalPrice(price);
-    }, [products]);
+        setReloadCart(false);
+    }, [products, reloadCart]);
 
-    const removeProduct = (product) => {
-        removeProductCart(product);
-        setReloadCart(true);
-    }
+    const EmptyCart = () => (
+        <div className="empty-cart">
+            <h5>El carrito está vacio...</h5>
+        </div>
+    )
+
     return (
         <div className="summary-cart">
-            <div className="title">
-                {t('cartSummaryCartTitle')}
-            </div>
             <div className="subtitle">
                 <h4>{t('cartSummaryCartOrderDetail')}</h4>
             </div>
-            <div className="data">
-                {map(products, (product) => (
-                    <div className="data__products" key={product._id}>
-                        <div className="prod-img">
-                            <Image src={product.producto.poster.url} alt="" size="tiny" />
-                        </div>
-                        <div className="prod-detail">
-                            <Typography variant="h6">
-                                {product.producto.title}
-                            </Typography>
-                            <Typography variant="caption">
-                                <strong>{t('cartSummaryCartUnitPrice')}</strong>
-                                {numToDollar(product.producto.price)}
-                            </Typography>
-                            <Typography variant="caption">
-                                <strong>{t('cartSummaryCartQuantity')}</strong>
-                                {product.quantity}
-                            </Typography>
-                            <div className="options" onClick={() => removeProduct(product.id)}>
-                                <Typography variant="caption">
-                                    <Icon name="remove" />{t('cartSummaryCartDelete')}
-                                </Typography>
-                            </div>
-                        </div>
-                        <div className="prod-final">
-                            <div className="price">
-                                <Typography variant="h6">
-                                    {numToDollar(product.producto.price * product.quantity)}
-                                </Typography>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+            <div className="datascroller-cart">
+                <div className="card">
+                    {map(products, (data) => (
+                        <SummaryDetail
+                            data={data}
+                            setReloadCart={setReloadCart}
+                            removeProductCart={removeProductCart}
+                        />
+                    ))}
+                    {size(products) === 0 && <EmptyCart />}
+                </div>
             </div>
             <div className="total-cart">
                 <Typography variant="h5"><strong>{t('cartSummaryCartTotalCart')}</strong>
                     {numToDollar(totalPrice)}</Typography>
             </div>
-            <div className="button-box">
-                <div className="button-box__continue" onClick={() => setStep(1)}>
-                    <h4>{t('cartSummaryCartContinuePurchase')}</h4>
+            {size(products) > 0 && (
+                <div className="button-box">
+                    <Button className="button-box__continue" onClick={() => setStep(1)}>
+                        {t('cartSummaryCartContinuePurchase')} <Icon name="arrow right" />
+                    </Button>
                 </div>
-            </div>
+            )}
         </div>
     )
 }

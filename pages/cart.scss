@@ -1,9 +1,21 @@
-.cart{
+.cart {
+    h2 {
+      text-align: center;
+      padding-top: 50px;
+    }
+    .button-back {
+      display: flex;
+      align-items: center;
+      margin-bottom: -40px;
+      margin-left: 20px;
   
-}
-.empty-cart {
-  h2 {
-    text-align: center;
-    padding-top: 50px;
+  
+      &:hover {
+        cursor: pointer;
+      }
+      h6 {
+        font-size: 13px;
+      }
+    }
   }
-}
+  

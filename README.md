@@ -3,20 +3,17 @@
 
 This is an eCommerce project for InnovandoLiving business in Argentina. InnovandoLiving is a Furniture seller and Armchair manufacturer pretty famous in Buenos Aires.
 
+# Architecture 
+![Architectyre](./assets/architecture.png)
+
 ## Getting Started 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
+Have a look at 'How to Install' to proceed with the installation
 
 
 ### Pre-requisites 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
-
-```
-Da un ejemplo
-```
+It is required to have installed NodeJS.
 
 ### How to Install 🔧
 
@@ -57,7 +54,7 @@ We used [SemVer](http://semver.org/) for versioning. Check out the whole version
 
 ## License 📄
 
-There is not license available.
+There is no license available.
 
 ## Thanks 🎁
 

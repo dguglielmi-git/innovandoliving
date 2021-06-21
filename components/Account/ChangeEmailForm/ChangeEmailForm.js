@@ -70,8 +70,6 @@ function initialValues() {
 }
 
 function validationSchema() {
-    // en lugar de 'true' podemos escribir un mensaje de error, 
-    // el true solo lo marca en rojo
     return {
         email: Yup.string()
             .email(true)

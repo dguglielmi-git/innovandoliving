@@ -26,6 +26,10 @@ import 'semantic-ui-css/semantic.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.css';
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import "../locales/i18n";
 
 PrimeReact.ripple = true;

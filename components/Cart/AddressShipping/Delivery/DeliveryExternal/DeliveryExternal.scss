@@ -1,0 +1,93 @@
+.delivery-external {
+  .delivery {
+    display: flex;
+    justify-content: center;
+
+    .form-group {
+      display: flex !important;
+
+      flex-direction: column !important;
+      @media (min-width: $res-mobile) {
+        width: 500px;
+      }
+
+      @media (max-width: $res-mobile) {
+        width: 300px;
+      }
+
+      .doc-group {
+        display: flex;
+        align-content: center;
+        align-items: center;
+
+        .dropdown-form {
+          margin-top: 10px;
+          margin-left: 15px;
+
+          @media (min-width: $res-mobile) {
+            width: 120px;
+            height: 40px;
+          }
+
+          @media (max-width: $res-mobile) {
+            width: 110px;
+            height: 40px;
+          }
+        }
+
+        .invoice-name {
+          margin-top: -10px;
+
+          @media (min-width: $res-mobile) {
+            width: 370px;
+          }
+          @media (max-width: $res-mobile) {
+            width: 180px;
+          }
+        }
+      }
+
+      .field {
+        margin-top: 10px !important;
+      }
+    }
+  }
+
+  .p-field-checkbox {
+      margin-left: 20px;
+
+      label {
+          margin-left: 5px;
+      }
+  }
+  .button-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      width: 220px;
+      height: 50px;
+      background-color: $button-ok !important;
+      color: $font-light !important;
+      box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+
+      h4 {
+        font-size: 16px !important;
+      }
+    }
+  }
+  .p-field-checkbox {
+    margin-bottom: 20px;
+  }
+}

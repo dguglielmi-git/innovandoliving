@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { map, size } from "lodash";
-import { toast } from "react-toastify";
-import { Button, Icon, Grid, Confirm } from "semantic-ui-react";
-import { getAddressesApi, deleteAddressApi } from "../../../api/address";
-import useAuth from "../../../hooks/useAuth";
-import useWindowSize from "../../../hooks/useWindowSize";
+import { Button, Icon, Grid } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-import { RES_SMALL } from "../../../utils/breakpoint";
+import useAuth from "../../../hooks/useAuth";
+import Address from "./Address";
 import AddressForm from "../AddressForm";
 import BasicModal from "../../Modal/BasicModal";
 import "../../../locales/i18n";
 
 export default function ListAddress(props) {
-    const { selectEnable, idSelected, setIdSelected, reloadAddresses, setReloadAddresses } = props;
+    const {
+        addresses,
+        selectEnable,
+        idSelected,
+        setIdSelected,
+        setReloadAddresses
+    } = props;
     const { t } = useTranslation();
-    const [addresses, setAddresses] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
     const [formModal, setFormModal] = useState(null);
 
-    const { auth, logout } = useAuth();
+    const { logout } = useAuth();
 
     const openModal = (title, address) => {
         setTitleModal(title);
@@ -31,15 +33,6 @@ export default function ListAddress(props) {
         />);
         setShowModal(true);
     }
-
-    useEffect(() => {
-        (async () => {
-            const response = await getAddressesApi(auth.idUser, logout);
-            setAddresses(response || []);
-            setReloadAddresses(false);
-        })()
-    }, [reloadAddresses]);
-
 
     return (
         <>
@@ -81,81 +74,6 @@ export default function ListAddress(props) {
             <BasicModal show={showModal} setShow={setShowModal} title={titleModal}>
                 {formModal}
             </BasicModal>
-        </>
-    )
-}
-
-function Address(props) {
-    const {
-        selectEnable,
-        address,
-        logout,
-        setReloadAddresses,
-        openModal,
-        idSelected,
-        setIdSelected,
-        t
-    } = props;
-    const [loadingDelete, setLoadingDelete] = useState(false);
-    const [showDialog, setShowDialog] = useState(false);
-    const { width } = useWindowSize();
-
-    const cardSize = () => {
-        return width < RES_SMALL ? { width: '21rem' } : { width: '30rem' };
-    }
-
-    const openDelete = () => setShowDialog(true);
-    const cancelDelete = () => setShowDialog(false);
-
-    const deleteAddress = async () => {
-        setLoadingDelete(true);
-        const response = await deleteAddressApi(address.id, logout);
-        if (response) {
-            setReloadAddresses(true);
-            toast.success(t('accountListAddressOkDelete'));
-        } else {
-            toast.error(t('accountListAddressErrorDelete'));
-        }
-        setLoadingDelete(false);
-        setShowDialog(false);
-    };
-
-    const getCardClass = () => {
-        return (address.id === idSelected) ? "box-address active-box" : "box-address";
-    }
-
-    const handleClick = () => {
-        if (selectEnable) {
-            setIdSelected(address.id);
-        }
-    }
-
-    return (
-        <>
-            <div className={getCardClass()} onClick={handleClick}>
-                <div className="card" style={cardSize()}>
-                    <div className="card-header">
-                        <div>
-                            {address.title}
-                        </div>
-                        <div className="card-header__options">
-                            <Icon loading={loadingDelete} color="blue" name="trash alternate"
-                                onClick={() => openDelete()} />
-                            <Icon color="blue" name="edit"
-                                onClick={() => openModal(`Editar: ${address.title}`, address)} />
-                        </div>
-                    </div>
-                    <div className="card-body">
-                        <div>{address.address} - {address.city}</div>
-                        <div>{address.state} {address.postalCode}</div>
-                        <div>Tel. {address.phone}</div>
-                    </div>
-                </div>
-            </div>
-            <Confirm size="mini" open={showDialog} onCancel={cancelDelete}
-                onConfirm={() => deleteAddress()}
-                content={t('accountListAddressQuestionDelete')}
-            />
         </>
     )
 }

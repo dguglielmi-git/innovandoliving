@@ -3,11 +3,11 @@ import { getToken, hasExpiredToken } from "../api/token";
 export async function authFetch(url, params, logout) {
     const token = getToken();
     if (!token) {
-        // usuario no lgoueado
+        // logged out user
         logout();
     } else {
         if (hasExpiredToken(token)) {
-            // token caducado
+            // token expired
             logout();
         } else {
             const paramsTemp = {
@@ -17,7 +17,6 @@ export async function authFetch(url, params, logout) {
                     Authorization: `Bearer ${token}`,
                 },
             };
-
             try {
                 const response = await fetch(url, paramsTemp);
                 const result = await response.json();
