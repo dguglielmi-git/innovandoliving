@@ -6,14 +6,12 @@ import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import { setToken, getToken, removeToken } from "../api/token"
 import {
-  getCart,
-  getProductsCart,
-  addToCart,
-  addProductCart,
-  countProductsCart,
-  removeProductCart,
-  removeItemCart,
-  removeAllProductsCart,
+    getCart,
+    cleanCart,
+    addToCart,
+    countProductsCart,
+    removeItemCart,
+    removeAllProductsCart,
 } from "../api/cart";
 import PrimeReact from 'primereact/api';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -35,105 +33,111 @@ import "../locales/i18n";
 PrimeReact.ripple = true;
 
 export default function MyApp({ Component, pageProps }) {
-  const { t } = useTranslation();
-  const [auth, setAuth] = useState(undefined);
-  const [reloadUser, setReloadUser] = useState(false);
-  const [totalProductsCart, setTotalProductsCart] = useState(0);
-  const [reloadCart, setReloadCart] = useState(false);
-  const router = useRouter();
-  library.add(fab, faCheckSquare, faCoffee);
+    const { t } = useTranslation();
+    const [auth, setAuth] = useState(undefined);
+    const [reloadUser, setReloadUser] = useState(false);
+    const [totalProductsCart, setTotalProductsCart] = useState(0);
+    const [reloadCart, setReloadCart] = useState(false);
+    const router = useRouter();
+    library.add(fab, faCheckSquare, faCoffee);
 
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      setAuth({
-        token,
-        idUser: jwtDecode(token).id
-      });
-    } else {
-      setAuth(null);
+    useEffect(() => {
+        const token = getToken();
+        if (token) {
+            setAuth({
+                token,
+                idUser: jwtDecode(token).id
+            });
+        } else {
+            setAuth(null);
+        }
+        setReloadUser(false);
+    }, [reloadUser]);
+
+    useEffect(() => {
+        if (auth) {
+            setTotalProductsCart(countProductsCart(auth.idUser));
+        }
+        setReloadCart(false);
+    }, [reloadCart, auth]);
+
+    const login = (token) => {
+        setToken(token);
+        setAuth({
+            token,
+            idUser: jwtDecode(token).id
+        })
     }
-    setReloadUser(false);
-  }, [reloadUser]);
 
-  useEffect(() => {
-    if (auth) {
-      setTotalProductsCart(countProductsCart(auth.idUser));
+    const logout = () => {
+        if (auth) {
+            router.push("/");
+            removeToken();
+            setAuth(null);
+        }
     }
-    setReloadCart(false);
-  }, [reloadCart, auth]);
 
-  const login = (token) => {
-    setToken(token);
-    setAuth({
-      token,
-      idUser: jwtDecode(token).id
-    })
-  }
-
-  const logout = () => {
-    if (auth) {
-      removeToken();
-      setAuth(null);
-      router.push("/");
+    const addProduct = async (idUser, product, quantity) => {
+        const token = getToken();
+        if (token) {
+            await addToCart(idUser, product, quantity, logout);
+            setReloadCart(true);
+        } else {
+            toast.warning(t('appAddProduct'));
+        }
     }
-  }
 
-  const addProduct = (idUser, product, quantity) => {
-    const token = getToken();
-    if (token) {
-      addToCart(idUser, product, quantity, logout);
-      setReloadCart(true);
-    } else {
-      toast.warning(t('appAddProduct'));
+    const removeProduct = (product) => {
+        removeItemCart(product, logout);
+        setReloadCart(true);
     }
-  }
 
-  const removeProduct = (product) => {
-    removeItemCart(product, logout);
-    setReloadCart(true);
-  }
+    // From this object we call to every system's functions (login, logout, etc)
+    // We utilize setReloadUser to reload information from users after modifications.
+    const authData = useMemo(
+        () => ({
+            auth,
+            login,
+            logout,
+            setReloadUser,
+        }),
+        [auth]
+    );
 
-  // From this object we call to every system's functions (login, logout, etc)
-  // We utilize setReloadUser to reload information from users after modifications.
-  const authData = useMemo(
-    () => ({
-      auth,
-      login,
-      logout,
-      setReloadUser,
-    }),
-    [auth]
-  );
+    const cleaningCart = async (idUser, logout) => {
+        await cleanCart(idUser, logout)
+        setReloadCart(true);
+    }
 
-  const cartData = useMemo(
-    () => ({
-      productsCart: totalProductsCart,
-      addProductCart: (idUser, product, quantity) => addProduct(idUser, product, quantity),
-      getProductsCart: getCart,
-      removeProductCart: (product) => removeProduct(product),
-      removeAllProductsCart: removeAllProductsCart,
-    }),
-    [totalProductsCart]
-  );
+    const cartData = useMemo(
+        () => ({
+            productsCart: totalProductsCart,
+            addProductCart: (idUser, product, quantity) => addProduct(idUser, product, quantity),
+            getProductsCart: getCart,
+            removeProductCart: (product) => removeProduct(product),
+            removeAllProductsCart: removeAllProductsCart,
+            cleanCart: (idUser) => cleaningCart(idUser, logout)
+        }),
+        [totalProductsCart]
+    );
 
-  if (auth === undefined) return null;
+    if (auth === undefined) return null;
 
-  return <AuthContext.Provider value={authData}>
-    <CartContext.Provider value={cartData}>
-      <Component {...pageProps} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-      />
-    </CartContext.Provider>
-  </AuthContext.Provider>
+    return <AuthContext.Provider value={ authData }>
+        <CartContext.Provider value={ cartData }>
+            <Component { ...pageProps } />
+            <ToastContainer
+                position="top-right"
+                autoClose={ 5000 }
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={ false }
+                pauseOnFocusLoss={ false }
+                draggable
+                pauseOnHover
+            />
+        </CartContext.Provider>
+    </AuthContext.Provider>
 }
 

@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <BasicLayout className="home">
-      <Seo title="Hola Mundo" />
+      <Seo title="InnovandoLiving" />
       {!productos && <Loader active>Cargando Productos</Loader>}
       {productos && size(productos) === 0 && (
         <div>

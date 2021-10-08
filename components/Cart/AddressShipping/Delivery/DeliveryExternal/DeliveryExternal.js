@@ -42,7 +42,6 @@ export default function DeliveryExternal(props) {
         validateOnChange: false,
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            console.log('submit running ');
             if (!docType) {
                 toast.error('No ha seleccionado documento');
             } else {

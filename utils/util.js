@@ -1,3 +1,4 @@
+import useAuth from "../hooks/useAuth";
 const dollarCurrency = { style: 'currency', currency: 'ARS' };
 const dollarFormat = new Intl.NumberFormat('es-ES', dollarCurrency);
 

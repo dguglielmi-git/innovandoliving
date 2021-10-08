@@ -6,9 +6,6 @@ import Header from "../../components/Header";
 export default function BasicLayout(props) {
     const { children, className } = props;
 
-    //className="basic-layout"
-
-
     return (
         <Container fluid className={classNames("basic-layout", {
             [className]: className,

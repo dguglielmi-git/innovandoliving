@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import BasicLayout from "../layouts/BasicLayout";
 import useAuth from "../hooks/useAuth";
 import { getMeApi } from "../api/user";
+import { getAddressesApi } from "../api/address"
 import ChangeNameForm from "../components/Account/ChangeNameForm";
 import ChangeEmailForm from "../components/Account/ChangeEmailForm";
 import ChangePasswordForm from "../components/Account/ChangePasswordForm";
@@ -11,7 +12,15 @@ import ListAddress from "../components/Account/ListAddress";
 export default function account() {
     const [user, setUser] = useState(undefined);
     const { auth, logout, setReloadUser } = useAuth();
+    const [addresses, setAddresses] = useState(null);
     const router = useRouter();
+
+    useEffect(() => {
+        (async () => {
+            const response = await getAddressesApi(auth.idUser, logout);
+            setAddresses(response || []);
+        })()
+    }, []);
 
     useEffect(() => {
         (async () => {
@@ -29,11 +38,11 @@ export default function account() {
     return (
         <BasicLayout className="account">
             <Configuration
-                user={user}
-                logout={logout}
-                setReloadUser={setReloadUser}
+                user={ user }
+                logout={ logout }
+                setReloadUser={ setReloadUser }
             />
-            <Addresses />
+            <Addresses addresses={ addresses } />
         </BasicLayout>
     )
 }
@@ -45,40 +54,41 @@ function Configuration(props) {
             <div className="title">Configuracion</div>
             <div className="data">
                 <ChangeNameForm
-                    user={user}
-                    logout={logout}
-                    setReloadUser={setReloadUser}
+                    user={ user }
+                    logout={ logout }
+                    setReloadUser={ setReloadUser }
                 />
                 <ChangeEmailForm
-                    user={user}
-                    logout={logout}
-                    setReloadUser={setReloadUser}
+                    user={ user }
+                    logout={ logout }
+                    setReloadUser={ setReloadUser }
                 />
                 <ChangePasswordForm
-                    user={user}
-                    logout={logout}
+                    user={ user }
+                    logout={ logout }
                 />
             </div>
         </div>
     );
 }
 
-function Addresses() {
+function Addresses(props) {
+    const { addresses } = props;
     const [reloadAddresses, setReloadAddresses] = useState(false);
 
-       return (
+    return (
         <div className="account__addresses">
             <div className="title">Direcciones
-            
+
             </div>
             <div className="data">
                 <ListAddress
-                    ListAddress={false}
-                    reloadAddresses={reloadAddresses}
-                    setReloadAddresses={setReloadAddresses}
+                    addresses={ addresses }
+                    reloadAddresses={ reloadAddresses }
+                    setReloadAddresses={ setReloadAddresses }
                 />
             </div>
-       
+
         </div>
     )
 }

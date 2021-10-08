@@ -83,6 +83,7 @@ export const TRANSLATION_ES = {
     cartAddressShippingTakeAway:            'Retiro en domicilio del vendedor.',
     cartAddressShippingDeliveryHome:        'Envio a Domicilio (Dentro de BSAS y Cap. Fed.)',
     cartAddressShippingDeliveryExternal:    'Envio a Domicilio (Al Interior - Fuera de BSAS y Cap. Fed)',
+    cartAddressShippingAddressNotSelected:  'Debe seleccionar una direccion del listado.',
 
     /* Cart - FormPayment */
     cartPaymentFormPaymentOkDelivery:       'Pedido completado',
@@ -98,7 +99,7 @@ export const TRANSLATION_ES = {
     cartSummaryCartQuantity:                'Cantidad:',
     cartSummaryCartDelete:                  'Eliminar',
     cartSummaryCartTotalCart:               'Total:',
-    cartSummaryCartContinuePurchase:        'Continuar Compra',
+    cartSummaryCartContinuePurchase:        'Finalizar Compra',
    
     /* Header - Menu */
     headerMenuCategories:                   'Categorias',

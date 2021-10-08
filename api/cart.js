@@ -15,6 +15,29 @@ export async function getCart(idUser) {
     }
 }
 
+export async function cleanCart(idUser, logout) {
+    try {
+        const url = `${BASE_PATH}/carts`;
+        const params = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                users_permissions_user: idUser
+            })
+        };
+        const result = await authFetch(url, params, logout);
+     //   toast.success('El item se ha eliminado del carrito');
+        return result;
+
+    } catch (error) {
+        console.log(error);
+      //  toast.error('Ha ocurrido un error al intentar eliminar el item.');
+        return null;
+    }
+}
+
 
 export async function addToCart(idUser, product, quantity, logout) {
     const cart = await getCart(idUser);
@@ -83,23 +106,6 @@ export async function removeItemCart(product, logout) {
     }
 }
 
-/**
- * 
- * @deprecated: use removeItemCart(product)
- */
-export function removeProductCart(product) {
-    const cart = getProductsCart();
-    remove(cart, (item) => {
-        return item === product;
-    });
-
-    if (size(cart) > 0) {
-        localStorage.setItem(CART, cart);
-    } else {
-        localStorage.removeItem(CART);
-    }
-}
-
 export async function paymentCartApi(token, products, idUser, address, logout) {
     try {
         const addressShipping = address;
@@ -128,8 +134,30 @@ export async function paymentCartApi(token, products, idUser, address, logout) {
     }
 }
 
+
+/**
+ * 
+ * @deprecated: use cleanCart() 
+ */
 export function removeAllProductsCart() {
     localStorage.removeItem(CART);
+}
+
+/**
+ * 
+ * @deprecated: use removeItemCart(product)
+ */
+export function removeProductCart(product) {
+    const cart = getProductsCart();
+    remove(cart, (item) => {
+        return item === product;
+    });
+
+    if (size(cart) > 0) {
+        localStorage.setItem(CART, cart);
+    } else {
+        localStorage.removeItem(CART);
+    }
 }
 
 
@@ -150,7 +178,7 @@ export function removeAllProductsCart() {
 
 /**
  * When refactoring, this function must be erased
- * Delete it after check out that it's not being used in anywhere.
+ * Delete it after verifying that it's not being used anywhere.
  * @deprecated: You must use addToCart()
  */
  export function addProductCart(product) {
