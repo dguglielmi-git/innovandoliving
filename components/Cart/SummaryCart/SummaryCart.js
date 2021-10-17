@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react';
+import React, { useState,  useEffect } from 'react';
 import { forEach, map, size } from "lodash";
 import { Button, Icon } from "semantic-ui-react";
 import Typography from "@material-ui/core/Typography";
@@ -9,9 +9,11 @@ import SummaryDetail from "./SummaryDetail";
 
 export default function SummaryCart(props) {
     const { t, products, reloadCart, setReloadCart, setStep, totalPrice, setTotalPrice } = props;
+    const [loading, setLoading] = useState(true);
     const { removeProductCart } = useCart();
 
     useEffect(() => {
+        if (size(products) >= 0) setLoading(false)
         let price = 0;
         (async () => {
             await forEach(products, (product) => {
@@ -24,7 +26,8 @@ export default function SummaryCart(props) {
 
     const EmptyCart = () => (
         <div className="empty-cart">
-            <h5>El carrito está vacio...</h5>
+            {loading && <h5>Cargando carrito</h5>}
+            { !loading && <h5>El carrito está vacio...</h5> }
         </div>
     )
 

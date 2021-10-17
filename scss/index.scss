@@ -37,5 +37,9 @@
 @import '../components/Cart/Payment/Payment.scss';
 @import '../components/Cart/Payment/FormPayment/FormPayment.scss';
 @import '../components/Cart/StepsPurchase/StepsPurchase.scss';
-@import '../components//Cart/ConfirmCart/ConfirmCart.scss';
+@import '../components/Cart/ConfirmCart/ConfirmCart.scss';
+@import '../components/Cart/SuccessfulPayment/SuccessfulPayment.scss';
+@import '../components/Cart/PendingPayment/PendingPayment.scss';
+@import '../components/Cart/FailurePayment/FailurePayment.scss';
 @import '../components/Orders/Order/Order.scss';
+@import '../components/Orders/Order/content/ItemsTable.scss';

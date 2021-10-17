@@ -137,7 +137,7 @@ export default function AddressForm(props) {
                         errror={formik.errors.phone}
                     />
                 </Form.Group>
-                <div className="actions">
+                <div className="button-actions">
                     <Button className="submit" type="submit" loading={loading}>
                         {newAddress
                             ? t('accountAddressFormButtonCreate') 

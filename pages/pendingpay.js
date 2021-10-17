@@ -1,13 +1,16 @@
 import React from "react";
 import { getEntries } from "../utils/util";
+import BasicLayout from "../layouts/BasicLayout";
+import PendingPayment from "../components/Cart/PendingPayment/PendingPayment";
 
 export default function PendingPay(props) {
-    const params = URLSearchParams(window.location.params);
+    const params = new URLSearchParams(window.location.search);
     const result = getEntries(params.entries());
     
     return (
-        <div>
-            <h1>Pending Payment</h1>
-        </div>
+        <BasicLayout>
+            <PendingPayment incomingData={ result } />
+        </BasicLayout>
+
     )
 }

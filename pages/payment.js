@@ -1,25 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from "next/router";
+import { useTranslation } from 'react-i18next';
+import { LivingContext } from '../context/LivingContext';
+import { saveOrder, sendProductsToMercadoPago } from "../api/mercadopago";
 
 export default function Payment(props) {
     const { address, products, deliveryOption, shippingPrice } = props;
+    const { addressInvoice, addressTransport } = useContext(LivingContext);
+    const { t } = useTranslation();
     const router = useRouter();
 
-    const createOrderJson = (paymentDetails) => ({
-        orderPreferenceId: paymentDetails.id,
-        orderCollectorId: paymentDetails.collector_id,
-        dateCreated: paymentDetails.date_created,
-        deliveryOption: deliveryOption,
-        addressDelivery: address,
-        costDelivery: shippingPrice,
-        items: products
-    })
-
-    const sendProductsToMercadoPago = async () => {
+    const getItems = () => {
         const items = []
         if (products) {
             products.map(item => {
-
                 items.push({
                     title: item.producto.title,
                     unit_price: item.producto.price,
@@ -34,33 +28,41 @@ export default function Payment(props) {
                 })
             }
         }
-
-        const url = "http://localhost:5000/api/mercadopago/payment"
-        const result = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "items": items })
-        })
-        const response = await result.json()
-        return response
+        return items;
     }
+
+    const createOrderJson = async (mercadoPagoResponse) => ({
+        addressDelivery: address,
+        addressTransport: addressTransport,
+        addressInvoice: addressInvoice,
+        costDelivery: shippingPrice,
+        deliveryOption: deliveryOption,
+        items: getItems(),
+        purchaseTotalAmount: getItems().reduce((sum, item) => sum + (item.quantity * item.unit_price), 0),
+        dateCreated: mercadoPagoResponse.date_created,
+        orderCollectorId: mercadoPagoResponse.collector_id,
+        paymentId: mercadoPagoResponse.id,
+        mercadoPagoStatus: null,
+        mercadoPagoPaymentId: null,
+        mercadoPagoPaymetType: null,
+        mercadoPagoMerchantOrderId: null,
+        mercadoPagoProcessingMode: null,
+    })
 
     useEffect(() => {
         (async () => {
-            const res = await sendProductsToMercadoPago()
+            const res = await sendProductsToMercadoPago(getItems())
             const response = await res.response;
-            console.log(createOrderJson(response))
+            const order = await createOrderJson(response)
+            const orderRes = await saveOrder(order);
             router.push(response.init_point)
-            console.log(response)
         })()
-    }, [])
+    }, []);
 
     return (
         <div>
             <div className="ui active inverted dimmer">
-                <div className="ui large text loader">Procesando Compra...</div>
+                <div className="ui large text loader">{ t('paymentProcessing') } </div>
             </div>
         </div>
     )

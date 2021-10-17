@@ -1,58 +1,67 @@
 .order {
   display: flex;
-  justify-content: space-between;
-  height: 100px;
-  margin-bottom: 10px;
-  background-color: $background-light;
-  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  //margin-top: 25px;
+  padding: 10px;
+  padding-top: 25px;  
+  background-color: #F0F0F0;
 
-  &:last-of-type {
-    margin-bottom: 0;
+  
+
+  .order-title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
-  &__info {
+  .order-table {
     display: flex;
+    width: 70%;
+  }
 
-    a {
-      height: 100%;
+  .order-detail {
+    display: flex;
+    width: 100%;
+    margin: 10px;
 
-      .ui.image {
-        height: 100%;
-        margin-right: 20px;
+    &__mainbox {
+      
+      &-timeline{
+        display: flex;
+        width: 220px;
       }
-    }
 
-    &-data {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-
-      > div {
+      &-orderstatus{
         display: flex;
         flex-direction: column;
-        justify-content: center;
-
-        h2 {
-          font-size: 16px;
-          margin-bottom: 5px;
+        margin-top: 15px;
+        h5 {
+          margin-bottom: 20px;
         }
-      }      
-    }
-  }
+      }
+      &-items {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 20px;
+        width: 90%;
 
-  &__other {
-    display: flex;
-    align-items: center;
-    padding-right: 10px;
+        &-details {
+          display: flex;
+        }
 
-    &-date {
-      margin: 0 20px 0 0;
-      width: 125px;
-    }
+        &-summary {
+          display: flex;
+        }
+      }
 
-    i {
-      padding-left: 20px;
-      color: $primary;
+      &-comments {
+        display: flex;
+        padding: 10px;
+      }
     }
   }
 }

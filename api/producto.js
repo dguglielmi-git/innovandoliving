@@ -1,8 +1,8 @@
-import { BASE_PATH } from "../utils/constants";
+import { SERVER_ADDRESS } from "../utils/constants";
 
 export async function getProducts() {
     try {
-        const url = `${BASE_PATH}/productos`;
+        const url = `${SERVER_ADDRESS}/productos`;
     } catch (error) {
         console.log(error);
         return null;
@@ -13,7 +13,7 @@ export async function getLastProductosApi(limit) {
     try {
         const limitItems = `_limit=${limit}`;
         const sortItems = `_sort=createAt:desc`;
-        const url = `${BASE_PATH}/productos?${limitItems}&${sortItems}`;
+        const url = `${SERVER_ADDRESS}/productos?${limitItems}&${sortItems}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;
@@ -35,7 +35,7 @@ export async function getProductosPlatformApi(platform, limit, start) {
         const limitItems = `_limit=${limit}`;
         const sortItems = `_sort=createAt:desc`;
         const startItems = `_start=${start}`;
-        const url = `${BASE_PATH}/productos?platform.url=${platform}&${limitItems}&${sortItems}&${startItems}`;
+        const url = `${SERVER_ADDRESS}/productos?platform.url=${platform}&${limitItems}&${sortItems}&${startItems}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;
@@ -47,7 +47,7 @@ export async function getProductosPlatformApi(platform, limit, start) {
 
 export async function getTotalProductosPlatform(platform) {
     try {
-        const url = `${BASE_PATH}/productos/count?platform.url=${platform}`;
+        const url = `${SERVER_ADDRESS}/productos/count?platform.url=${platform}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;
@@ -59,7 +59,7 @@ export async function getTotalProductosPlatform(platform) {
 
 export async function getProductoByUrlApi(path) {
     try {
-        const url = `${BASE_PATH}/productos?url=${path}`;
+        const url = `${SERVER_ADDRESS}/productos?url=${path}`;
         const response = await fetch(url);
         const result = await response.json();
         return result[0];
@@ -71,7 +71,7 @@ export async function getProductoByUrlApi(path) {
 
 export async function searchProductosApi(title) {
     try {
-        const url = `${BASE_PATH}/productos?_q=${title}`;
+        const url = `${SERVER_ADDRESS}/productos?_q=${title}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;

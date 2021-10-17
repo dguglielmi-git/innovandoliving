@@ -62,8 +62,7 @@ export default function MenuOptions(props) {
                     <Icon name="user outline" />
                     { t('headerMenuMyAccount') }
                 </Menu.Item>
-            )
-            }
+            ) }
         </Menu >
     )
 }

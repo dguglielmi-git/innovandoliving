@@ -1,9 +1,9 @@
-import { BASE_PATH } from "../utils/constants";
+import { SERVER_ADDRESS } from "../utils/constants";
 import { authFetch } from "../utils/fetch";
 
 export async function registerApi(formData) {
     try {
-        const url = `${BASE_PATH}/auth/local/register`;
+        const url = `${SERVER_ADDRESS}/auth/local/register`;
         const params = {
             method: "POST",
             headers: {
@@ -22,7 +22,7 @@ export async function registerApi(formData) {
 
 export async function loginApi(formData) {
     try {
-        const url = `${BASE_PATH}/auth/local`;
+        const url = `${SERVER_ADDRESS}/auth/local`;
         const params = {
             method: "POST",
             headers: {
@@ -41,7 +41,7 @@ export async function loginApi(formData) {
 
 export async function resetPasswordApi(email) {
     try {
-        const url = `${BASE_PATH}/auth/forgot-password`;
+        const url = `${SERVER_ADDRESS}/auth/forgot-password`;
         const params = {
             method: "POST",
             headers: {
@@ -60,7 +60,7 @@ export async function resetPasswordApi(email) {
 
 export async function getMeApi(logout) {
     try {
-        const url = `${BASE_PATH}/users/me`;
+        const url = `${SERVER_ADDRESS}/users/me`;
         const result = await authFetch(url, null, logout);
         return result ? result : null;
     } catch (error) {
@@ -70,7 +70,7 @@ export async function getMeApi(logout) {
 
 export async function updateNameApi(idUser, data, logout) {
     try {
-        const url = `${BASE_PATH}/users/${idUser}`;
+        const url = `${SERVER_ADDRESS}/users/${idUser}`;
         const params = {
             method: "PUT",
             headers: {
@@ -88,13 +88,13 @@ export async function updateNameApi(idUser, data, logout) {
 
 export async function updateEmail(idUser, email, logout) {
     try {
-        const url = `${BASE_PATH}/users/${idUser}`;
+        const url = `${SERVER_ADDRESS}/users/${idUser}`;
         const params = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({email}),
+            body: JSON.stringify({ email }),
         };
         const result = await authFetch(url, params, logout);
         return result ? result : null;
@@ -106,7 +106,7 @@ export async function updateEmail(idUser, email, logout) {
 
 export async function updatePasswordApi(idUser, password, logout) {
     try {
-        const url = `${BASE_PATH}/users/${idUser}`;
+        const url = `${SERVER_ADDRESS}/users/${idUser}`;
         const params = {
             method: "PUT",
             headers: {

@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
+import MyLivingContext from "../context/LivingContext";
 import { setToken, getToken, removeToken } from "../api/token"
 import {
     getCart,
@@ -39,6 +40,7 @@ export default function MyApp({ Component, pageProps }) {
     const [totalProductsCart, setTotalProductsCart] = useState(0);
     const [reloadCart, setReloadCart] = useState(false);
     const router = useRouter();
+
     library.add(fab, faCheckSquare, faCoffee);
 
     useEffect(() => {
@@ -123,21 +125,25 @@ export default function MyApp({ Component, pageProps }) {
 
     if (auth === undefined) return null;
 
-    return <AuthContext.Provider value={ authData }>
-        <CartContext.Provider value={ cartData }>
-            <Component { ...pageProps } />
-            <ToastContainer
-                position="top-right"
-                autoClose={ 5000 }
-                hideProgressBar
-                newestOnTop
-                closeOnClick
-                rtl={ false }
-                pauseOnFocusLoss={ false }
-                draggable
-                pauseOnHover
-            />
-        </CartContext.Provider>
-    </AuthContext.Provider>
+    return (
+        <AuthContext.Provider value={ authData }>
+            <CartContext.Provider value={ cartData }>
+                <MyLivingContext>
+                    <Component { ...pageProps } />
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={ 5000 }
+                        hideProgressBar
+                        newestOnTop
+                        closeOnClick
+                        rtl={ false }
+                        pauseOnFocusLoss={ false }
+                        draggable
+                        pauseOnHover
+                    />
+                </MyLivingContext>
+            </CartContext.Provider>
+        </AuthContext.Provider>
+    )
 }
 

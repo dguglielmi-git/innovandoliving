@@ -1,9 +1,9 @@
-import { BASE_PATH } from "../utils/constants";
+import { SERVER_ADDRESS} from "../utils/constants";
 import { authFetch } from "../utils/fetch";
 
 export async function createAddressApi(address, logout) {
     try {
-        const url = `${BASE_PATH}/addresses`;
+        const url = `${SERVER_ADDRESS}/addresses`;
         const params = {
             method: "POST",
             headers: {
@@ -21,7 +21,7 @@ export async function createAddressApi(address, logout) {
 
 export async function getAddressesApi(idUser, logout) {
     try {
-        const url = `${BASE_PATH}/addresses?users_permissions_user=${idUser}`;
+        const url = `${SERVER_ADDRESS}/addresses?users_permissions_user=${idUser}`;
         const result = await authFetch(url, null, logout);
         if (result.statusCode === 500) throw "Error del servidor";
         return result;
@@ -33,7 +33,7 @@ export async function getAddressesApi(idUser, logout) {
 
 export async function deleteAddressApi(idAddress, logout) {
     try {
-        const url = `${BASE_PATH}/addresses/${idAddress}`;
+        const url = `${SERVER_ADDRESS}/addresses/${idAddress}`;
         const params = {
             method: "DELETE",
             headers: {
@@ -51,7 +51,7 @@ export async function deleteAddressApi(idAddress, logout) {
 
 export async function updateAddressApi(idAddress, address, logout) {
     try {
-        const url = `${BASE_PATH}/addresses/${idAddress}`;
+        const url = `${SERVER_ADDRESS}/addresses/${idAddress}`;
         const params = {
             method: "PUT",
             headers: {

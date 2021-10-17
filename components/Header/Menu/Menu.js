@@ -41,6 +41,7 @@ export default function MenuWeb() {
                 <Grid>
                     <Grid.Column className="menu__left" computer={ 4 } tablet={ 1 } mobile={ 1 }>
                         <MenuCategories platforms={ platforms } t={ t } />
+                        {t('headerMenuProducts')}
                     </Grid.Column>
                     <Grid.Column className="menu__right" computer={ 12 } tablet={ 15 } mobile={ 15 }>
                         { user !== undefined && (

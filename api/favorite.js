@@ -1,10 +1,10 @@
-import { BASE_PATH } from "../utils/constants";
+import { SERVER_ADDRESS } from "../utils/constants";
 import { authFetch } from "../utils/fetch";
 import { size } from "lodash";
 
 export async function isFavoriteApi(idUser, idProducto, logout) {
     try {
-        const url = `${BASE_PATH}/favorites?users_permissions_user=${idUser}&producto=${idProducto}`;
+        const url = `${SERVER_ADDRESS}/favorites?users_permissions_user=${idUser}&producto=${idProducto}`;
         return await authFetch(url, null, logout);
     } catch (error) {
         console.log(error);
@@ -18,7 +18,7 @@ export async function addFavoriteApi(idUser, idProducto, logout) {
         if (size(dataFound) > 0 || !dataFound) {
             return 'already in favorite';
         } else {
-            const url = `${BASE_PATH}/favorites`;
+            const url = `${SERVER_ADDRESS}/favorites`;
             const params = {
                 method: "POST",
                 headers: {
@@ -40,7 +40,7 @@ export async function removeFavoriteApi(idUser, idProducto, logout) {
     try {
         const dataFound = await isFavoriteApi(idUser, idProducto, logout);
         if (size(dataFound) > 0) {
-            const url = `${BASE_PATH}/favorites/${dataFound[0]?._id}`;
+            const url = `${SERVER_ADDRESS}/favorites/${dataFound[0]?._id}`;
             const params = {
                 method: "DELETE",
                 headers: {
@@ -58,7 +58,7 @@ export async function removeFavoriteApi(idUser, idProducto, logout) {
 
 export async function getFavoriteApi(idUser, logout) {
     try {
-        const url = `${BASE_PATH}/favorites?users_permissions_user=${idUser}`;
+        const url = `${SERVER_ADDRESS}/favorites?users_permissions_user=${idUser}`;
         const result = await authFetch(url, null, logout);
         return result;
     } catch (error) {

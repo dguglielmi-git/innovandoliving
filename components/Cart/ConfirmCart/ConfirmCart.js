@@ -42,7 +42,6 @@ export default function ConfirmCart(props) {
     );
 
     const processPayment = () => {
-        console.log(products)
         setStep(3);
     }
 

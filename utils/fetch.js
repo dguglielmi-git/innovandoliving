@@ -3,11 +3,9 @@ import { getToken, hasExpiredToken } from "../api/token";
 export async function authFetch(url, params, logout) {
     const token = getToken();
     if (!token) {
-        // logged out user
         logout();
     } else {
         if (hasExpiredToken(token)) {
-            // token expired
             logout();
         } else {
             const paramsTemp = {

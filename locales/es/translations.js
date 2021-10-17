@@ -1,6 +1,11 @@
 export const TRANSLATION_ES = {
 
     /****************************************************************
+     *                Generic
+     ****************************************************************/
+    businessName:                           'InnovandoLiving.',
+
+    /****************************************************************
      *                Components
      ****************************************************************/
 
@@ -101,6 +106,22 @@ export const TRANSLATION_ES = {
     cartSummaryCartTotalCart:               'Total:',
     cartSummaryCartContinuePurchase:        'Finalizar Compra',
    
+    /* Cart - SuccessfulPayment */
+    cartSuccessfulPaymentTitle:             'Tu compra ha sido realizada con éxito.',
+    cartSuccessfulPaymentOrderNumber:       'Nro de comprobante #',
+    cartSuccessfulPaymentMsgFirstLine:      'En la sección Mis Pedidos, podes consultar el estado de tu compra y mantenerte en contacto con nuestro departamento de atención al cliente.',
+    cartSuccessfulPaymentMsgSecondLine:     'Ante cualquier consulta no dudes en contactarnos.',
+    cartSuccessfulPaymentFooterThanks:      'Muchas gracias por tu compra!',
+    
+    /* Cart - PendingPayment */
+    cartPendingPaymentTitle:                'Se ha cargado la orden en el sistema con Pago Pendiente.',
+    cartPendingPaymentOrderNumber:          'Nro de comprobante #',
+    cartPendingPaymentMsgFirstLine:         'En la sección Mis Pedidos, podes realizar el seguimiento de tu orden y mantenerte en contacto con nuestro departamento de atención al cliente.',
+
+    /* Cart - FailurePayment */
+    cartFailurePaymentTitle:                'La orden no pudo ser procesada correctamente.',
+    cartFailurePaymentMsgFirstLine:         'Deberá volver al carrito para reintentar el proceso de pago de sus productos.',
+
     /* Header - Menu */
     headerMenuCategories:                   'Categorias',
     headerMenuMyAccount:                    'Mi Cuenta',
@@ -112,6 +133,7 @@ export const TRANSLATION_ES = {
     headerMenuMyOrders:                     'Mis Pedidos',
     headerMenuFavorites:                    'Favoritos',
     headerMenuShowroom:                     'Showroom',
+    headerMenuProducts:                     'Productos',
     
     /* Orders - Order */
     ordersOrderPurchaseOnItsWay:            'El pedido se ha enviado a la siguiente direccion:',
@@ -156,5 +178,8 @@ export const TRANSLATION_ES = {
     wishlistTitle:                          'Lista de deseos',
     wishlistLoadingProducts:                'Cargando Productos',
     wishlistNotProductsOnList:              'No hay productos en tu lista',
+    
+    /* payment */
+    paymentProcessing:                      'Procesando Compra...',
 
 };

@@ -11,7 +11,7 @@ export default function BasicLayout(props) {
             [className]: className,
         })}>
             <Header />
-            <Container className="content">
+            <Container className="basic-layout-content">
                 {children}
             </Container>
         </Container>

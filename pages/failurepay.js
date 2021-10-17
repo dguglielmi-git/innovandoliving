@@ -1,13 +1,12 @@
 import React from 'react';
-import { getEntries } from "../utils/util";
+import BasicLayout from '../layouts/BasicLayout';
+import FailurePayment from '../components/Cart/FailurePayment/FailurePayment';
 
 export default function FailurePay(props) {
-    const params = new URLSearchParams(window.location.search);
-    const result = getEntries(params.entries());
 
     return (
-        <div>
-            failure
-        </div>
+        <BasicLayout>
+            <FailurePayment />
+        </BasicLayout>
     )
 }

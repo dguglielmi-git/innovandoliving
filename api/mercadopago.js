@@ -1,0 +1,41 @@
+import { getToken } from "./token"
+import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+
+export const saveOrder = async (order) => {
+    const orderRes = await fetch(`${URL_MERCADOPAGO_BACKEND}/orders`, {
+        headers: {
+            'Content-Type': 'application/json',
+            "x-token": getToken()
+        },
+        method: 'POST',
+        body: JSON.stringify(order)
+    })
+}
+
+export const orderUpdate = async (order) => {
+
+    const res = await fetch(`${URL_MERCADOPAGO_BACKEND}/orderUpdate`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-token': getToken()
+        },
+        body: JSON.stringify(order)
+    })
+
+    return res;
+}
+
+export const sendProductsToMercadoPago = async (itemsProd) => {
+
+    const result = await fetch(`${URL_MERCADOPAGO_BACKEND}/payment`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "items": itemsProd })
+    })
+    const response = await result.json()
+    return response
+}
+

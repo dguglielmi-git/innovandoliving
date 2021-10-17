@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import { size, map, includes, remove } from "lodash";
-import { BASE_PATH, CART } from "../utils/constants";
+import { SERVER_ADDRESS, CART } from "../utils/constants";
 import { authFetch } from "../utils/fetch";
 
 export async function getCart(idUser) {
     try {
-        const url = `${BASE_PATH}/carts?users_permissions_user=${idUser}`;
+        const url = `${SERVER_ADDRESS}/carts?users_permissions_user=${idUser}`;
         const response = await fetch(url);
         const result = await response.json();
         return result;
@@ -17,7 +17,7 @@ export async function getCart(idUser) {
 
 export async function cleanCart(idUser, logout) {
     try {
-        const url = `${BASE_PATH}/carts`;
+        const url = `${SERVER_ADDRESS}/carts`;
         const params = {
             method: 'DELETE',
             headers: {
@@ -28,12 +28,10 @@ export async function cleanCart(idUser, logout) {
             })
         };
         const result = await authFetch(url, params, logout);
-     //   toast.success('El item se ha eliminado del carrito');
         return result;
 
     } catch (error) {
         console.log(error);
-      //  toast.error('Ha ocurrido un error al intentar eliminar el item.');
         return null;
     }
 }
@@ -54,7 +52,7 @@ export async function addToCart(idUser, product, quantity, logout) {
     }
 
     try {
-        const url = `${BASE_PATH}/carts`;
+        const url = `${SERVER_ADDRESS}/carts`;
         const params = {
             method: "POST",
             headers: {
@@ -88,7 +86,7 @@ export async function countProductsCart(idUser) {
 
 export async function removeItemCart(product, logout) {
     try {
-        const url = `${BASE_PATH}/carts/${product}`;
+        const url = `${SERVER_ADDRESS}/carts/${product}`;
         const params = {
             method: 'DELETE',
             headers: {
@@ -112,7 +110,7 @@ export async function paymentCartApi(token, products, idUser, address, logout) {
         delete addressShipping.user;
         delete addressShipping.createAd;
 
-        const url = `${BASE_PATH}/orders`;
+        const url = `${SERVER_ADDRESS}/orders`;
         const params = {
             method: "POST",
             headers: {

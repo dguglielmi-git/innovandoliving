@@ -61,7 +61,7 @@ export default function LoginForm(props) {
                 onChange={formik.handleChange}
                 error={formik.errors.password}
             />
-            <div className="actions">
+            <div className="button-actions">
                 <Button type="button" basic onClick={showRegisterForm}>
                     {t('authLoginFormButtonRegister')}
                 </Button>

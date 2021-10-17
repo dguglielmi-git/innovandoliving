@@ -1,0 +1,63 @@
+@keyframes showUp {
+    0% {
+        transform: scale(0.1) rotate(250deg);
+    }
+    100% {
+        transform:  scale(1) rotate(0deg);
+    }
+}
+
+.pending-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    align-self: center;
+    transition: all 800ms ease;
+        animation: 2000ms show ease-in-out;
+        animation-fill-mode: forwards;
+    
+    .title {
+        display: flex;
+        text-align: center;
+        width: 40%;
+        h3 {
+            font-size: 24px;
+        }
+    }    
+
+    .image {
+        display: flex;
+        width: 120px;
+        height: 120px;
+        margin-top: 5px;
+        transition: all 800ms ease;
+        animation: 2000ms showUp ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .order {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        margin-top: 10px;
+        height: 50px;
+    }
+
+    .message {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: column;
+        text-align: end;
+        margin-top: 20px;
+        width: 350px;
+    }
+
+}

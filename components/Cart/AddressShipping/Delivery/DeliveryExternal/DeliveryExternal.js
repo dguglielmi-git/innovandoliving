@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -8,7 +8,9 @@ import { Form, Button, Icon } from "semantic-ui-react";
 import DeliveryForm from "./Forms/DeliveryForm";
 import InvoiceForm from "./Forms/InvoiceForm";
 import { initialValues, validationSchema } from "./functions/formikSchema";
+import { LivingContext } from "../../../../../context/LivingContext"
 import { getDocTypes } from "../../../../../api/doctypes";
+import { formatInvoiceAddress, formatTransportAddress } from "../../../../../utils/util"
 
 
 export default function DeliveryExternal(props) {
@@ -16,6 +18,7 @@ export default function DeliveryExternal(props) {
     const [addressEnabled, setAddressEnabled] = useState(false);
     const [docType, setDocType] = useState(null);
     const [docTypes, setDocTypes] = useState([]);
+    const { setAddressInvoice, setAddressTransport } = useContext(LivingContext);
 
     useEffect(() => {
         (async () => {
@@ -28,11 +31,11 @@ export default function DeliveryExternal(props) {
 
     useEffect(() => {
         if (addressEnabled) {
-            formik.values.invoice_name      = formik.values.transport_name;
-            formik.values.invoice_address   = formik.values.transport_address;
-            formik.values.invoice_city      = formik.values.transport_city;
-            formik.values.invoice_state     = formik.values.transport_state;
-            formik.values.invoice_zipCode   = formik.values.transport_zipCode;
+            formik.values.invoice_name = formik.values.transport_name;
+            formik.values.invoice_address = formik.values.transport_address;
+            formik.values.invoice_city = formik.values.transport_city;
+            formik.values.invoice_state = formik.values.transport_state;
+            formik.values.invoice_zipCode = formik.values.transport_zipCode;
         }
     }, [addressEnabled]);
 
@@ -45,41 +48,42 @@ export default function DeliveryExternal(props) {
             if (!docType) {
                 toast.error('No ha seleccionado documento');
             } else {
+                setAddressInvoice(formatInvoiceAddress(formData))
+                setAddressTransport(formatTransportAddress(formData))
                 setStep(2);
             }
-
         }
     });
 
     const Separator = ({ data }) => (
         <Divider align="center">
-            <span className="p-tag">{data}</span>
+            <span className="p-tag">{ data }</span>
         </Divider>
     )
 
     return (
         <div className="delivery-external">
-            <Form onSubmit={formik.handleSubmit}>
+            <Form onSubmit={ formik.handleSubmit }>
                 <Separator data="Datos para Transporte" />
                 <div className="delivery">
-                    <DeliveryForm formik={formik} />
+                    <DeliveryForm formik={ formik } />
                 </div>
                 <Separator data="Datos de la Factura" />
 
                 <div className="p-field-checkbox">
                     <Checkbox inputId="binary"
-                        checked={addressEnabled}
-                        onChange={e => setAddressEnabled(!addressEnabled)}
+                        checked={ addressEnabled }
+                        onChange={ e => setAddressEnabled(!addressEnabled) }
                     />
                     <label>Utilizar misma direccion</label>
                 </div>
                 <div className="delivery">
                     <InvoiceForm
-                        formik={formik}
-                        docTypes={docTypes}
-                        docType={docType}
-                        setDocType={setDocType}
-                        addressEnabled={addressEnabled}
+                        formik={ formik }
+                        docTypes={ docTypes }
+                        docType={ docType }
+                        setDocType={ setDocType }
+                        addressEnabled={ addressEnabled }
                     />
                 </div>
                 <Divider align="center" />
