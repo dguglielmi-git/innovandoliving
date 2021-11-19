@@ -1,9 +1,13 @@
-import useAuth from "../hooks/useAuth";
 const dollarCurrency = { style: 'currency', currency: 'ARS' };
 const dollarFormat = new Intl.NumberFormat('es-ES', dollarCurrency);
 
 export function numToDollar(number) {
 	return "$".concat(dollarFormat.format(number).replace('ARS', ''));
+}
+
+export const formatDate = (date) => {
+	const d = new Date(date);
+	return (d.toLocaleDateString() + ' - ' + d.toLocaleTimeString() + 'hs');
 }
 
 export function getEntries(entries) {
@@ -19,6 +23,10 @@ export function getEntries(entries) {
 	}
 	return result;
 }
+
+export const getTotalItems = (items) =>
+	items.reduce((sum, item) => sum + (item.quantity * item.unit_price),0)
+
 
 export const formatInvoiceAddress = (formData) => ({
 	invoice_address: formData.invoice_address,
@@ -39,3 +47,28 @@ export const formatTransportAddress = (formData) => ({
 	transport_state: formData.transport_state,
 	transport_zipCode: formData.transport_zipCode
 })
+
+
+export function translateStatus(status) {
+	switch (status) {
+		case 0:
+			return 'Ordered';
+		case 1:
+			return 'In Progress'
+		case 2:
+			return 'Shipped';
+		case 3:
+			return 'Delivered';
+		default:
+			return 'Unknown';
+	}
+}
+export const drawOrderProgress = (status) => {
+	let progress = [];
+	for (let i = 0; i <= status; i++) {
+		progress.push({
+			status: translateStatus(i),
+		})
+	}
+	return progress;
+}

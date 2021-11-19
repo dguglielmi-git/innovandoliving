@@ -34,12 +34,12 @@ import "../locales/i18n";
 PrimeReact.ripple = true;
 
 export default function MyApp({ Component, pageProps }) {
-    const { t } = useTranslation();
+    const router = useRouter();
+    const { t } = useTranslation();    
     const [auth, setAuth] = useState(undefined);
     const [reloadUser, setReloadUser] = useState(false);
-    const [totalProductsCart, setTotalProductsCart] = useState(0);
     const [reloadCart, setReloadCart] = useState(false);
-    const router = useRouter();
+    const [totalProductsCart, setTotalProductsCart] = useState(0);  
 
     library.add(fab, faCheckSquare, faCoffee);
 
@@ -94,8 +94,11 @@ export default function MyApp({ Component, pageProps }) {
         setReloadCart(true);
     }
 
-    // From this object we call to every system's functions (login, logout, etc)
-    // We utilize setReloadUser to reload information from users after modifications.
+    const cleaningCart = async (idUser, logout) => {
+        await cleanCart(idUser, logout)
+        setReloadCart(true);
+    }
+
     const authData = useMemo(
         () => ({
             auth,
@@ -105,11 +108,6 @@ export default function MyApp({ Component, pageProps }) {
         }),
         [auth]
     );
-
-    const cleaningCart = async (idUser, logout) => {
-        await cleanCart(idUser, logout)
-        setReloadCart(true);
-    }
 
     const cartData = useMemo(
         () => ({

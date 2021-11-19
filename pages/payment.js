@@ -17,14 +17,16 @@ export default function Payment(props) {
                 items.push({
                     title: item.producto.title,
                     unit_price: item.producto.price,
-                    quantity: item.quantity
+                    quantity: item.quantity,
+                    image: item.producto.poster.url,
                 })
             })
             if (deliveryOption !== 'store') {
                 items.push({
                     title: "Envio",
                     unit_price: shippingPrice,
-                    quantity: 1
+                    quantity: 1,
+                    image: '/delivery.png',
                 })
             }
         }

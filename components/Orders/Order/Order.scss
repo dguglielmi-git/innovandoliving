@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  //margin-top: 25px;
   padding: 10px;
   padding-top: 25px;  
   background-color: #F0F0F0;
@@ -29,6 +28,18 @@
 
     &__mainbox {
       
+      &-buttonback {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        margin-bottom: 10px;
+        width: 100px;
+        &:hover {
+          cursor: pointer;
+        }
+        
+      }
+
       &-timeline{
         display: flex;
         width: 220px;
@@ -58,9 +69,14 @@
         }
       }
 
+      &-goback {
+        display: flex;
+      }
+
       &-comments {
         display: flex;
         padding: 10px;
+        margin-left: 10px;
       }
     }
   }

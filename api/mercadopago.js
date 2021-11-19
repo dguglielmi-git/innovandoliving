@@ -2,7 +2,7 @@ import { getToken } from "./token"
 import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
 
 export const saveOrder = async (order) => {
-    const orderRes = await fetch(`${URL_MERCADOPAGO_BACKEND}/orders`, {
+    const orderRes = await fetch(`${URL_MERCADOPAGO_BACKEND}/order`, {
         headers: {
             'Content-Type': 'application/json',
             "x-token": getToken()
@@ -14,7 +14,7 @@ export const saveOrder = async (order) => {
 
 export const orderUpdate = async (order) => {
 
-    const res = await fetch(`${URL_MERCADOPAGO_BACKEND}/orderUpdate`, {
+    const res = await fetch(`${URL_MERCADOPAGO_BACKEND}/order`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

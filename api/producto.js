@@ -25,9 +25,9 @@ export async function getLastProductosApi(limit) {
 
 /**
  * 
- * @param {Plataforma deseada} platform 
- * @param {Cantidad Limite de Productos a recibir} limit 
- * @param {Punto inicial a devolver para la paginación} start 
+ * @param {Platform needed} platform 
+ * @param {Quantity limit of products to receive} limit 
+ * @param {Starting point of the pagination for retrieving} start 
  */
 export async function getProductosPlatformApi(platform, limit, start) {
 

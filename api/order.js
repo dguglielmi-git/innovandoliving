@@ -1,11 +1,25 @@
-import { SERVER_ADDRESS } from "../utils/constants";
-import { authFetch } from "../utils/fetch";
+import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+import { getToken } from "./token";
 
-export async function getOrdersApi(idUser, logout) {
+export async function getOrdersApi(logout) {
+    const token = getToken();
+
+    if (!token) {
+        logout();
+    }
+
     try {
-        const url = `${SERVER_ADDRESS}/orders?_sort=createAt:desc&users_permissions_user=${idUser}`;
-        const result = authFetch(url, null, logout);
-        return result;
+        const url = `${URL_MERCADOPAGO_BACKEND}/orders`;
+        const params = {
+            headers: {
+                'x-token': token,
+                'Content-Type': 'application/json'
+            }
+        }
+        const orders = await fetch(url, params);
+        return orders;
+
+
     } catch (error) {
         console.log(error);
         return null;

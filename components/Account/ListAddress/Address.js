@@ -14,12 +14,12 @@ export default function Address(props) {
         setIdSelected,
         t
     } = props;
-    
+
     const [showDialog, setShowDialog] = useState(false);
-    const [loadingDelete, setLoadingDelete] = useState(false);  
+    const [loadingDelete, setLoadingDelete] = useState(false);
 
     const openDelete = () => setShowDialog(true);
-    
+
     const cancelDelete = () => setShowDialog(false);
 
     const deleteAddress = async () => {
@@ -43,29 +43,29 @@ export default function Address(props) {
 
     return (
         <>
-            <div className="box-address" onClick={() => handleClick()}>
-                <div className={idSelected === address.id ? "card active" : "card"}>
+            <div className="box-address" onClick={ () => handleClick() }>
+                <div className={ idSelected === address.id ? "card active" : "card" }>
                     <div className="card-header">
                         <div>
-                            {address.title}
+                            { address.title }
                         </div>
                         <div className="card-header__options">
-                            <Icon loading={loadingDelete} color="blue" name="trash alternate"
-                                onClick={() => openDelete()} />
+                            <Icon loading={ loadingDelete } color="blue" name="trash alternate"
+                                onClick={ () => openDelete() } />
                             <Icon color="blue" name="edit"
-                                onClick={() => openModal(`Editar: ${address.title}`, address)} />
+                                onClick={ () => openModal(`Editar: ${address.title}`, address) } />
                         </div>
                     </div>
                     <div className="card-body">
-                        <div>{address.address} - {address.city}</div>
-                        <div>{address.state} {address.postalCode}</div>
-                        <div>Tel. {address.phone}</div>
+                        <div>{ address.address } - { address.city }</div>
+                        <div>{ address.state } { address.zipCode }</div>
+                        <div>Tel. { address.phone }</div>
                     </div>
                 </div>
             </div>
-            <Confirm size="mini" open={showDialog} onCancel={cancelDelete}
-                onConfirm={() => deleteAddress()}
-                content={t('accountListAddressQuestionDelete')}
+            <Confirm size="mini" open={ showDialog } onCancel={ cancelDelete }
+                onConfirm={ () => deleteAddress() }
+                content={ t('accountListAddressQuestionDelete') }
             />
         </>
     )

@@ -1,9 +1,13 @@
 export const TRANSLATION_ES = {
 
     /****************************************************************
-     *                Generic
+     *                Generic/System
      ****************************************************************/
     businessName:                           'InnovandoLiving.',
+    statusPending:                          'Orgen Ingresada',
+    statusInProgress:                       'Preparando Pedido',
+    statusOnTheWay:                         'En Camino',
+    statusDelivered:                        'Entregado',
 
     /****************************************************************
      *                Components

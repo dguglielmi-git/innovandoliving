@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import useAuth from "../../../hooks/useAuth";
 import { loginApi, resetPasswordApi } from "../../../api/user";
 import "../../../locales/i18n";
-import 'fontsource-roboto';
+// import 'fontsource-roboto';
 
 export default function LoginForm(props) {
     const { showRegisterForm, onCloseModal } = props;
@@ -46,32 +46,35 @@ export default function LoginForm(props) {
     }
 
     return (
-        <Form className="login-form" onSubmit={formik.handleSubmit}>
+        <Form className="login-form" onSubmit={ formik.handleSubmit }>
             <Form.Input
                 name="identifier"
                 type="text"
-                placeholder={t('authLoginFormInputEmail')}
-                onChange={formik.handleChange}
-                error={formik.errors.identifier}
+                placeholder={ t('authLoginFormInputEmail') }
+                onChange={ formik.handleChange }
+                error={ formik.errors.identifier }
             />
             <Form.Input
+                title="password"
                 name="password"
                 type="password"
-                placeholder={t('authLoginFormInputPassword')}
-                onChange={formik.handleChange}
-                error={formik.errors.password}
+                placeholder={ t('authLoginFormInputPassword') }
+                onChange={ formik.handleChange }
+                error={ formik.errors.password }
             />
             <div className="button-actions">
-                <Button type="button" basic onClick={showRegisterForm}>
-                    {t('authLoginFormButtonRegister')}
+                <Button type="button" basic onClick={ showRegisterForm }>
+                    { t('authLoginFormButtonRegister') }
                 </Button>
-                <Button className="submit" basic type="submit" loading={loading}>
-                    {t('authLoginFormButtonLogin')}
+                <Button className="submit" basic type="submit"
+                    loading={ loading }
+                >
+                    { t('authLoginFormButtonLogin') }
                 </Button>
             </div>
             <div className="login-forgot">
-                <Typography variant="caption" display="blokc gutterBottom" onClick={resetPassword}>
-                    {t('authLoginFormButtonForgotPass')}
+                <Typography variant="caption" display="block" onClick={ resetPassword }>
+                    { t('authLoginFormButtonForgotPass') }
                 </Typography>
             </div>
 
