@@ -4,6 +4,7 @@ import { Image } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import { orderUpdate } from "../../../api/mercadopago";
 import { parseFinalOrder } from "../../../utils/mercadopago";
+import { PATH_PENDING_IMG } from "../../../utils/constants";
 
 export default function PendingPayment(props) {
     const { incomingData } = props;
@@ -25,9 +26,9 @@ export default function PendingPayment(props) {
                 <h3>{ t('cartPendingPaymentTitle') }</h3>
             </div>
             <div className="image">
-                <Image src="./pending.png" alt="" />
+                <Image src={ `./${PATH_PENDING_IMG}` } alt="" />
             </div>
-            <div className="order">
+            <div className="order-pending">
                 <h4>{ t('cartPendingPaymentOrderNumber') + merchant_order_id }.</h4>
             </div>
             <div className="message">

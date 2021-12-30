@@ -1,17 +1,33 @@
-export const STRIPE_TOKEN = "pk_test_51Ix2YOB5rkumZ3Y6Z6GmYioPNzbjpEWgJdSRFnws96O5f0MSiAOMghdepZ6bBqg2jFA3xMdch4u6RSMMU9u47qnt00lQ5e3kzF";
 export const CART = "cart";
 export const TOKEN = "token";
+export const CORS_PROXY = process.env.NODE_ENV == "development" ? "https://cors-anywhere.herokuapp.com/" : '';
 export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:1337";
 export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:5000/api/mercadopago"
-export const ORDER_PROCESSED = 0;
-export const ORDER_AWAITING_SHIPMENT = 1;
-export const ORDER_ON_THE_WAY = 2;
-export const ORDER_DELIVERED = 3;
-export const ORDER_DELIVERY_NOT_POSSIBLE = 4;
-export const ORDER_CANCELLED = 5;
-export const ORDER_DECLINED = 6;
-export const ORDER_REFUNDED = 7;
-export const ORDER_DISPUTED = 8;
-export const ORDER_PARTIALLY_REFUNDED = 9;
-export const ORDER_AWAITING_PICKUP = 10;
-export const ORDER_PARTIALLY_SHIPPPED = 11;
+
+export const ORIGIN_DELIVERY_ADDRESS = "Deán Funes 3920, B1826EYI Lanús, Provincia de Buenos Aires, Argentina";
+export const GOOGLE_MAPS_GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
+export const GOOGLE_MAPS_DISTANCE_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+export const URL_ERROR_PLACEHOLDER = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png';
+export const USER_OWNER = "owner";
+export const USER_CLIENT = "client";
+
+export const IS_OWNER = 1;
+export const IS_NORMAL_USER = 0;
+export const NOT_FOUND = "Not Found"
+
+export const STEP_VERIFY_PRODUCTS = 0;
+export const STEP_DELIVERY_OPTIONS = 1;
+export const STEP_CONFIRM_ORDER = 2;
+export const STEP_PAY_ORDER = 3;
+
+export const PATH_DELIVERY_IMG = "delivery.png";
+export const PATH_FAILURE_IMG = "failure.png";
+export const PATH_PENDING_IMG = "pending.png";
+export const PATH_SUCCESS_IMG = "success.png";
+export const PATH_LOGO_IMG = "logo.png";
+
+export const MOBILE_COL_SIZE = 16;
+export const TABLET_COL_SIZE = 8;
+export const COMPUTER_COL_SIZE = 4;
+
+export const ORDER_CLOSED = 99;

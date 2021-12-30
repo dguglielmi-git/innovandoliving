@@ -1,99 +1,89 @@
 import React, { useState, useEffect } from 'react';
 import { size } from 'lodash';
-import { Button, Comment, Form } from 'semantic-ui-react';
+import { Comment } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../../../../hooks/useAuth';
 import { getMeApi } from '../../../../api/user';
-import { addMessage, getMessagesByOrder } from '../../../../api/orderMessage';
-import { formatDate } from '../../../../utils/util';
+import {
+    addMessage,
+    getMessagesByOrder,
+    markMessageAsRead
+} from '../../../../api/orderMessage';
+import { verifyUserType } from '../../../../utils/util';
+import FormComment from '../FormComment';
+import CommentBody from './sections/CommentBody';
 
 const CommentsForm = (props) => {
-    const { order, setReloadOrder } = props;
+    const {
+        order,
+        setReloadOrder,
+        sendLabel,
+        userType,
+        orderBlocked } = props;
     const [username, setUsername] = useState("");
     const [renderMsg, setRenderMsg] = useState([]);
-    const { messages } = order;
+    const { t } = useTranslation();
     const { logout } = useAuth();
 
     useEffect(() => {
         (async () => {
             const user = await getMeApi(logout);
             setUsername(user.name + " " + user.lastname);
-            await setRenderMsg(messages);
+            const messages = await getMessagesByOrder(order._id);
+            setRenderMsg(messages);
         })();
-    }, [])
+    }, []);
 
-    // useEffect(() => {
-    //     setInterval(async () => {
-    //         if (order) {
-    //             const result = await getMessagesByOrder(order._id);
-    //             setRenderMsg(result);
-    //         }
-    //     }, 5000)
-    // },[])
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            const result = await getMessagesByOrder(order._id);
+            await markMessageAsRead(order._id, verifyUserType(userType))
+            setRenderMsg(result)
+        }, 30000);
+        return () => clearInterval(interval);
+    }, [])
 
     const reloadMessage = async () => {
         if (order) {
             const result = await getMessagesByOrder(order._id);
+            await markMessageAsRead(order._id, verifyUserType(userType))
+            setRenderMsg(result)
             return result;
         }
         return null;
     }
 
-
-    const CommentHeader = () => (
-        <div>
-            <h3>Contacto con Atención al cliente</h3>
-        </div>
-    );
-
-    const FormReply = () => (
-        <Form reply onSubmit={ (e) => addComment(e) }>
-            <Form.TextArea />
-            <Button content='Enviar Consulta'
-                labelPosition='left'
-                icon='edit'
-                primary
-                type="submit" />
-        </Form>
-    );
-
     const addComment = async (event) => {
         event.preventDefault();
         const comment = event.target[0].value;
         event.target[0].value = ""
-        console.log(order)
-        await addMessage(username, order._id, comment, "client");
+        await addMessage(username, order._id, comment, userType);
+        await reloadMessage();
         setReloadOrder(true);
     }
 
-    const EmptyForm = () => (
-        <Comment.Group>
-            <CommentHeader />
-            <FormReply />
-        </Comment.Group>
-    )
-
-    const getIcon = (icon) => (icon === 'owner' ? 'supporticon' : icon);
-
-    if (size(renderMsg) === 0 || renderMsg === []) return (<EmptyForm />)
+    const CommentHeader = () => (
+        <div>
+            <h3>{
+                (order?.status !== 99)
+                    ? t('commentsSupportContact')
+                    : t('commentsHistory') } </h3>
+        </div>
+    );
 
     return (
         <Comment.Group>
             <CommentHeader />
-            { renderMsg.map(msg => (
-                <Comment>
-                    <Comment.Avatar src={ `/${getIcon(msg.icon)}.png` } />
-                    <Comment.Content>
-                        <Comment.Author as='a'>{ msg.username }</Comment.Author>
-                        <Comment.Metadata>
-                            <div>{ formatDate(msg.messageDate) }</div>
-                        </Comment.Metadata>
-                        <Comment.Text>
-                            <p>{ msg.message }</p>
-                        </Comment.Text>
-                    </Comment.Content>
-                </Comment>
-            )) }
-            <FormReply />
+            <CommentBody
+                renderMsg={ renderMsg }
+            />
+            { size(renderMsg) === 0 && <h4><i>{ t('commentsNoMessages') }</i></h4> }
+            { (order?.status !== 99) &&
+                <FormComment
+                    addComment={ addComment }
+                    sendLabel={ sendLabel }
+                    orderBlocked={ orderBlocked }
+                /> }
         </Comment.Group>
     );
 }

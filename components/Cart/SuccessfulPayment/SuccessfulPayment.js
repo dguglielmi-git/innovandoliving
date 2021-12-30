@@ -4,6 +4,7 @@ import useCart from "../../../hooks/useCart";
 import { useTranslation } from "react-i18next";
 import { orderUpdate } from "../../../api/mercadopago";
 import { parseFinalOrder } from "../../../utils/mercadopago";
+import { PATH_SUCCESS_IMG } from "../../../utils/constants";
 
 export default function SuccessfulPayment(props) {
     const { incomingData } = props;
@@ -25,9 +26,9 @@ export default function SuccessfulPayment(props) {
                 <h3>{ t('cartSuccessfulPaymentTitle') }</h3>
             </div>
             <div className="image">
-                <Image src="./success.png" alt="" />
+                <Image src={ `./${PATH_SUCCESS_IMG}` } alt="" />
             </div>
-            <div className="order">
+            <div className="order-success">
                 <h4>{ t('cartSuccessfulPaymentOrderNumber') + merchant_order_id }.</h4>
             </div>
             <div className="message">

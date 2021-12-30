@@ -1,3 +1,12 @@
+import {
+	RES_SMALL,
+	RES_MEDIUM,
+	RES_LARGE,
+	RES_XL
+} from "./breakpoint";
+import { IS_NORMAL_USER, IS_OWNER, USER_CLIENT } from "./constants";
+import i18n from "../locales/i18n";
+
 const dollarCurrency = { style: 'currency', currency: 'ARS' };
 const dollarFormat = new Intl.NumberFormat('es-ES', dollarCurrency);
 
@@ -24,8 +33,16 @@ export function getEntries(entries) {
 	return result;
 }
 
+export function verifyUserType(userType) {
+	if (userType === USER_CLIENT) {
+		return IS_NORMAL_USER;
+	} else {
+		return IS_OWNER;
+	}
+}
+
 export const getTotalItems = (items) =>
-	items.reduce((sum, item) => sum + (item.quantity * item.unit_price),0)
+	items.reduce((sum, item) => sum + (item.quantity * item.unit_price), 0)
 
 
 export const formatInvoiceAddress = (formData) => ({
@@ -48,27 +65,72 @@ export const formatTransportAddress = (formData) => ({
 	transport_zipCode: formData.transport_zipCode
 })
 
-
 export function translateStatus(status) {
 	switch (status) {
 		case 0:
-			return 'Ordered';
+			return i18n.t('statusOrdered');
 		case 1:
-			return 'In Progress'
+			return i18n.t('statusInProgress');
 		case 2:
-			return 'Shipped';
+			return i18n.t('statusShipped');
 		case 3:
-			return 'Delivered';
+			return i18n.t('statusDelivered');
+		case 4:
+			return i18n.t('statusDelayed');
+		case 5:
+			return i18n.t('statusCancelled');
+		case 6:
+			return i18n.t('statusDeclined');
+		case 7:
+			return i18n.t('statusRefunded');
+		case 8:
+			return i18n.t('statusDisputed');
+		case 9:
+			return i18n.t('statusPartiallyRefunded');
+		case 10:
+			return i18n.t('statusAwaitingPickup');
+		case 11:
+			return i18n.t('statusPartiallyShipped');
+		case 99:
+			return i18n.t('statusClosed');
 		default:
-			return 'Unknown';
+			return i18n.t('statusUnknown');
 	}
 }
-export const drawOrderProgress = (status) => {
+
+export const drawTimeLineOfOrder = (status) => {
 	let progress = [];
-	for (let i = 0; i <= status; i++) {
-		progress.push({
-			status: translateStatus(i),
-		})
-	}
+
+	status.map(hist => progress.push({
+		status: translateStatus(hist.status),
+	}));
+
 	return progress;
+}
+
+export const buildDataComboStructure = (status) => {
+	let list = [];
+	status.map(stat => {
+		list.push({
+			key: stat._id,
+			text: translateStatus(stat.status),
+			value: stat.status,
+		})
+	})
+	return list;
+}
+
+export const getColumnsRender = (width) => {
+	switch (true) {
+		case width > RES_XL:
+			return 5;
+		case width > RES_LARGE:
+			return 4;
+		case width > RES_MEDIUM:
+			return 3;
+		case width > RES_SMALL:
+			return 2;
+		default:
+			return 1;
+	}
 }

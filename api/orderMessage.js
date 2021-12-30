@@ -1,10 +1,10 @@
-import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+import { URL_MERCADOPAGO_BACKEND, USER_CLIENT, USER_OWNER } from "../utils/constants";
 import { getToken } from "./token";
 
 export async function addMessage(username, orderId, message, icon) {
 
     try {
-        const url = `${URL_MERCADOPAGO_BACKEND}/ordermessage`;
+        const url = `${URL_MERCADOPAGO_BACKEND}/order/message`;
 
         const params = {
             method: 'POST',
@@ -17,7 +17,8 @@ export async function addMessage(username, orderId, message, icon) {
                 username: username,
                 message: message,
                 icon: icon,
-                msgread: 1,
+                msgread: (icon === USER_CLIENT) ? 1 : 0,
+                msgreadowner: (icon === USER_OWNER) ? 1 : 0,
             })
         }
 
@@ -29,7 +30,7 @@ export async function addMessage(username, orderId, message, icon) {
     }
 }
 
-export async function markMessageAsRead(orderId) {
+export async function markMessageAsRead(orderId, userType) {
 
     try {
         const url = `${URL_MERCADOPAGO_BACKEND}/order/message/read/${orderId}`;
@@ -39,7 +40,10 @@ export async function markMessageAsRead(orderId) {
             headers: {
                 'Content-Type': "application/json",
                 "x-token": getToken()
-            }
+            },
+            body: JSON.stringify({
+                userType: userType
+            })
         }
 
         const result = await fetch(url, params);
@@ -68,5 +72,27 @@ export async function getMessagesByOrder(orderId) {
     catch (error) {
         console.log(error);
         return null;
-     }
+    }
+}
+
+export async function isUserOwner(userId) {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/userowner/${userId}`;
+
+        const params = {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-token': getToken()
+            }
+        }
+
+        const resultCall = await fetch(url, params);
+        const response = await resultCall.json();
+        const { result } = await response
+        return result;
+    }
+    catch (error) {
+        console.log(error)
+        return null;
+    }
 }

@@ -12,7 +12,6 @@ import {
     addToCart,
     countProductsCart,
     removeItemCart,
-    removeAllProductsCart,
 } from "../api/cart";
 import PrimeReact from 'primereact/api';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -35,11 +34,11 @@ PrimeReact.ripple = true;
 
 export default function MyApp({ Component, pageProps }) {
     const router = useRouter();
-    const { t } = useTranslation();    
+    const { t } = useTranslation();
     const [auth, setAuth] = useState(undefined);
     const [reloadUser, setReloadUser] = useState(false);
     const [reloadCart, setReloadCart] = useState(false);
-    const [totalProductsCart, setTotalProductsCart] = useState(0);  
+    const [totalProductsCart, setTotalProductsCart] = useState(0);
 
     library.add(fab, faCheckSquare, faCoffee);
 
@@ -115,7 +114,6 @@ export default function MyApp({ Component, pageProps }) {
             addProductCart: (idUser, product, quantity) => addProduct(idUser, product, quantity),
             getProductsCart: getCart,
             removeProductCart: (product) => removeProduct(product),
-            removeAllProductsCart: removeAllProductsCart,
             cleanCart: (idUser) => cleaningCart(idUser, logout)
         }),
         [totalProductsCart]

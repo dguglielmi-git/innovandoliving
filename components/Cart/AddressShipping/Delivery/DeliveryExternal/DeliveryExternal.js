@@ -11,10 +11,12 @@ import { initialValues, validationSchema } from "./functions/formikSchema";
 import { LivingContext } from "../../../../../context/LivingContext"
 import { getDocTypes } from "../../../../../api/doctypes";
 import { formatInvoiceAddress, formatTransportAddress } from "../../../../../utils/util"
-
+import { STEP_CONFIRM_ORDER } from '../../../../../utils/constants';
+import { useTranslation } from 'react-i18next';
 
 export default function DeliveryExternal(props) {
     const { setStep } = props;
+    const { t } = useTranslation();
     const [addressEnabled, setAddressEnabled] = useState(false);
     const [docType, setDocType] = useState(null);
     const [docTypes, setDocTypes] = useState([]);
@@ -46,11 +48,11 @@ export default function DeliveryExternal(props) {
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
             if (!docType) {
-                toast.error('No ha seleccionado documento');
+                toast.error(t('deliveryExternalNoSelectedDocument'));
             } else {
                 setAddressInvoice(formatInvoiceAddress(formData))
                 setAddressTransport(formatTransportAddress(formData))
-                setStep(2);
+                setStep(STEP_CONFIRM_ORDER);
             }
         }
     });
@@ -64,18 +66,18 @@ export default function DeliveryExternal(props) {
     return (
         <div className="delivery-external">
             <Form onSubmit={ formik.handleSubmit }>
-                <Separator data="Datos para Transporte" />
+                <Separator data={ t('deliveryExternalTransportDataLabel') } />
                 <div className="delivery">
                     <DeliveryForm formik={ formik } />
                 </div>
-                <Separator data="Datos de la Factura" />
+                <Separator data={ t('deliveryExternalInvoiceData') } />
 
                 <div className="p-field-checkbox">
                     <Checkbox inputId="binary"
                         checked={ addressEnabled }
                         onChange={ e => setAddressEnabled(!addressEnabled) }
                     />
-                    <label>Utilizar misma direccion</label>
+                    <label>{ t('deliveryExternalUseSameAddress') }</label>
                 </div>
                 <div className="delivery">
                     <InvoiceForm
@@ -89,7 +91,8 @@ export default function DeliveryExternal(props) {
                 <Divider align="center" />
                 <div className="button-submit">
                     <Button className="submit" type="submit">
-                        Continuar <Icon name="arrow right" />
+                        { t('deliveryExternalContinueButtonLabel') }
+                        <Icon name="arrow right" />
                     </Button>
                 </div>
             </Form>

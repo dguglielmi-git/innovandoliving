@@ -8,6 +8,12 @@ import SummaryCart from "../components/Cart/SummaryCart"
 import StepsPurchase from "../components/Cart/StepsPurchase";
 import AddressShipping from "../components/Cart/AddressShipping";
 import ConfirmCart from "../components/Cart/ConfirmCart";
+import {
+    STEP_VERIFY_PRODUCTS,
+    STEP_DELIVERY_OPTIONS,
+    STEP_CONFIRM_ORDER,
+    STEP_PAY_ORDER
+} from "../utils/constants";
 import Payment from './payment';
 import { getCart } from "../api/cart";
 import { useRouter } from 'next/router';
@@ -48,7 +54,7 @@ export default function Cart() {
     }, [reloadCart, idUser]);
 
     const ButtonBack = () => (
-        <div className="button-back" onClick={ () => setStep(0) }>
+        <div className="button-back" onClick={ () => setStep(STEP_VERIFY_PRODUCTS) }>
             <Icon name='arrow alternate circle left' color="blue" size='big' />
             <h6>{ t('cartAddressShippingBackToCart') }</h6>
         </div>
@@ -58,11 +64,10 @@ export default function Cart() {
 
     return (
         <BasicLayout className="cart">
-            { step === 1 && <ButtonBack /> }
+            { step === STEP_DELIVERY_OPTIONS && <ButtonBack /> }
             { size(productsData) > 0 && <StepsPurchase activeIndex={ step } /> }
-            { step === 0 && (
+            { step === STEP_VERIFY_PRODUCTS && (
                 <SummaryCart
-                    t={ t }
                     products={ productsData }
                     reloadCart={ reloadCart }
                     setReloadCart={ setReloadCart }
@@ -71,14 +76,14 @@ export default function Cart() {
                     setTotalPrice={ setTotalPrice }
                 />
             ) }
-            { step === 1 && (<AddressShipping
+            { step === STEP_DELIVERY_OPTIONS && (<AddressShipping
                 address={ address }
                 setAddress={ setAddress }
                 setStep={ setStep }
                 deliveryOption={ deliveryOption }
                 setDeliveryOption={ setDeliveryOption }
             />) }
-            { step === 2 && (<ConfirmCart
+            { step === STEP_CONFIRM_ORDER && (<ConfirmCart
                 t={ t }
                 setStep={ setStep }
                 products={ productsData }
@@ -86,7 +91,7 @@ export default function Cart() {
                 shippingPrice={ shippingPrice }
                 setShippingPrice={ setShippingPrice }
             />) }
-            { step === 3 && (< Payment
+            { step === STEP_PAY_ORDER && (< Payment
                 address={ address }
                 products={ productsData }
                 deliveryOption={ deliveryOption }

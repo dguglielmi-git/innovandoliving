@@ -1,0 +1,25 @@
+.order-admin {
+  //   display: flex;
+  //   margin-top: 20px;
+  //   width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  padding-top: 25px;
+  background-color: #f0f0f0;
+
+  &__table {
+    display: flex;
+    width: 100%;
+
+    &-fixed {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #f0f0f0;
+    }
+  }
+}

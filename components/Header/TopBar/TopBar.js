@@ -1,54 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Container, Grid, Image, Input } from "semantic-ui-react"
-import Link from "next/link";
-import { useRouter } from "next/router";
-
+import React from "react";
+import { Container, Grid } from "semantic-ui-react"
+import Logo from "./sections/Logo";
+import SearchTopBar from "./sections/SearchTopBar";
 
 export default function TopBar() {
     return (
         <div className="top-bar">
             <Container>
                 <Grid className="top-bar">
-                    <Grid.Column width={12} className="top-bar__left">
-                        <Logo />
-                    </Grid.Column>
-                    <Grid.Column width={4} className="top-bar__right">
-                        <Search />
-                    </Grid.Column>
+                    <Logo />
+                    <SearchTopBar />
                 </Grid>
             </Container>
         </div>
-    )
-}
-
-function Logo() {
-    return (
-        <Link href="/">
-            <a>
-                <Image src="/logo.png" alt="Logo" />
-            </a>
-        </Link>
-    )
-}
-
-function Search() {
-    const [searchStr, setSearchStr] = useState("");
-    const [load, setLoad] = useState(false);
-    const router = useRouter();
-
-    useEffect(() => {
-        if (load) {
-            router.push(`/search?query=${searchStr}`);
-        }
-        setLoad(true);
-    }, [searchStr]);
-
-    return (
-        <Input
-            id="search-producto"
-            icon={{ name: "search" }}
-            value={router.query.query}
-            onChange={(_,data) => setSearchStr(data.value)}
-        />
     )
 }

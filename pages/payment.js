@@ -3,9 +3,14 @@ import { useRouter } from "next/router";
 import { useTranslation } from 'react-i18next';
 import { LivingContext } from '../context/LivingContext';
 import { saveOrder, sendProductsToMercadoPago } from "../api/mercadopago";
+import { PATH_DELIVERY_IMG } from '../utils/constants';
 
 export default function Payment(props) {
-    const { address, products, deliveryOption, shippingPrice } = props;
+    const {
+        address,
+        products,
+        deliveryOption,
+        shippingPrice } = props;
     const { addressInvoice, addressTransport } = useContext(LivingContext);
     const { t } = useTranslation();
     const router = useRouter();
@@ -21,12 +26,12 @@ export default function Payment(props) {
                     image: item.producto.poster.url,
                 })
             })
-            if (deliveryOption !== 'store') {
+            if ((deliveryOption !== 'store') || (deliveryOption !== 'tbd')) {
                 items.push({
-                    title: "Envio",
+                    title: t('labelShipping'),
                     unit_price: shippingPrice,
                     quantity: 1,
-                    image: '/delivery.png',
+                    image: `/${PATH_DELIVERY_IMG}`,
                 })
             }
         }
@@ -64,7 +69,9 @@ export default function Payment(props) {
     return (
         <div>
             <div className="ui active inverted dimmer">
-                <div className="ui large text loader">{ t('paymentProcessing') } </div>
+                <div className="ui large text loader">
+                    { t('paymentProcessing') }
+                </div>
             </div>
         </div>
     )

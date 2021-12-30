@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { updateEmail } from "../../../api/user"
+import { HTTP_BAD_REQUEST } from '../../../utils/http_constants';
 import "../../../locales/i18n";
 
 export default function ChangeEmailForm(props) {
@@ -19,7 +20,7 @@ export default function ChangeEmailForm(props) {
         onSubmit: async (formData) => {
             setLoading(true);
             const response = await updateEmail(user.id, formData.email, logout);
-            if (!response || response?.statusCode === 400) {
+            if (!response || response?.statusCode === HTTP_BAD_REQUEST) {
                 toast.error(t('accountChangeEmailFormError'));
             } else {
                 toast.success(t('accountChangeEmailFormOkUpdate'));
@@ -34,28 +35,28 @@ export default function ChangeEmailForm(props) {
     return (
         <div className="change-email-form">
             <h4>
-                {t('accountChangeEmailButtonChangeEmail')}
-                <span>{user.email}</span>
+                { t('accountChangeEmailButtonChangeEmail') }
+                <span>{ user.email }</span>
             </h4>
-            <Form onSubmit={formik.handleSubmit}>
+            <Form onSubmit={ formik.handleSubmit }>
                 <Form.Group widths="equal">
                     <Form.Input
                         name="email"
-                        placeholder={t('accountChangeEmailFormNewMail')}
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        error={formik.errors.email}
+                        placeholder={ t('accountChangeEmailFormNewMail') }
+                        onChange={ formik.handleChange }
+                        value={ formik.values.email }
+                        error={ formik.errors.email }
                     />
                     <Form.Input
                         name="repeatEmail"
-                        placeholder={t('accountChangeEmailFormNewMail')}
-                        onChange={formik.handleChange}
-                        value={formik.values.repeatEmail}
-                        error={formik.errors.repeatEmail}
+                        placeholder={ t('accountChangeEmailFormNewMail') }
+                        onChange={ formik.handleChange }
+                        value={ formik.values.repeatEmail }
+                        error={ formik.errors.repeatEmail }
                     />
                 </Form.Group>
-                <Button className="submit" loading={loading}>
-                    {t('accountChangeEmailButtonUpdate')}
+                <Button className="submit" loading={ loading }>
+                    { t('accountChangeEmailButtonUpdate') }
                 </Button>
             </Form>
         </div>

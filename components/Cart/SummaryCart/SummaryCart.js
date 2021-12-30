@@ -1,14 +1,13 @@
-import React, { useState,  useEffect } from 'react';
-import { forEach, map, size } from "lodash";
-import { Button, Icon } from "semantic-ui-react";
-import Typography from "@material-ui/core/Typography";
+import React, { useState, useEffect } from 'react';
+import { forEach, size } from "lodash";
 import useCart from "../../../hooks/useCart";
-import { numToDollar } from "../../../utils/util";
-import SummaryDetail from "./SummaryDetail";
-
+import SubtitleSummaryCart from "./sections/SubtitleSummaryCart"
+import ProductsListOnCart from "./sections/ProductsListOnCart";
+import TotalPriceOfProductsList from './sections/TotalPriceOfProductsList';
+import ContinuePurchaseButton from './sections/ContinuePurchaseButton';
 
 export default function SummaryCart(props) {
-    const { t, products, reloadCart, setReloadCart, setStep, totalPrice, setTotalPrice } = props;
+    const { products, reloadCart, setReloadCart, setStep, totalPrice, setTotalPrice } = props;
     const [loading, setLoading] = useState(true);
     const { removeProductCart } = useCart();
 
@@ -24,41 +23,20 @@ export default function SummaryCart(props) {
         setReloadCart(false);
     }, [products, reloadCart]);
 
-    const EmptyCart = () => (
-        <div className="empty-cart">
-            {loading && <h5>Cargando carrito</h5>}
-            { !loading && <h5>El carrito está vacio...</h5> }
-        </div>
-    )
-
     return (
         <div className="summary-cart">
-            <div className="subtitle">
-                <h4>{t('cartSummaryCartOrderDetail')}</h4>
-            </div>
-            <div className="datascroller-cart">
-                <div className="card">
-                    {map(products, (data) => (
-                        <SummaryDetail
-                            data={data}
-                            setReloadCart={setReloadCart}
-                            removeProductCart={removeProductCart}
-                        />
-                    ))}
-                    {size(products) === 0 && <EmptyCart />}
-                </div>
-            </div>
-            <div className="total-cart">
-                <Typography variant="h5"><strong>{t('cartSummaryCartTotalCart')}</strong>
-                    {numToDollar(totalPrice)}</Typography>
-            </div>
-            {size(products) > 0 && (
-                <div className="button-box">
-                    <Button className="button-box__continue" onClick={() => setStep(1)}>
-                        {t('cartSummaryCartContinuePurchase')} <Icon name="arrow right" />
-                    </Button>
-                </div>
-            )}
+            <SubtitleSummaryCart />
+            <ProductsListOnCart
+                loading={ loading }
+                products={ products }
+                setReloadCart={ setReloadCart }
+                removeProductCart={ removeProductCart }
+            />
+            <TotalPriceOfProductsList totalPrice={ totalPrice }
+            />
+            { size(products) > 0 && (
+                <ContinuePurchaseButton setStep={ setStep } />
+            ) }
         </div>
     )
 }

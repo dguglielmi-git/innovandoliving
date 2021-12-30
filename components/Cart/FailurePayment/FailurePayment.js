@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Image } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-import { orderUpdate } from "../../../api/mercadopago";
-import { parseFinalOrder } from "../../../utils/mercadopago";
+import { PATH_FAILURE_IMG } from "../../../utils/constants";
 
 export default function FailurePayment(props) {
     const { t } = useTranslation();
@@ -13,8 +12,8 @@ export default function FailurePayment(props) {
                 <h3>{ t('cartFailurePaymentTitle') }</h3>
             </div>
             <div className="image">
-                <Image src="./failure.png" alt="" />
-            </div>            
+                <Image src={ `./${PATH_FAILURE_IMG}` } alt="" />
+            </div>
             <div className="message">
                 <p>{ t('cartFailurePaymentMsgFirstLine') }</p>
             </div>

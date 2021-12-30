@@ -22,7 +22,7 @@ export const languages = {
 };
 
 i18n.use(LanguageDetector).use(initReactI18next).init(languages);
-i18n.changeLanguage('es');
+i18n.changeLanguage('en');
 export default i18n;
 
 

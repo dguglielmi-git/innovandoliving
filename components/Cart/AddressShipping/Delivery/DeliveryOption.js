@@ -14,20 +14,21 @@ export default function DeliveryOption(props) {
     return (
         <>
             <div className="data">
-                <h3>{t('cartAddressShippingSelectAddress')}</h3>
-                {size(addresses) === 0 ? (
-                    <h3>{t('cartAddressShippingNotAddress')}</h3>
+                <h3>{ t('cartAddressShippingSelectAddress') }</h3>
+                <h4>{ t('cartAddressShippingSelect') }</h4>
+                { size(addresses) === 0 ? (
+                    <h3>{ t('cartAddressShippingNotAddress') }</h3>
                 ) : (
                     <>
                         <ListAddress
-                            addresses={addresses}
-                            selectEnable={true}
-                            idSelected={addressActive}
-                            setIdSelected={setAddressActive}
-                            setReloadAddresses={setReloadAddresses}
+                            addresses={ addresses }
+                            selectEnable={ true }
+                            idSelected={ addressActive }
+                            setIdSelected={ setAddressActive }
+                            setReloadAddresses={ setReloadAddresses }
                         />
                     </>
-                )}
+                ) }
             </div>
         </>
     )

@@ -1,0 +1,11 @@
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px;
+
+  &__header {
+    display: flex;
+    margin-bottom: 10px;
+  }
+}

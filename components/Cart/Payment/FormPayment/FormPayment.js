@@ -17,7 +17,6 @@ export default function FormPayment(props) {
     const stripe = useStripe();
     const elements = useElements();
     const { auth, logout } = useAuth();
-    const { removeAllProductsCart } = useCart();
     const router = useRouter();
 
     const handleSubmit = async (event) => {
@@ -45,7 +44,6 @@ export default function FormPayment(props) {
 
             if (size(response) > 0) {
                 toast.success(t('cartPaymentFormPaymentOkDelivery'));
-                removeAllProductsCart();
                 router.push("/orders");
             } else {
                 toast.error(t('cartPaymentFormPaymentErrorDelivery'));
@@ -56,10 +54,10 @@ export default function FormPayment(props) {
     }
 
     return (
-        <form className="form-payment" onSubmit={handleSubmit}>
+        <form className="form-payment" onSubmit={ handleSubmit }>
             <CardElement />
-            <Button type="submit" loading={loading} disabled={!stripe}>
-                {t('cartPaymentFormPaymentButtonPay')}
+            <Button type="submit" loading={ loading } disabled={ !stripe }>
+                { t('cartPaymentFormPaymentButtonPay') }
             </Button>
         </form>
     )

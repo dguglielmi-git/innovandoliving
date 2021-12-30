@@ -4,10 +4,8 @@
   justify-content: center;
   width: 100%;
   padding: 10px;
-  padding-top: 25px;  
-  background-color: #F0F0F0;
-
-  
+  padding-top: 25px;
+  background-color: #f0f0f0;
 
   .order-title {
     display: flex;
@@ -18,7 +16,7 @@
 
   .order-table {
     display: flex;
-    width: 70%;
+    min-width: 70%;
   }
 
   .order-detail {
@@ -27,7 +25,6 @@
     margin: 10px;
 
     &__mainbox {
-      
       &-buttonback {
         display: flex;
         align-items: center;
@@ -37,20 +34,24 @@
         &:hover {
           cursor: pointer;
         }
-        
       }
 
-      &-timeline{
+      &-timeline {
         display: flex;
         width: 220px;
       }
 
-      &-orderstatus{
+      &-orderstatus {
         display: flex;
         flex-direction: column;
         margin-top: 15px;
         h5 {
           margin-bottom: 20px;
+        }
+
+        &-update {
+          display: flex;
+          margin-bottom: 15px;
         }
       }
       &-items {
@@ -78,6 +79,28 @@
         padding: 10px;
         margin-left: 10px;
       }
+    }
+  }
+}
+
+.order-combo-status {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.orders {
+  &__block {
+    padding: 10px;
+    .title {
+      width: max-content;
+      background-color: $background-dark-absolute;
+      color: $font-light;
+      padding: 5px 10px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .data {
+      margin-top: 10px;
     }
   }
 }

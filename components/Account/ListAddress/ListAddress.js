@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { map, size } from "lodash";
-import { Button, Icon, Grid } from "semantic-ui-react";
+import { size } from "lodash";
+import { Button, Icon } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import useAuth from "../../../hooks/useAuth";
-import Address from "./Address";
-import AddressForm from "../AddressForm";
 import BasicModal from "../../Modal/BasicModal";
+import AddressForm from "../AddressForm";
+import ListAddressGrid from "./ListAddressGrid";
 import "../../../locales/i18n";
+import ButtonAddAddress from "./sections/ButtonAddAddress";
 
 export default function ListAddress(props) {
     const {
@@ -26,53 +27,38 @@ export default function ListAddress(props) {
     const openModal = (title, address) => {
         setTitleModal(title);
         setFormModal(<AddressForm
-            setReloadAddresses={setReloadAddresses}
-            setShowModal={setShowModal}
-            newAddress={address ? false : true}
-            address={address || null}
+            setReloadAddresses={ setReloadAddresses }
+            setShowModal={ setShowModal }
+            newAddress={ address ? false : true }
+            address={ address || null }
         />);
         setShowModal(true);
     }
 
+    const ifNotAddresses = () => size(addresses) === 0 ? true : false
+
+
     return (
         <>
             <div className="address">
-                <div className="button-add">
-                    <Button onClick={() => openModal(t('accountListAddressNewAddressTitle'))}>
-                        <Icon name="address book" /> {t('accountListAddressAddAddress')}
-                    </Button>
-                </div>
-                {size(addresses) === 0 ? (
-                    <h3>{t('accountListAddressNotAddress')}</h3>
+                <ButtonAddAddress t={ t } openModal={ openModal } />
+                { ifNotAddresses() ? (
+                    <h3>{ t('accountListAddressNotAddress') }</h3>
                 ) : (
-                    <>
-                        <Grid>
-                            <div>
-                                {map(addresses, (address) => (
-                                    <Grid.Column
-                                        key={address.id}
-                                        mobile={16}
-                                        tablet={8}
-                                        computer={4}>
-                                        <Address
-                                            selectEnable={selectEnable}
-                                            address={address}
-                                            logout={logout}
-                                            setReloadAddresses={setReloadAddresses}
-                                            openModal={openModal}
-                                            idSelected={idSelected}
-                                            setIdSelected={setIdSelected}
-                                            t={t}
-                                        />
-                                    </Grid.Column>
-                                ))}
-                            </div>
-                        </Grid>
-                    </>
-                )}
+                    <ListAddressGrid
+                        t={ t }
+                        addresses={ addresses }
+                        selectEnable={ selectEnable }
+                        logout={ logout }
+                        setReloadAddresses={ setReloadAddresses }
+                        openModal={ openModal }
+                        idSelected={ idSelected }
+                        setIdSelected={ setIdSelected }
+                    />
+                ) }
             </div>
-            <BasicModal show={showModal} setShow={setShowModal} title={titleModal}>
-                {formModal}
+            <BasicModal show={ showModal } setShow={ setShowModal } title={ titleModal }>
+                { formModal }
             </BasicModal>
         </>
     )

@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { size, map, includes, remove } from "lodash";
 import { SERVER_ADDRESS, CART } from "../utils/constants";
 import { authFetch } from "../utils/fetch";
+import i18n from "../locales/i18n";
 
 export async function getCart(idUser) {
     try {
@@ -23,7 +24,7 @@ export async function cleanCart(idUser, logout) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 users_permissions_user: idUser
             })
         };
@@ -46,7 +47,7 @@ export async function addToCart(idUser, product, quantity, logout) {
             if (c.producto._id === product) found = true;
         });
         if (found) {
-            toast.error('Este producto ya esta en el carrito');
+            toast.error(i18n.t('cartProductAlreadyInCart'));
             return null;
         }
     }
@@ -66,7 +67,7 @@ export async function addToCart(idUser, product, quantity, logout) {
         };
 
         const result = await authFetch(url, params, logout);
-        toast.success("Producto agregado correctamente");
+        toast.success(i18n.t('cartProductAddedSuccessfully'));
         return result;
     } catch (error) {
         console.log(error);
@@ -94,12 +95,12 @@ export async function removeItemCart(product, logout) {
             },
         };
         const result = await authFetch(url, params, logout);
-        toast.success('El item se ha eliminado del carrito');
+        toast.success(i18n.t('cartItemRemovedSuccessfully'));
         return result;
 
     } catch (error) {
         console.log(error);
-        toast.error('Ha ocurrido un error al intentar eliminar el item.');
+        toast.error(i18n.t('cartErrorTryingToDeleteItem'));
         return null;
     }
 }
@@ -129,70 +130,5 @@ export async function paymentCartApi(token, products, idUser, address, logout) {
     } catch (error) {
         console.log(error);
         return null;
-    }
-}
-
-
-/**
- * 
- * @deprecated: use cleanCart() 
- */
-export function removeAllProductsCart() {
-    localStorage.removeItem(CART);
-}
-
-/**
- * 
- * @deprecated: use removeItemCart(product)
- */
-export function removeProductCart(product) {
-    const cart = getProductsCart();
-    remove(cart, (item) => {
-        return item === product;
-    });
-
-    if (size(cart) > 0) {
-        localStorage.setItem(CART, cart);
-    } else {
-        localStorage.removeItem(CART);
-    }
-}
-
-
-/**
- * 
- * @deprecated Use getCart()
- */
- export function getProductsCart() {
-    const cart = localStorage.getItem(CART);
-
-    if (!cart) {
-        return null;
-    } else {
-        const products = cart.split(",");
-        return products;
-    }
-}
-
-/**
- * When refactoring, this function must be erased
- * Delete it after verifying that it's not being used anywhere.
- * @deprecated: You must use addToCart()
- */
- export function addProductCart(product) {
-    const cart = getProductsCart();
-
-    if (!cart) {
-        localStorage.setItem(CART, product);
-        toast.success("Producto agregado al carrito");
-    } else {
-        const productFound = includes(cart, product);
-        if (productFound) {
-            toast.warning("Este producto ya esta en el carrito");
-        } else {
-            cart.push(product);
-            localStorage.setItem(CART, cart);
-            toast.success("Producto agregado correctamente");
-        }
     }
 }

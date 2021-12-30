@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, Icon, Label, Dropdown } from "semantic-ui-react";
 import useWindowSize from "../../../hooks/useWindowSize";
 import useCart from "../../../hooks/useCart";
+import { useTranslation } from "react-i18next";
 import { RES_MEDIUM } from "../../../utils/breakpoint";
 import ItemsOptions from "./ItemsOptions";
 import ItemsAccount from "./ItemsAccount";
@@ -9,10 +10,12 @@ import LargeMenu from "./LargeMenu";
 import Link from "next/link";
 
 export default function MenuOptions(props) {
-    const { onShowModal, user, logout, t } = props;
+    const { onShowModal, user, logout } = props;
     const [prodCounter, setProdCounter] = useState(0);
     const { productsCart } = useCart();
     const { width } = useWindowSize();
+    const { t } = useTranslation();
+
 
     useEffect(() => {
         (async () => {

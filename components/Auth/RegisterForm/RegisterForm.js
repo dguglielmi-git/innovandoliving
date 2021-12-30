@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { registerApi } from "../../../api/user";
+import i18n from "../../../locales/i18n";
+import RegisterFormBody from "./RegisterFormBody";
 import "../../../locales/i18n";
 
 export default function RegisterForm(props) {
@@ -31,63 +33,12 @@ export default function RegisterForm(props) {
         }
     })
 
-    return (
-        <Form className="login-form" onSubmit={ formik.handleSubmit }>
-            <Form.Input
-                title="name"
-                name="name"
-                type="text"
-                placeholder={ t('authRegisterFormName') }
-                onChange={ formik.handleChange }
-                error={ formik.errors.name }
-            ></Form.Input>
-            <Form.Input
-                title="lastname"
-                name="lastname"
-                type="text"
-                placeholder={ t('authRegisterFormLastname') }
-                onChange={ formik.handleChange }
-                error={ formik.errors.lastname }
-            ></Form.Input>
-            <Form.Input
-                title="username"
-                name="username"
-                type="text"
-                placeholder={ t('authRegisterFormUsername') }
-                onChange={ formik.handleChange }
-                error={ formik.errors.username }
-            ></Form.Input>
-            <Form.Input
-                title="email"
-                name="email"
-                type="text"
-                placeholder={ t('authRegisterFormEmail') }
-                onChange={ formik.handleChange }
-                error={ formik.errors.email }
-            ></Form.Input>
-            <Form.Input
-                title="password"
-                aria-label="password"
-                name="password"
-                type="password"
-                placeholder={ t('authRegisterFormPassword') }
-                onChange={ formik.handleChange }
-                error={ formik.errors.password }
-            ></Form.Input>
-            <div className="button-actions">
-                <Button type="button" basic>
-                    { t('authRegisterFormButtonLogin') }
-                </Button>
-                <Button
-                    type="submit"
-                    className="submit"
-                    loading={ loading }
-                >
-                    { t('authRegisterFormButtonRegister') }
-                </Button>
-            </div>
-        </Form>
-    )
+    return <RegisterFormBody
+        t={ t }
+        formik={ formik }
+        loading={ loading }
+    />
+
 }
 
 function initialValues() {
@@ -103,7 +54,7 @@ function initialValues() {
 function validationSchema() {
     return {
         name: Yup.string().required(true),
-        lastname: Yup.string().required("El apellido es obligatorio"),
+        lastname: Yup.string().required(i18n.t('authRegisterFormLastnameRequired')),
         username: Yup.string().required(true),
         email: Yup.string().email(true).required(true),
         password: Yup.string().required(true),

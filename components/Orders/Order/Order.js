@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import OrderTable from './content/OrderTable';
+import { size } from 'lodash';
 import OrderDetails from './content/OrderDetails';
-import { getOrdersApi } from "../../../api/order";
+import OrderTitle from './content/sections/OrderTitle';
+import EmptyOrders from './content/sections/EmptyOrders';
+import ShowListOfOrders from './content/sections/ShowListOfOrders';
 import useAuth from "../../../hooks/useAuth";
+import { getOrdersApi } from "../../../api/order";
+import { USER_CLIENT } from "../../../utils/constants";
 
 export default function Order(props) {
     const { t } = props;
@@ -18,46 +22,39 @@ export default function Order(props) {
             const data = await result.json();
 
             const tmpOrder = [];
-            data.map(order => {
-                tmpOrder.push(order)
-                if (order._id === orderSelected._id) {
-                    setOrderSelected(order);
-                }
-            })
-            setOrders(tmpOrder);
+            if (size(data) > 0 && data.error === undefined) {
+
+                data.map(order => {
+                    tmpOrder.push(order)
+                    if (order._id === orderSelected._id) {
+                        setOrderSelected(order);
+                    }
+                })
+                setOrders(tmpOrder);
+            }
         })()
         setReloadOrder(false);
     }, [reloadOrder])
 
     if (orders === []) {
-        return (
-            <div className="order-title">
-                <h4>Mis Pedidos</h4>
-                <p>No hay pedidos.</p>
-            </div>
-        )
+        return < EmptyOrders />
     }
-
 
     return (
         <div className="order">
-
-            <div className="order-title">
-                <h4>Mis Pedidos</h4>
-            </div>
-            <div className="order-table">
-                { !showDetail && <OrderTable
-                    t={ t }
-                    orders={ orders }
-                    setOrderSelected={ setOrderSelected }
-                    setShowDetail={ setShowDetail }
-                /> }
-            </div>
+            <OrderTitle />
+            <ShowListOfOrders
+                showDetail={ showDetail }
+                orders={ orders }
+                setOrderSelected={ setOrderSelected }
+                setShowDetail={ setShowDetail }
+            />
             <div className="order-detail">
                 { showDetail && <OrderDetails
                     setShowDetail={ setShowDetail }
                     order={ orderSelected }
                     setReloadOrder={ setReloadOrder }
+                    userType={ USER_CLIENT }
                 /> }
             </div>
         </div>

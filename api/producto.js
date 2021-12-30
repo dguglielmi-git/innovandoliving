@@ -1,4 +1,5 @@
-import { SERVER_ADDRESS } from "../utils/constants";
+import { SERVER_ADDRESS, URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+import { getToken } from "./token";
 
 export async function getProducts() {
     try {
@@ -76,6 +77,31 @@ export async function searchProductosApi(title) {
         const result = await response.json();
         return result;
     } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export async function getChatMessagesByProduct(productId, userId) {
+
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/chat/messages/${productId}/${userId}`;
+
+        const params = {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-token': getToken()
+            }
+        }
+
+        const result = await fetch(url, params);
+        const response = await result.json();
+        if (response.error !== undefined) {
+            return [];
+        }
+        return response;
+    }
+    catch (error) {
         console.log(error);
         return null;
     }

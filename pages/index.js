@@ -23,18 +23,18 @@ export default function Home() {
   return (
     <BasicLayout className="home">
       <Seo title="InnovandoLiving" />
-      {!productos && <Loader active>Cargando Productos</Loader>}
-      {productos && size(productos) === 0 && (
+      { !productos && <Loader active>{ t('indexLoadingProducts') }</Loader> }
+      { productos && size(productos) === 0 && (
         <div>
-          <h3>{t('indexNotProductFound')}</h3>
+          <h3>{ t('indexNotProductFound') }</h3>
         </div>
-      )}
-      {size(productos) > 0 && (
+      ) }
+      { size(productos) > 0 && (
         <>
-          <h2>{t('indexMainTitle')}</h2>
-          <ListProductos productos={productos} />
+          <h2>{ t('indexMainTitle') }</h2>
+          <ListProductos productos={ productos } />
         </>
-      )}
+      ) }
     </BasicLayout>
   );
 }

@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Grid } from "semantic-ui-react";
-import BasicModal from "../../Modal/BasicModal";
 import Auth from "../../Auth/";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { getPlatformsApi } from "../../../api/platform";
-import { useTranslation } from "react-i18next";
-import MenuCategories from "./MenuCategories";
-import MenuOptions from "./MenuOptions";
-import "../../../locales/i18n";
+import BasicModal from "../../Modal/BasicModal";
+import GridCategories from "./Grid/GridCategories";
+import GridOptions from "./Grid/GridOptions";
 
 export default function MenuWeb() {
-    const { t } = useTranslation();
     const [platforms, setPlatforms] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("Inicia sesion");
@@ -39,24 +36,20 @@ export default function MenuWeb() {
         <div className="menu">
             <Container>
                 <Grid>
-                    <Grid.Column className="menu__left" computer={ 4 } tablet={ 1 } mobile={ 1 }>
-                        <MenuCategories platforms={ platforms } t={ t } />
-                        {t('headerMenuProducts')}
-                    </Grid.Column>
-                    <Grid.Column className="menu__right" computer={ 12 } tablet={ 15 } mobile={ 15 }>
-                        { user !== undefined && (
-                            <MenuOptions
-                                onShowModal={ onShowModal }
-                                user={ user }
-                                logout={ logout }
-                                t={ t }
-                            />
-                        ) }
-                    </Grid.Column>
+                    <GridCategories platforms={ platforms } />
+                    <GridOptions
+                        user={ user }
+                        onShowModal={ onShowModal }
+                        logout={ logout }
+                    />
                 </Grid>
             </Container>
 
-            <BasicModal show={ showModal } setShow={ setShowModal } title={ titleModal } size="small">
+            <BasicModal
+                show={ showModal }
+                setShow={ setShowModal }
+                title={ titleModal }
+                size="small">
                 <Auth
                     onCloseModal={ onCloseModal }
                     setTitleModal={ setTitleModal }

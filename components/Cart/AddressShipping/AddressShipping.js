@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import DeliveryOption from "./Delivery/DeliveryOption";
 import DeliveryExternal from "./Delivery/DeliveryExternal";
 import RadioForm from "./RadioForm";
+import { STEP_CONFIRM_ORDER } from '../../../utils/constants';
 import "../../../locales/i18n";
 
 export default function AddressShipping(props) {
@@ -23,21 +24,12 @@ export default function AddressShipping(props) {
         })()
     }, [reloadAddresses]);
 
-    const RadioOptions = () => (
-        <div className="address-shipping__radio-form">
-            <RadioForm
-                deliveryOption={ deliveryOption }
-                setDeliveryOption={ setDeliveryOption }
-                t={ t }
-            />
-        </div>
-    );
 
     const handleContinue = () => {
         if (deliveryOption === 'delivery' && address === null) {
             toast.error(t('cartAddressShippingAddressNotSelected'));
         } else {
-            setStep(2)
+            setStep(STEP_CONFIRM_ORDER)
         }
     }
 
@@ -61,7 +53,10 @@ export default function AddressShipping(props) {
 
     return (
         <div className="address-shipping">
-            <RadioOptions />
+            <RadioForm
+                deliveryOption={ deliveryOption }
+                setDeliveryOption={ setDeliveryOption }
+                t={ t } />
             { deliveryOption === 'delivery' && <DeliveryForm /> }
             { deliveryOption === 'deliveryExternal' && <DeliveryExternal setStep={ setStep } /> }
             { deliveryOption !== 'deliveryExternal' && <ButtonContinue /> }
