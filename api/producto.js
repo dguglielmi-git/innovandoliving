@@ -1,4 +1,9 @@
-import { SERVER_ADDRESS, URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+import {
+    SERVER_ADDRESS,
+    URL_MERCADOPAGO_BACKEND,
+    USER_CLIENT,
+    USER_OWNER
+} from "../utils/constants";
 import { getToken } from "./token";
 
 export async function getProducts() {
@@ -75,6 +80,60 @@ export async function searchProductosApi(title) {
         const url = `${SERVER_ADDRESS}/productos?_q=${title}`;
         const response = await fetch(url);
         const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export async function addMessageToProduct(productId, userId, username, message, icon) {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/chat`;
+
+        const params = {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                "x-token": getToken()
+            },
+            body: JSON.stringify({
+                productId: productId,
+                userId: userId,
+                username: username,
+                message: message,
+                icon: icon,
+                msgread: (icon === USER_CLIENT) ? 1 : 0,
+                msgreadowner: (icon === USER_OWNER) ? 1 : 0,
+            })
+        }
+
+        const result = await fetch(url, params);
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export async function markChatMessageAsRead(productId, userId, userType) {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/chat/message`;
+
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': "application/json",
+                "x-token": getToken()
+            },
+            body: JSON.stringify({
+                productId: productId,
+                userId: userId,
+                userType: userType
+            })
+        }
+
+        const result = await fetch(url, params);
         return result;
     } catch (error) {
         console.log(error);
