@@ -4,6 +4,7 @@ import useWindowSize from "../../../hooks/useWindowSize";
 import useCart from "../../../hooks/useCart";
 import { useTranslation } from "react-i18next";
 import { RES_MEDIUM } from "../../../utils/breakpoint";
+import { LINK_TO_CART } from "../../../utils/constants";
 import ItemsOptions from "./ItemsOptions";
 import ItemsAccount from "./ItemsAccount";
 import LargeMenu from "./LargeMenu";
@@ -12,10 +13,10 @@ import Link from "next/link";
 export default function MenuOptions(props) {
     const { onShowModal, user, logout } = props;
     const [prodCounter, setProdCounter] = useState(0);
+    const [queryCounter, setQueryCounter] = useState(0);
     const { productsCart } = useCart();
     const { width } = useWindowSize();
     const { t } = useTranslation();
-
 
     useEffect(() => {
         (async () => {
@@ -31,7 +32,7 @@ export default function MenuOptions(props) {
                 <>
                     { width < RES_MEDIUM ? (
                         <>
-                            <Link href="/cart">
+                            <Link href={ LINK_TO_CART }>
                                 <Menu.Item as="a" className="m-0">
                                     <Icon name="cart" />
                                     { prodCounter > 0 &&
@@ -56,6 +57,7 @@ export default function MenuOptions(props) {
                             productsCart={ productsCart }
                             prodCounter={ prodCounter }
                             t={ t }
+                            queryCounter={ queryCounter }
                         />
 
                     ) }

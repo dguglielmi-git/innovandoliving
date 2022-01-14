@@ -9,6 +9,10 @@ import {
 import { INTERNAL_SERVER_ERROR } from "../utils/http_constants";
 import { authFetch } from "../utils/fetch";
 
+export async function getOriginDeliveryAddress() {
+    return ORIGIN_DELIVERY_ADDRESS;
+}
+
 export async function createAddressApi(address, logout) {
     try {
         const targetAddress = `${address.address}, ${address.city}, ${address.state}`;
@@ -17,7 +21,7 @@ export async function createAddressApi(address, logout) {
         if (fullAddressString === NOT_FOUND) {
             throw new Error(`Not a valid Address received: ${targetAddress}`);
         }
-        const distance = await getDistanceBetweenAddresses(ORIGIN_DELIVERY_ADDRESS, fullAddressString);
+        const distance = await getDistanceBetweenAddresses(getOriginDeliveryAddress(), fullAddressString);
         const { text, value } = await distance;
 
         const finalAddress = {

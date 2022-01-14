@@ -87,7 +87,7 @@ export async function searchProductosApi(title) {
     }
 }
 
-export async function addMessageToProduct(productId, userId, username, message, icon) {
+export async function addMessageToProduct(productName, productId, userId, username, message, icon) {
     try {
         const url = `${URL_MERCADOPAGO_BACKEND}/chat`;
 
@@ -98,6 +98,7 @@ export async function addMessageToProduct(productId, userId, username, message, 
                 "x-token": getToken()
             },
             body: JSON.stringify({
+                productName: productName,
                 productId: productId,
                 userId: userId,
                 username: username,
@@ -142,16 +143,10 @@ export async function markChatMessageAsRead(productId, userId, userType) {
 }
 
 export async function getChatMessagesByProduct(productId, userId) {
-
     try {
         const url = `${URL_MERCADOPAGO_BACKEND}/chat/messages/${productId}/${userId}`;
 
-        const params = {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-token': getToken()
-            }
-        }
+        const params = getJsonHeader()
 
         const result = await fetch(url, params);
         const response = await result.json();
@@ -165,3 +160,29 @@ export async function getChatMessagesByProduct(productId, userId) {
         return null;
     }
 }
+
+export async function getOpenChats() {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/chat/open`;
+
+        const params = getJsonHeader();
+
+        const result = await fetch(url, params);
+        const response = await result.json();
+        if (response.error !== undefined) {
+            return [];
+        }
+        return response;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+const getJsonHeader = () => ({
+    headers: {
+        'Content-Type': 'application/json',
+        'x-token': getToken()
+    }
+})

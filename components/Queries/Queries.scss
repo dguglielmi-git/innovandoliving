@@ -1,0 +1,35 @@
+.chat-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+
+  &__feed {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-bottom: 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(135, 131, 135, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(135, 131, 135, 1);
+    box-shadow: 0px 0px 5px 0px rgba(135, 131, 135, 1);
+    height: 250px;
+  }
+}
+
+.msg-queue {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+
+  .datatable-selection-demo .card h6 {
+    margin-top: 2rem;
+  }
+  .datatable-selection-demo .card h6:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.queries-user {
+  display: flex;
+  padding: 20px;
+}

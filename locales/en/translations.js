@@ -188,6 +188,7 @@ export const TRANSLATION_EN = {
     headerMenuShowroom: 'Showroom',
     headerMenuAccount: 'Account',
     headerMenuProducts: 'Products',
+    headerMenuQueries: 'Queries',
 
     /* Orders - Order */
     orderTitle: 'My Orders',
@@ -270,6 +271,15 @@ export const TRANSLATION_EN = {
 
     /* ComboStatus */
     comboStatusPlaceholder: 'Choose the state',
+
+    /* Questions */
+    questionsSendMessageLabel: 'Send Question',
+    questionsLoadingProduct: 'Loading Product information',
+
+    /* Queries */
+    queriesSendReply: 'Send Reply',
+    queriesChatHeader: 'Queries from clients',
+    queriesLoadingQueries: 'Loading Queries...',
 
 
 

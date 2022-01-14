@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { size } from "lodash";
 import { Container, Comment } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 import { getMeApi } from "../../../api/user";
 import { isUserOwner } from "../../../api/orderMessage";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
@@ -18,6 +19,7 @@ import BasicLoading from "../../BasicLoading/BasicLoading";
 
 export default function Questions(props) {
     const { product } = props;
+    const { t } = useTranslation();
     const { auth, logout } = useAuth();
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState("");
@@ -59,15 +61,14 @@ export default function Questions(props) {
     }, []);
 
     const addComment = async (event) => {
-        console.log('adding comment');
         event.preventDefault();
         const comment = event.target[0].value;
-        event.target[0].value = ""
-        await addMessageToProduct(product?._id, auth?.idUser, username, comment, userType);
+        event.target[0].value = "";
+        await addMessageToProduct(product?.title, product?._id, auth?.idUser, username, comment, userType);
         setReloadChat(true);
     }
 
-    if (loading) return <BasicLoading classValue="orders" label="Loading products" />
+    if (loading) return <BasicLoading classValue="questions" label={ t('questionsLoadingProduct') } />
 
     return (
         <div className="questions">
@@ -79,7 +80,7 @@ export default function Questions(props) {
                         : <CommentsEmpty />) }
                     <FormComment
                         addComment={ addComment }
-                        sendLabel="Send question"
+                        sendLabel={ t('questionsSendMessageLabel') }
                         orderBlocked={ false }
                     />
                 </Comment.Group>

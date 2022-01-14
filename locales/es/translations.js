@@ -188,6 +188,7 @@ export const TRANSLATION_ES = {
     headerMenuShowroom: 'Showroom',
     headerMenuAccount: 'Cuenta',
     headerMenuProducts: 'Productos',
+    headerMenuQueries: 'Consultas',
 
 
     /* Orders - Order */
@@ -271,6 +272,15 @@ export const TRANSLATION_ES = {
 
     /* ComboStatus */
     comboStatusPlaceholder: 'Seleccione un Estado',
+
+    /* Questions */
+    questionsSendMessageLabel: 'Enviar Consulta',
+    questionsLoadingProduct: 'Cargando datos del Producto',
+
+    /* Queries */
+    queriesSendReply: 'Enviar Respuesta',
+    queriesChatHeader: 'Consultas de los Clientes',
+    queriesLoadingQueries: 'Cargando Consultas...',
 
     /****************************************************************
      *                Pages
