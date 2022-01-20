@@ -38,7 +38,7 @@ const ItemsTable = (props) => {
         </div>
     );
 
-    const footer = `Total: ${numToDollar(getTotalItems(items))}`;
+    const footer = `${t('cartSummaryCartTotalCart')}: ${numToDollar(getTotalItems(items))}`;
 
     return (
         <div className="datatable-templating-demo">
