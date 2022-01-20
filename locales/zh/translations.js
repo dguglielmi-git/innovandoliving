@@ -22,7 +22,7 @@ export const TRANSLATION_ZH = {
     accountAddressFormErrorAddress: 'Error creating address',
     accountAddressFormOkCreated: 'The address has been created correctly',
     accountAddressFormErrorUpdate: 'Error updating the address',
-    accountAddressFormOkUpdate: 'Address has been updated successfully',
+    accountAddressFormOkUpdate: 'The Address has been updated successfully',
     accountAddressFormAddressTitle: 'Title of the Address',
     accountAddressFormNameLastname: 'Name and Lastname',
     accountAddressFormAddress: 'Address',
@@ -72,12 +72,12 @@ export const TRANSLATION_ZH = {
     authRegisterTitle: 'Register Form',
 
     /* Auth - LoginForm */
-    authLoginFormErrorLogin: 'Error when trying to Login. Please check User and Password',
+    authLoginFormErrorLogin: 'Error when trying to Log in. Please check User and Password',
     authLoginFormInputEmail: 'Email Address',
     authLoginFormInputPassword: 'Password',
     authLoginFormButtonRegister: 'Sign Up',
     authLoginFormButtonLogin: 'Sign In',
-    authLoginFormButtonForgotPass: 'Have you forgot your Password?',
+    authLoginFormButtonForgotPass: 'Have you forgotten your password?',
 
     /* Auth - RegisterForm */
     authRegisterFormOkRegister: 'User registered successfully.',
@@ -145,23 +145,23 @@ export const TRANSLATION_ZH = {
     cartSummaryCartTotalCart: 'Total:',
     cartSummaryCartContinuePurchase: 'Next Step',
     cartSummaryLoadingCart: 'Loading cart',
-    cartSummaryEmptyCart: 'Cart is empty...',
+    cartSummaryEmptyCart: 'The Cart is empty...',
 
     /* Cart - SummaryDetail */
     summaryDetailRemoveFromCart: 'Remove from Cart',
-    summaryDetailAskForRemovalConfirmation: 'Do you want to remove from the Cart?',
+    summaryDetailAskForRemovalConfirmation: 'Do you want to remove it from the Cart?',
 
     /* Cart - SuccessfulPayment */
     cartSuccessfulPaymentTitle: 'Your purchase has been made successfully.',
     cartSuccessfulPaymentOrderNumber: 'Ticket Number #',
-    cartSuccessfulPaymentMsgFirstLine: `On 'My Orders' section you can check the status of your order and keep in touch with our Sales Department.`,
-    cartSuccessfulPaymentMsgSecondLine: 'For any question, Please contact us.',
+    cartSuccessfulPaymentMsgFirstLine: `In the 'My Orders' section, you can check the status of your order and keep in touch with our Sales Department`,
+    cartSuccessfulPaymentMsgSecondLine: 'For any questions, please contact us.',
     cartSuccessfulPaymentFooterThanks: 'Thanks for your purchase!',
 
     /* Cart - PendingPayment */
     cartPendingPaymentTitle: `The order has been processed and is pending Payment.`,
     cartPendingPaymentOrderNumber: 'Ticket Number #',
-    cartPendingPaymentMsgFirstLine: `On 'My Orders' section you can track the order and keep in touch with our Sales Department for any query.`,
+    cartPendingPaymentMsgFirstLine: `In the 'My Orders' section, you can track the order and keep in touch with our Sales Department for any query.`,
 
     /* Cart - FailurePayment */
     cartFailurePaymentTitle: 'The order could not be processed correctly.',
@@ -264,7 +264,7 @@ export const TRANSLATION_ZH = {
 
     /* UpdateModal ProgressOrder*/
     modalProgressOrderHeader: 'Do you want to change the Status of the Order?',
-    modalProgressOrderChildrenLabel: `Select from the list the new status for the order and then press 'Update' button`,
+    modalProgressOrderChildrenLabel: `Select from the list the new status for the order and then press the 'Update' button`,
     modalProgressOrderUpdateButton: 'Update',
     modalProgressOrderCancelButton: 'Cancel',
 
@@ -305,12 +305,12 @@ export const TRANSLATION_ZH = {
 
     /* index */
     indexLoadingProducts: 'Loading Products',
-    indexNotProductFound: 'No Productos FOund',
+    indexNotProductFound: 'No Products Found',
     indexMainTitle: 'Our Products',
 
     /* orders */
     ordersMyOrders: 'My Orders',
-    ordersNotOrdersFound: 'No orders found.',
+    ordersNotOrdersFound: 'No orders were found.',
     ordersOrderList: 'Order List',
 
     /* search */
@@ -320,7 +320,7 @@ export const TRANSLATION_ZH = {
     /* wishlist */
     wishlistTitle: 'Wishlist',
     wishlistLoadingProducts: 'Loading Products',
-    wishlistNotProductsOnList: 'There are no products in your list',
+    wishlistNotProductsOnList: 'There are no products on your list',
 
     /* payment */
     paymentProcessing: 'Processing Purchase...',
@@ -334,7 +334,7 @@ export const TRANSLATION_ZH = {
      *                Other Messagess
      ****************************************************************/
 
-    cartProductAlreadyInCart: 'This products is already in the cart',
+    cartProductAlreadyInCart: 'This product is already in the cart',
     cartProductAddedSuccessfully: 'Product added successfully',
     cartItemRemovedSuccessfully: 'Item has been removed from the cart',
     cartErrorTryingToDeleteItem: 'An error occurred when trying to remove the item.',
