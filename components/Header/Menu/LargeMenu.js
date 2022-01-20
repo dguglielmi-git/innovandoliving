@@ -1,8 +1,6 @@
 import React from "react";
 import { Menu, Icon, Label } from "semantic-ui-react";
 import Link from "next/link";
-import { faStore } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     LINK_TO_CART,
     LINK_TO_QUESTIONS,
@@ -11,8 +9,19 @@ import {
     LINK_TO_SHOWROOM,
     LINK_TO_ACCOUNT
 } from "../../../utils/constants";
+import DropdownLanguages from "./MenuItems/DropdownLanguages";
+
 export default function LargeMenu(props) {
-    const { onShowModal, user, logout, prodCounter, t, queryCounter } = props;
+    const {
+        onShowModal,
+        user,
+        logout,
+        prodCounter,
+        t,
+        queryCounter,
+        languages,
+        selectLang,
+        languageSelected } = props;
 
     return (
         <Menu secondary>
@@ -40,18 +49,24 @@ export default function LargeMenu(props) {
                             { t('headerMenuFavorites') }
                         </Menu.Item>
                     </Link>
-                    <Link href={ LINK_TO_SHOWROOM }>
+                    {/*<Link href={ LINK_TO_SHOWROOM }>
                         <Menu.Item as="a">
                             <FontAwesomeIcon icon={ faStore } color="grey" />
                             <span style={ { marginLeft: '10px' } }>{ t('headerMenuShowroom') }</span>
                         </Menu.Item>
                     </Link>
+                            */}
                     <Link href={ LINK_TO_ACCOUNT }>
                         <Menu.Item as="a">
                             <Icon name="user outline" />
                             { user.name } { user.lastname }
                         </Menu.Item>
                     </Link>
+                    <DropdownLanguages
+                        languages={ languages }
+                        onClick={ selectLang }
+                        languageSelected={ languageSelected }
+                    />
                     <Link href={ LINK_TO_CART }>
                         <Menu.Item as="a" className="m-0">
                             <Icon name="cart" />

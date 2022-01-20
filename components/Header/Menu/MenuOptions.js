@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { map } from "lodash";
 import { Menu, Icon, Label, Dropdown } from "semantic-ui-react";
 import useWindowSize from "../../../hooks/useWindowSize";
 import useCart from "../../../hooks/useCart";
 import { useTranslation } from "react-i18next";
-import { RES_MEDIUM } from "../../../utils/breakpoint";
+import { RES_LARGE } from "../../../utils/breakpoint";
 import { LINK_TO_CART } from "../../../utils/constants";
 import ItemsOptions from "./ItemsOptions";
 import ItemsAccount from "./ItemsAccount";
 import LargeMenu from "./LargeMenu";
+import DropdownLanguages from "./MenuItems/DropdownLanguages";
 import Link from "next/link";
+import { languages } from "../../../locales/i18n";
+import i18n from "../../../locales/i18n";
 
 export default function MenuOptions(props) {
     const { onShowModal, user, logout } = props;
@@ -17,6 +21,7 @@ export default function MenuOptions(props) {
     const { productsCart } = useCart();
     const { width } = useWindowSize();
     const { t } = useTranslation();
+    const [languageSelected, setLanguageSelected] = useState(null)
 
     useEffect(() => {
         (async () => {
@@ -25,13 +30,31 @@ export default function MenuOptions(props) {
         })();
     }, [productsCart]);
 
+    useEffect(() => {
+        map(languages.resources, (lang) => {
+            if (lang.lang == i18n.language) {
+                setLanguageSelected(lang);
+            }
+        })
+    }, [])
+
+    const selectLang = (lang) => {
+        setLanguageSelected(lang);
+        i18n.changeLanguage(lang.lang);
+    }
+
     const textUser = (user) && `${user.name} ${user.lastname}`;
     return (
         <Menu secondary>
             { user ? (
                 <>
-                    { width < RES_MEDIUM ? (
+                    { width < RES_LARGE ? (
                         <>
+                            <DropdownLanguages
+                                languages={ languages }
+                                onClick={ selectLang }
+                                languageSelected={ languageSelected }
+                            />
                             <Link href={ LINK_TO_CART }>
                                 <Menu.Item as="a" className="m-0">
                                     <Icon name="cart" />
@@ -58,6 +81,9 @@ export default function MenuOptions(props) {
                             prodCounter={ prodCounter }
                             t={ t }
                             queryCounter={ queryCounter }
+                            languages={ languages }
+                            selectLang={ selectLang }
+                            languageSelected={ languageSelected }
                         />
 
                     ) }

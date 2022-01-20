@@ -7,7 +7,6 @@ export default function CommentBody(props) {
 
     const getIcon = (icon) => (icon === 'owner' ? 'supporticon' : icon);
 
-    console.log(renderMsg)
     return (
         <>
             {

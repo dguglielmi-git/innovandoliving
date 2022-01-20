@@ -31,5 +31,11 @@
 
 .queries-user {
   display: flex;
+  flex-wrap: wrap;
   padding: 20px;
+
+  &__header {
+    display: flex;
+    margin-bottom: 10px;
+  }
 }

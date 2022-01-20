@@ -4,11 +4,15 @@ export const TRANSLATION_ES = {
      *                Generic/System
      ****************************************************************/
     businessName: 'InnovandoLiving.',
-    statusPending: 'Orgen Ingresada',
+    statusPending: 'Orden Ingresada',
     statusInProgress: 'Preparando Pedido',
     statusOnTheWay: 'En Camino',
     statusDelivered: 'Entregado',
     labelShipping: 'Envio',
+
+    /* Seo */
+    seoTitle: 'Innovando Living Sillones',
+    seoDescription: 'Los mejores sillones de Argentina',
 
     /****************************************************************
      *                Components
@@ -178,7 +182,6 @@ export const TRANSLATION_ES = {
     stepPurchasePayOrder: 'Abonar Compra',
     stepPurchaseProgressTitle: 'Progreso de Compra',
 
-
     /* Header - Menu */
     headerMenuCategories: 'Categorias',
     headerMenuMyAccount: 'Mi Cuenta',
@@ -189,7 +192,6 @@ export const TRANSLATION_ES = {
     headerMenuAccount: 'Cuenta',
     headerMenuProducts: 'Productos',
     headerMenuQueries: 'Consultas',
-
 
     /* Orders - Order */
     orderTitle: 'Mis Pedidos',
@@ -244,10 +246,6 @@ export const TRANSLATION_ES = {
     productGalleryLabel: 'Galería:',
     productQuestions: 'Consultas',
 
-    /* Seo */
-    seoTitle: 'Innovando Living Sillones',
-    seoDescription: 'Los mejores sillones de Argentina',
-
     /* Status */
     statusOrdered: 'Recibido',
     statusInProgress: 'En progreso',
@@ -274,13 +272,23 @@ export const TRANSLATION_ES = {
     comboStatusPlaceholder: 'Seleccione un Estado',
 
     /* Questions */
+    questionsHeader: 'Consulta sobre el producto!',
     questionsSendMessageLabel: 'Enviar Consulta',
     questionsLoadingProduct: 'Cargando datos del Producto',
+    questionsErrorSendQuestionNotLogged: `Debe iniciar sesión para enviar consultas sobre un producto.`,
 
     /* Queries */
     queriesSendReply: 'Enviar Respuesta',
     queriesChatHeader: 'Consultas de los Clientes',
     queriesLoadingQueries: 'Cargando Consultas...',
+    queriesUserTitle: 'Consultas sobre el producto',
+    queriesUserDataTableDateHeader: 'Fecha',
+    queriesUserDataTableProductHeader: 'Producto',
+    queriesUserDataTableUnreadMsgHeader: `Mensajes No Leídos`,
+    queriesUserDialogRouterMessage: `Desea ir hacia la página del producto?`,
+    queriesUserDialogRouterHeader: 'Redirigirse a la página del Producto',
+    queriesUserDialogYesButton: 'Si',
+    queriesUserDialogRejectButton: 'Cancelar',
 
     /****************************************************************
      *                Pages

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { size } from "lodash";
-import { Container, Comment } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { Container, Comment } from "semantic-ui-react";
+import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { isUserOwner } from "../../../api/orderMessage";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
@@ -10,12 +12,11 @@ import {
     getChatMessagesByProduct,
     markChatMessageAsRead
 } from "../../../api/producto";
-import CommentsHeader from "./sections/CommentHeader";
 import CommentsEmpty from "./sections/CommentsEmpty";
-import CommentBody from "../../Orders/Order/content/sections/CommentBody";
-import FormComment from "../../Orders/Order/FormComment";
-import useAuth from "../../../hooks/useAuth";
+import CommentsHeader from "./sections/CommentHeader";
 import BasicLoading from "../../BasicLoading/BasicLoading";
+import FormComment from "../../Orders/Order/FormComment";
+import CommentBody from "../../Orders/Order/content/sections/CommentBody";
 
 export default function Questions(props) {
     const { product } = props;
@@ -30,9 +31,9 @@ export default function Questions(props) {
     useEffect(() => {
         (async () => {
             setLoading(true);
-            const user = await getMeApi(logout);
-            setUsername(user.name + " " + user.lastname);
             if (auth) {
+                const user = await getMeApi(logout);
+                setUsername(user.name + " " + user.lastname);
                 const { idUser } = auth;
                 const res = await isUserOwner(idUser);
                 if (res) {
@@ -61,10 +62,19 @@ export default function Questions(props) {
     }, []);
 
     const addComment = async (event) => {
+        if (!auth) {
+            toast.error(t('questionsErrorSendQuestionNotLogged'))
+        }
         event.preventDefault();
         const comment = event.target[0].value;
         event.target[0].value = "";
-        await addMessageToProduct(product?.title, product?._id, auth?.idUser, username, comment, userType);
+        await addMessageToProduct(
+            product?.title,
+            product?._id,
+            auth?.idUser,
+            username,
+            comment,
+            userType);
         setReloadChat(true);
     }
 

@@ -1,14 +1,13 @@
 import React from "react";
 import { Label, Dropdown } from "semantic-ui-react";
 import Link from "next/link";
-import { faStore } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     LINK_TO_QUESTIONS,
     LINK_TO_ORDERS,
     LINK_TO_WISHLIST,
     LINK_TO_SHOWROOM
 } from "../../../utils/constants";
+
 export default function ItemsOptions(props) {
     const { t } = props;
     return (
@@ -23,7 +22,7 @@ export default function ItemsOptions(props) {
             <Link href={ LINK_TO_WISHLIST }>
                 <Dropdown.Item icon="heart outline" text={ t('headerMenuFavorites') } />
             </Link>
-            <Link href={ LINK_TO_SHOWROOM }>
+            {/*  <Link href={ LINK_TO_SHOWROOM }>
                 <Dropdown.Item>
                     <FontAwesomeIcon icon={ faStore } color="grey" />
                     <span style={ { marginLeft: '10px' } }>
@@ -31,6 +30,7 @@ export default function ItemsOptions(props) {
                     </span>
                 </Dropdown.Item>
             </Link>
+            */}
             <Dropdown.Divider />
         </>
     );

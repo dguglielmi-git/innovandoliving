@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { size } from "lodash";
-import { Container, Comment, Grid } from "semantic-ui-react";
-import CommentBody from "../../Orders/Order/content/sections/CommentBody";
-import FormComment from "../../Orders/Order/FormComment";
 import { useTranslation } from "react-i18next";
-import { addMessageToProduct, getChatMessagesByProduct } from "../../../api/producto";
+import ReactScrollableFeed from "react-scrollable-feed";
+import { Container, Comment, Grid } from "semantic-ui-react";
+import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { isUserOwner } from "../../../api/orderMessage";
+import { addMessageToProduct, getChatMessagesByProduct } from "../../../api/producto";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
-import useAuth from "../../../hooks/useAuth";
-import ReactScrollableFeed from "react-scrollable-feed";
+import CommentBody from "../../Orders/Order/content/sections/CommentBody";
+import FormComment from "../../Orders/Order/FormComment";
 import BasicLoading from "../../BasicLoading/BasicLoading";
 
 export default function ChatSection(props) {

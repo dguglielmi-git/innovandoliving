@@ -8,7 +8,6 @@ export default function FooterTotalCart(props) {
         deliveryOption,
         totalPrice,
         shippingPrice } = props;
-    console.log(shippingPrice)
     return (
         <div className="final-detail-total">
             <Grid>

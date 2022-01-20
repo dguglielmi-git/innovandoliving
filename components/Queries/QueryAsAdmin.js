@@ -19,7 +19,6 @@ export default function QueryAsAdmin() {
     }, [reloadMsgs]);
 
     const showData = async (msg) => {
-        console.log(msg)
         await markChatMessageAsRead(msg.productId, msg.userId, verifyUserType(USER_OWNER));
         setSelectedMsg(msg)
     }

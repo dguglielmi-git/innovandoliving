@@ -55,3 +55,21 @@
 .items {
   background-color: red;
 }
+
+.languages-box {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .lang-list {
+    display: flex;
+
+    &__text {
+      margin-left: 10px;
+    }
+  }
+}

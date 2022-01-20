@@ -1,9 +1,9 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Timeline } from 'primereact/timeline';
-import { drawTimeLineOfOrder, buildDataComboStructure } from "../../../../../utils/util";
-import { progressOrderReducer } from "../../../../../utils/reducer";
 import { useTranslation } from "react-i18next";
 import { getOrderStatuses, UpdateOrderStatus } from "../../../../../api/order";
+import { progressOrderReducer } from "../../../../../utils/reducer";
+import { drawTimeLineOfOrder, buildDataComboStructure } from "../../../../../utils/util";
 import OptionsOrderStatus from "./OptionsOrderStatus"
 
 export default function ProgressOrder(props) {
@@ -42,7 +42,6 @@ export default function ProgressOrder(props) {
 
     const handleUpdate = async () => {
         const history = await UpdateOrderStatus(order, statusValue);
-        console.log(history);
         setHistoryStatus(history.status_history);
         setReloadOrder(true);
         if (statusValue == 99) setOrderBlocked(true);
