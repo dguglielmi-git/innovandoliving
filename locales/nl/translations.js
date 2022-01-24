@@ -259,6 +259,8 @@ export const TRANSLATION_NL = {
     statusPartiallyRefunded: 'Gedeeltelijk terugbetaald',
     statusAwaitingPickup: 'In afwachting van ophalen',
     statusPartiallyShipped: 'Gedeeltelijk Verzonden',
+    statusPendingPayment: 'In afwachting van betaling',
+    statusPartiallyPaid: 'Gedeeltelijk betaald',
     statusClosed: 'Gesloten',
     statusUnknown: 'Onbekend',
 

@@ -259,6 +259,8 @@ export const TRANSLATION_FR = {
     statusPartiallyRefunded: 'Partiellement remboursé',
     statusAwaitingPickup: 'En attente de ramassage',
     statusPartiallyShipped: 'Partiellement expédié',
+    statusPendingPayment: 'En attente de paiement',
+    statusPartiallyPaid: 'Partiellement payé',
     statusClosed: 'Fermé',
     statusUnknown: 'Inconnue',
 

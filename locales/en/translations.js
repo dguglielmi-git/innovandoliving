@@ -35,7 +35,7 @@ export const TRANSLATION_EN = {
 
     /* Account - ChangeEmailForm */
     accountChangeEmailFormError: 'Error updating email',
-    accountChangeEmailFormOkUpdate: 'Email has been updated successfully',
+    accountChangeEmailFormOkUpdate: 'The email has been updated successfully',
     accountChangeEmailFormNewMail: 'Your new email address',
     accountChangeEmailFormRepeat: 'Repeat your new email address',
     accountChangeEmailButtonUpdate: 'Update',
@@ -61,7 +61,7 @@ export const TRANSLATION_EN = {
     accountListAddressNewAddressTitle: 'New Address',
     accountListAddressAddAddress: 'Add Address',
     accountListAddressNotAddress: 'No addresses on the list',
-    accountListAddressOkDelete: 'Address has been deleted successfully',
+    accountListAddressOkDelete: 'The address has been deleted successfully',
     accountListAddressErrorDelete: 'Error when trying to delete the address',
     accountListAddressQuestionDelete: 'Are you sure you want to delete the address?',
     accountListAddressEditLabel: 'Edit',
@@ -259,6 +259,8 @@ export const TRANSLATION_EN = {
     statusPartiallyRefunded: 'Partially Refunded',
     statusAwaitingPickup: 'Awaiting Pickup',
     statusPartiallyShipped: 'Partially Shipped',
+    statusPendingPayment: 'Pending Payment',
+    statusPartiallyPaid: 'Partially Paid',
     statusClosed: 'Closed',
     statusUnknown: 'Unknown',
 

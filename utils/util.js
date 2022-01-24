@@ -91,6 +91,10 @@ export function translateStatus(status) {
 			return i18n.t('statusAwaitingPickup');
 		case 11:
 			return i18n.t('statusPartiallyShipped');
+		case 12:
+			return i18n.t('statusPendingPayment');
+		case 13:
+			return i18n.t('statusPartiallyPaid');
 		case 99:
 			return i18n.t('statusClosed');
 		default:

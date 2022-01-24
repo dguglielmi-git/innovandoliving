@@ -21,8 +21,7 @@ export default function ProgressOrder(props) {
     useEffect(async () => {
         setHistoryStatus(order.status_history);
         const statuses = await getOrderStatuses();
-        const statusList = buildDataComboStructure(statuses);
-        setOptions(statusList);
+        setOptions(statuses);
         setStatusValue(order.status);
     }, []);
 
