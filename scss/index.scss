@@ -32,11 +32,13 @@
 @import "../components/Cart/AddressShipping//Delivery/DeliveryExternal/DeliveryExternal.scss";
 @import "../components/Cart/Payment/Payment.scss";
 @import "../components/Cart/Payment/FormPayment/FormPayment.scss";
+@import "../components/Cart/CashAndCard/CashAndCard.scss";
 @import "../components/Cart/StepsPurchase/StepsPurchase.scss";
 @import "../components/Cart/ConfirmCart/ConfirmCart.scss";
 @import "../components/Cart/SuccessfulPayment/SuccessfulPayment.scss";
 @import "../components/Cart/PendingPayment/PendingPayment.scss";
 @import "../components/Cart/FailurePayment/FailurePayment.scss";
+@import "../components/Cart/PaymentMethod/PaymentMethod.scss";
 @import "../components/Orders/Order/Order.scss";
 @import "../components/Orders/Order/content/ItemsTable.scss";
 @import "../components/Wishlist//Wishlist.scss";

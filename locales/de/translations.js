@@ -222,6 +222,7 @@ export const TRANSLATION_DE = {
     orderDetailTicketNumberLabel: 'Befehl #:',
     orderDetailOrderDateLabel: 'Datumsreihenfolge:',
     orderDetailStatusLabel: 'Status:',
+    orderDetailPendingPayment: 'Ausstehende Zahlung',
 
     /* Orders - OrderTable */
     orderTableDateRowLabel: 'Startdatum',

@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from '@material-ui/core/Typography';
-import { formatDate, translateStatus } from "../../../../../utils/util";
+import { formatDate, numToDollar, translateStatus } from "../../../../../utils/util";
 import { useTranslation } from "react-i18next";
 
 export default function OrderStatusLabel(props) {
@@ -20,6 +20,8 @@ export default function OrderStatusLabel(props) {
             { statusLabel(t('orderDetailTicketNumberLabel'), order && order.mercadoPagoMerchantOrderId) }
             { statusLabel(t('orderDetailOrderDateLabel'), order && formatDate(order.dateCreated)) }
             { statusLabel(t('orderDetailStatusLabel'), order && translateStatus(order.status)) }
+            { statusLabel(t('orderDetailPendingPayment'), order && numToDollar(order.purchasePendingPayment.$numberDecimal)) }
+
         </div>
     )
 }

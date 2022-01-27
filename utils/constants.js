@@ -19,6 +19,8 @@ export const STEP_VERIFY_PRODUCTS = 0;
 export const STEP_DELIVERY_OPTIONS = 1;
 export const STEP_CONFIRM_ORDER = 2;
 export const STEP_PAY_ORDER = 3;
+export const STEP_FINISH_ORDER = 4;
+export const STEP_CASH_AND_CARD = 5;
 
 export const PATH_LOGO_IMG = "logo.png";
 export const PATH_FAILURE_IMG = "failure.png";
@@ -38,3 +40,7 @@ export const LINK_TO_ACCOUNT = "/account";
 export const LINK_TO_WISHLIST = "/wishlist";
 export const LINK_TO_SHOWROOM = "/showroom";
 export const LINK_TO_QUESTIONS = "/queries";
+
+export const PAYMENT_METHOD_CASH = "cash";
+export const PAYMENT_METHOD_CREDIT_CARD = "creditcard";
+export const PAYMENT_METHOD_CASH_AND_CARD = "cashandcard";

@@ -3,17 +3,25 @@ import { useRouter } from "next/router";
 import { useTranslation } from 'react-i18next';
 import { LivingContext } from '../context/LivingContext';
 import { saveOrder, sendProductsToMercadoPago } from "../api/mercadopago";
-import { PATH_DELIVERY_IMG } from '../utils/constants';
+import {
+    PATH_DELIVERY_IMG,
+    PAYMENT_METHOD_CASH,
+    PAYMENT_METHOD_CASH_AND_CARD
+} from '../utils/constants';
 
 export default function Payment(props) {
     const {
         address,
         products,
         deliveryOption,
-        shippingPrice } = props;
-    const { addressInvoice, addressTransport } = useContext(LivingContext);
-    const { t } = useTranslation();
+        shippingPrice,
+        paymentMethod,
+        purchaseTotal,
+        totalCash
+    } = props;
     const router = useRouter();
+    const { t } = useTranslation();
+    const { addressInvoice, addressTransport } = useContext(LivingContext);
 
     const getItems = () => {
         const items = []
@@ -38,14 +46,21 @@ export default function Payment(props) {
         return items;
     }
 
+    const getPurchaseTotalAmount = () =>
+        (paymentMethod === PAYMENT_METHOD_CASH_AND_CARD)
+            ? (parseFloat(purchaseTotal) - parseFloat(totalCash))
+            : (parseFloat(purchaseTotal))
+
     const createOrderJson = async (mercadoPagoResponse) => ({
         addressDelivery: address,
         addressTransport: addressTransport,
         addressInvoice: addressInvoice,
         costDelivery: shippingPrice,
         deliveryOption: deliveryOption,
+        paymentMethodSelected: paymentMethod,
+        purchasePendingPayment: totalCash,
         items: getItems(),
-        purchaseTotalAmount: getItems().reduce((sum, item) => sum + (item.quantity * item.unit_price), 0),
+        purchaseTotalAmount: await getPurchaseTotalAmount(),
         dateCreated: mercadoPagoResponse.date_created,
         orderCollectorId: mercadoPagoResponse.collector_id,
         paymentId: mercadoPagoResponse.id,
@@ -62,7 +77,12 @@ export default function Payment(props) {
             const response = await res.response;
             const order = await createOrderJson(response)
             const orderRes = await saveOrder(order);
-            router.push(response.init_point)
+
+            if (paymentMethod === PAYMENT_METHOD_CASH) {
+                router.push(`/successfulPay/?merchant_order_id=${orderRes.mercadoPagoMerchantOrderId}&payment_method=${PAYMENT_METHOD_CASH}`);
+            }
+            if (paymentMethod !== PAYMENT_METHOD_CASH)
+                router.push(response.init_point)
         })()
     }, []);
 

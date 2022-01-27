@@ -92,6 +92,7 @@ export const TRANSLATION_ZH = {
     authRegisterFormLastnameRequired: '姓氏是必填項',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Go back to Previous Step',
     cartAddressShippingBackToCart: '返回購物車',
     cartAddressShippingSelectAddress: '選擇收貨地址：',
     cartAddressShippingNotAddress: '列表中沒有地址',
@@ -222,6 +223,7 @@ export const TRANSLATION_ZH = {
     orderDetailTicketNumberLabel: '命令 ＃：',
     orderDetailOrderDateLabel: '日期順序：',
     orderDetailStatusLabel: '地位:',
+    orderDetailPendingPayment: '待付款',
 
     /* Orders - OrderTable */
     orderTableDateRowLabel: '開始日期',
@@ -292,7 +294,20 @@ export const TRANSLATION_ZH = {
     queriesUserDialogYesButton: '是的',
     queriesUserDialogRejectButton: '取消',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Select your Payment Method',
+    paymentMethodOptionCash: 'Cash',
+    paymentMethodOptionCreditCard: 'Credit Card (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Cash & Credit Card (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Finish',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `The amount in both fields doesn't match the total amount.`,
+    cashAndCardErrorInQuantities: `Amounts cannot be 0. Please specify an amount in each field.`,
+    cashAndCardNegativeValuesInFields: `There are negative values in the fields, please correct them in order to continue.`,
+    cashAndCardHeaderLabel: 'Total Invoice: ',
+    cashAndCardAmountInCashLabel: 'Specify the amount to be paid in cash',
+    cashAndCardAmountInCreditCardLabel: 'Specify the amount to pay by credit card',
 
     /****************************************************************
      *                Pages

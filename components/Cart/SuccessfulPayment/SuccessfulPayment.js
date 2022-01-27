@@ -7,15 +7,17 @@ import { parseFinalOrder } from "../../../utils/mercadopago";
 import { PATH_SUCCESS_IMG } from "../../../utils/constants";
 
 export default function SuccessfulPayment(props) {
-    const { incomingData } = props;
+    const { incomingData, paymentMethod } = props;
     const { cleanCart } = useCart();
     const { t } = useTranslation();
     const { merchant_order_id } = incomingData || null;
 
     useEffect(() => {
         (async () => {
-            const finalOrder = await parseFinalOrder(incomingData);
-            const res = await orderUpdate(finalOrder);
+            if (!paymentMethod) {
+                const finalOrder = await parseFinalOrder(incomingData);
+                const res = await orderUpdate(finalOrder);
+            }
             cleanCart();
         })()
     }, []);

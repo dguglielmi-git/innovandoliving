@@ -3,7 +3,7 @@ import { Timeline } from 'primereact/timeline';
 import { useTranslation } from "react-i18next";
 import { getOrderStatuses, UpdateOrderStatus } from "../../../../../api/order";
 import { progressOrderReducer } from "../../../../../utils/reducer";
-import { drawTimeLineOfOrder, buildDataComboStructure } from "../../../../../utils/util";
+import { drawTimeLineOfOrder } from "../../../../../utils/util";
 import OptionsOrderStatus from "./OptionsOrderStatus"
 
 export default function ProgressOrder(props) {

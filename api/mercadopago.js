@@ -10,6 +10,8 @@ export const saveOrder = async (order) => {
         method: 'POST',
         body: JSON.stringify(order)
     })
+    const response = await orderRes.json();
+    return response;
 }
 
 export const orderUpdate = async (order) => {
