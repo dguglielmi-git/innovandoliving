@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { size } from "lodash";
-import { Button, Icon } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import AddressForm from "../AddressForm";
 import useAuth from "../../../hooks/useAuth";
 import BasicModal from "../../Modal/BasicModal";
-import AddressForm from "../AddressForm";
 import ListAddressGrid from "./ListAddressGrid";
-import "../../../locales/i18n";
 import ButtonAddAddress from "./sections/ButtonAddAddress";
+import "../../../locales/i18n";
 
 export default function ListAddress(props) {
     const {
@@ -36,7 +35,6 @@ export default function ListAddress(props) {
     }
 
     const ifNotAddresses = () => size(addresses) === 0 ? true : false
-
 
     return (
         <>

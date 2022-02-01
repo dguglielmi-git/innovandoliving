@@ -32,6 +32,7 @@ export const COMPUTER_COL_SIZE = 4;
 export const TABLET_COL_SIZE = 8;
 export const MOBILE_COL_SIZE = 16;
 
+export const ORDER_PENDING_PAYMENT = 12;
 export const ORDER_CLOSED = 99;
 
 export const LINK_TO_CART = "/cart";
@@ -44,3 +45,8 @@ export const LINK_TO_QUESTIONS = "/queries";
 export const PAYMENT_METHOD_CASH = "cash";
 export const PAYMENT_METHOD_CREDIT_CARD = "creditcard";
 export const PAYMENT_METHOD_CASH_AND_CARD = "cashandcard";
+
+export const DELIVERY_OPTION_STORE = 'store';
+export const DELIVERY_OPTION_TBD = 'tbd';
+export const DELIVERY_OPTION_DELIVERY = 'delivery';
+export const DELIVERY_OPTION_EXTERNAL_PROVIDER = 'deliveryExternal';

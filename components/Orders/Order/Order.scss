@@ -104,3 +104,10 @@
     }
   }
 }
+
+.order-locked {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  color: blueviolet;
+}

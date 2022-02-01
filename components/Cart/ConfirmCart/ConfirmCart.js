@@ -2,35 +2,56 @@ import React, { useState, useEffect } from 'react';
 import { forEach } from "lodash";
 import { Divider } from 'primereact/divider';
 import ButtonBack from './sections/ButtonBack';
-import HeaderTotalCart from './sections/HeaderTotalCart';
 import ListItemsCart from './sections/ListItemsCart';
-import FooterTotalCart from './sections/FooterTotalCart';
 import ButtonContinue from './sections/ButtonContinue';
+import HeaderTotalCart from './sections/HeaderTotalCart';
+import FooterTotalCart from './sections/FooterTotalCart';
+import {
+    DELIVERY_OPTION_DELIVERY,
+    DELIVERY_OPTION_EXTERNAL_PROVIDER
+} from '../../../utils/constants';
+import useAuth from '../../../hooks/useAuth';
+import { getAddressById } from '../../../api/address';
+import { calcShippingDelivery } from '../../../utils/util';
+import { getConfigurations } from "../../../api/configurations";
 
 export default function ConfirmCart(props) {
     const {
         t,
         setStep,
         products,
+        address,
         deliveryOption,
         shippingPrice,
         setShippingPrice } = props;
     const [totalPrice, setTotalPrice] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const { logout } = useAuth();
 
-    useEffect(() => {
-        /**
-         * TO DO: shipping prices must be retrieved from database, instead of the following hardcoded values.
-         */
-        switch (deliveryOption) {
-            case 'delivery':
-                setShippingPrice(2100);
-                break;
-            case 'deliveryExternal':
-                setShippingPrice(3200);
-                break;
-            default:
-                setShippingPrice(0);
+    useEffect(async () => {
+        setLoading(true);
+        const configs = await getConfigurations(logout);
+
+        if (address) {
+            const clientAddress = await getAddressById(address);
+            try {
+                switch (deliveryOption) {
+                    case DELIVERY_OPTION_DELIVERY:
+                        setShippingPrice(calcShippingDelivery(configs, clientAddress));
+                        break;
+                    case DELIVERY_OPTION_EXTERNAL_PROVIDER:
+                        setShippingPrice(3200);
+                        break;
+                    default:
+                        setShippingPrice(0);
+                }
+
+            } catch (error) {
+                console.log("Error happened when trying to get Address details: " + error)
+            }
         }
+        setLoading(false);
+
     }, []);
 
     useEffect(() => {
@@ -60,7 +81,7 @@ export default function ConfirmCart(props) {
 
             <Divider align="center" />
 
-            <ButtonContinue setStep={ setStep } />
+            <ButtonContinue setStep={ setStep } loading={ loading } />
         </div>
     )
 }

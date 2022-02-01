@@ -309,6 +309,16 @@ export const TRANSLATION_ZH = {
     cashAndCardAmountInCashLabel: 'Specify the amount to be paid in cash',
     cashAndCardAmountInCreditCardLabel: 'Specify the amount to pay by credit card',
 
+    /* ModalPayRec */
+    modalPayRecHeader: 'Mark Order as Payment Received',
+    modalPayRecContent: `If you already have received the pending payment, go on and click the 'Yes' button to enable the Status Changing. If you proceed with this, The status of this order will change to Ordered and the outstanding balance will be zero.`,
+    modalPayCancelButton: 'No',
+    modalPayConfirmButton: 'Yes',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Payment Received',
+    optionsOrderStatusMessageOrderLocked: 'This order is locked until the payment is received',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

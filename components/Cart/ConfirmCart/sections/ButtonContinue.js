@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { STEP_PAY_ORDER } from "../../../../utils/constants";
 
 export default function ButtonContinue(props) {
-    const { setStep } = props;
+    const { setStep, loading } = props;
     const { t } = useTranslation();
 
     const processPayment = () => {
@@ -13,7 +13,7 @@ export default function ButtonContinue(props) {
 
     return (
         <div className="button-submit">
-            <Button className="submit" onClick={ () => processPayment() }>
+            <Button loading={ loading } className="submit" onClick={ () => processPayment() }>
                 { t('confirmCartDetailContinueButton') }
                 <Icon name="arrow right" />
             </Button>

@@ -91,6 +91,18 @@ export async function getAddressesApi(idUser, logout) {
     }
 }
 
+export async function getAddressById(addressId, logout) {
+    try {
+        const url = `${SERVER_ADDRESS}/addresses/${addressId}`;
+        const result = await authFetch(url, null, logout);
+        if (result.statusCode === INTERNAL_SERVER_ERROR) throw "Server Error";
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 export async function deleteAddressApi(idAddress, logout) {
     try {
         const url = `${SERVER_ADDRESS}/addresses/${idAddress}`;

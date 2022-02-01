@@ -138,3 +138,15 @@ export const getColumnsRender = (width) => {
 			return 1;
 	}
 }
+
+export const calcShippingDelivery = (config, client) => {
+	const km_minimum = config.km_minimum;
+	const km_price = config.km_price;
+	const distance_minimum_km = parseFloat(config.km_minimum);
+	const distance_client = parseFloat((client.value_distance) / 1000);
+	if (distance_client <= distance_minimum_km) {
+		return (parseFloat(km_minimum) * parseFloat(km_price));
+	} else {
+		return (parseFloat(km_price) * parseFloat(distance_client));
+	}
+}

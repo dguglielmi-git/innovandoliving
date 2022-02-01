@@ -7,6 +7,7 @@ export default function ConfirmOrder(props) {
     const {
         step,
         setStep,
+        address,
         productsData,
         deliveryOption,
         shippingPrice,
@@ -19,6 +20,7 @@ export default function ConfirmOrder(props) {
             t={ t }
             setStep={ setStep }
             products={ productsData }
+            address={ address }
             deliveryOption={ deliveryOption }
             shippingPrice={ shippingPrice }
             setShippingPrice={ setShippingPrice }

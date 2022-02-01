@@ -14,7 +14,7 @@ export default function ProgressOrder(props) {
         orderBlocked,
         setOrderBlocked } = props;
     const [options, setOptions] = useState([]);
-    const [statusValue, setStatusValue] = useState('');
+    const [statusValue, setStatusValue] = useState(-1);
     const [historyStatus, setHistoryStatus] = useState([]);
     const { t } = useTranslation();
 
@@ -23,7 +23,7 @@ export default function ProgressOrder(props) {
         const statuses = await getOrderStatuses();
         setOptions(statuses);
         setStatusValue(order.status);
-    }, []);
+    }, [order]);
 
     const [state, dispatch] = useReducer(progressOrderReducer, {
         open: false,
@@ -43,7 +43,7 @@ export default function ProgressOrder(props) {
         const history = await UpdateOrderStatus(order, statusValue);
         setHistoryStatus(history.status_history);
         setReloadOrder(true);
-        if (statusValue == 99) setOrderBlocked(true);
+        if (statusValue == 99 || statusValue == 12) setOrderBlocked(true);
         closeModal();
     }
 

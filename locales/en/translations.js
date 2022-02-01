@@ -309,6 +309,17 @@ export const TRANSLATION_EN = {
     cashAndCardAmountInCashLabel: 'Specify the amount to be paid in cash',
     cashAndCardAmountInCreditCardLabel: 'Specify the amount to pay by credit card',
 
+    /* ModalPayRec */
+    modalPayRecHeader: 'Have you received the outstanding balance?',
+    modalPayRecContent: `If the customer has paid the outstanding balance, click the 'Yes' button, which will mark this order as 'Ordered' and set the current outstanding balance to zero.
+    After completing this operation, you will be able to update the order status to tell the user what stage the order is currently in.`,
+    modalPayCancelButton: 'No',
+    modalPayConfirmButton: 'Yes',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Payment Received',
+    optionsOrderStatusMessageOrderLocked: 'This order is locked until the payment is received',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

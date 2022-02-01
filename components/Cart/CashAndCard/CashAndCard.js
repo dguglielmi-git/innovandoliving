@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { Button, Grid, Icon, Input, Label } from "semantic-ui-react";
@@ -11,13 +11,6 @@ export default function CashAndCard(props) {
     const [creditCardAmount, setCreditCardAmount] = useState(0);
     const [error, setError] = useState(true);
     const { t } = useTranslation();
-
-    const submit = async () => {
-        if (await verifyQuantity() == true) {
-            setTotalCash(parseFloat(totalAmount) - parseFloat(cashAmount))
-            setStep(STEP_FINISH_ORDER)
-        }
-    }
 
     const handleChangeCash = (e) => {
         if (parseFloat(e) < 0) setCashAmount(parseFloat(0))
@@ -58,6 +51,19 @@ export default function CashAndCard(props) {
         }
         return result;
     }
+
+    const submit = async () => {
+        if (await verifyQuantity() == true) {
+            setTotalCash(parseFloat(totalAmount) - parseFloat(cashAmount))
+            setStep(STEP_FINISH_ORDER)
+        }
+    }
+
+    useEffect(() => {
+        const half = (parseFloat(totalAmount) / 2);
+        setCashAmount(half);
+        setCreditCardAmount(half);
+    }, [])
 
     return (
         <div className="cashandcard">

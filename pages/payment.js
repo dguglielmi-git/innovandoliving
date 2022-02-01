@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { LivingContext } from '../context/LivingContext';
 import { saveOrder, sendProductsToMercadoPago } from "../api/mercadopago";
 import {
+    DELIVERY_OPTION_DELIVERY,
     PATH_DELIVERY_IMG,
     PAYMENT_METHOD_CASH,
-    PAYMENT_METHOD_CASH_AND_CARD
 } from '../utils/constants';
 
 export default function Payment(props) {
@@ -34,7 +34,7 @@ export default function Payment(props) {
                     image: item.producto.poster.url,
                 })
             })
-            if ((deliveryOption !== 'store') || (deliveryOption !== 'tbd')) {
+            if (deliveryOption === DELIVERY_OPTION_DELIVERY) {
                 items.push({
                     title: t('labelShipping'),
                     unit_price: shippingPrice,
@@ -46,11 +46,6 @@ export default function Payment(props) {
         return items;
     }
 
-    const getPurchaseTotalAmount = () =>
-        (paymentMethod === PAYMENT_METHOD_CASH_AND_CARD)
-            ? (parseFloat(purchaseTotal) - parseFloat(totalCash))
-            : (parseFloat(purchaseTotal))
-
     const createOrderJson = async (mercadoPagoResponse) => ({
         addressDelivery: address,
         addressTransport: addressTransport,
@@ -60,7 +55,7 @@ export default function Payment(props) {
         paymentMethodSelected: paymentMethod,
         purchasePendingPayment: totalCash,
         items: getItems(),
-        purchaseTotalAmount: await getPurchaseTotalAmount(),
+        purchaseTotalAmount: purchaseTotal,
         dateCreated: mercadoPagoResponse.date_created,
         orderCollectorId: mercadoPagoResponse.collector_id,
         paymentId: mercadoPagoResponse.id,
@@ -71,18 +66,22 @@ export default function Payment(props) {
         mercadoPagoProcessingMode: null,
     })
 
+    const urlPayCash = (merchant, method) =>
+        `/successfulPay/?merchant_order_id=${merchant}&payment_method=${method}`;
+
     useEffect(() => {
         (async () => {
             const res = await sendProductsToMercadoPago(getItems())
             const response = await res.response;
-            const order = await createOrderJson(response)
+            const order = await createOrderJson(response);
             const orderRes = await saveOrder(order);
 
             if (paymentMethod === PAYMENT_METHOD_CASH) {
-                router.push(`/successfulPay/?merchant_order_id=${orderRes.mercadoPagoMerchantOrderId}&payment_method=${PAYMENT_METHOD_CASH}`);
+                router.push(urlPayCash(orderRes.mercadoPagoMerchantOrderId, PAYMENT_METHOD_CASH));
             }
-            if (paymentMethod !== PAYMENT_METHOD_CASH)
+            else {
                 router.push(response.init_point)
+            }
         })()
     }, []);
 

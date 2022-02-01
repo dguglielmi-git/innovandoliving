@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
+import { DELIVERY_OPTION_STORE } from "../../../../utils/constants";
 import { numToDollar } from "../../../../utils/util";
 
 export default function FooterTotalCart(props) {
@@ -14,10 +15,10 @@ export default function FooterTotalCart(props) {
                 <Grid.Column computer={ 10 }>
                 </Grid.Column>
                 <Grid.Column computer={ 6 }>
-                    { (deliveryOption === 'store') &&
+                    { (deliveryOption === DELIVERY_OPTION_STORE) &&
                         <h5>{ t('confirmCartDetailTotalLabel') } { numToDollar(totalPrice) }</h5>
                     }
-                    { (deliveryOption !== 'store') &&
+                    { (deliveryOption !== DELIVERY_OPTION_STORE) &&
                         <>
                             <h5 className="delivery-cost">
                                 { t('confirmCartDetailShippingCost') } { numToDollar(shippingPrice) }
