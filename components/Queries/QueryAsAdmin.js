@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Divider } from "semantic-ui-react";
 import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
-import { formatDate, verifyUserType } from "../../utils/util";
-import { USER_OWNER } from "../../utils/constants";
 import ChatSection from "./sections/ChatSection";
 import MsgQueue from "./sections/MsgQueue";
+import { formatDate } from "../../utils/util";
+import { IS_OWNER } from "../../utils/constants";
 
 export default function QueryAsAdmin() {
     const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ export default function QueryAsAdmin() {
     }, [reloadMsgs]);
 
     const showData = async (msg) => {
-        await markChatMessageAsRead(msg.productId, msg.userId, verifyUserType(USER_OWNER));
+        await markChatMessageAsRead(msg.productId, msg.userId, IS_OWNER);
         setSelectedMsg(msg)
     }
 

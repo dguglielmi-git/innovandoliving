@@ -100,7 +100,7 @@ export default function Cart() {
             <PayOrderCashAndCard
                 step={ step }
                 setStep={ setStep }
-                totalPrice={ totalPrice }
+                totalPrice={ (parseFloat(totalPrice) + parseFloat(shippingPrice)) }
                 setTotalCash={ setTotalCash }
             />
 

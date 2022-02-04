@@ -19,6 +19,7 @@ export default function LargeMenu(props) {
         prodCounter,
         t,
         queryCounter,
+        ordersCounter,
         languages,
         selectLang,
         languageSelected } = props;
@@ -39,6 +40,10 @@ export default function LargeMenu(props) {
                     </Link>
                     <Link href={ LINK_TO_ORDERS }>
                         <Menu.Item as="a">
+                            { ordersCounter > 0 &&
+                                (<Label color="red" floating circular size="mini">
+                                    { ordersCounter }
+                                </Label>) }
                             <Icon name="file alternate" />
                             { t('headerMenuMyOrders') }
                         </Menu.Item>

@@ -4,6 +4,8 @@ import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
+import MsgsContext from "../context/MsgsContext";
+import SettingsContext from "../context/SettingsContext";
 import MyLivingContext from "../context/LivingContext";
 import { setToken, getToken, removeToken } from "../api/token"
 import {
@@ -29,6 +31,8 @@ import 'primereact/resources/primereact.css';
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "../locales/i18n";
+import { getConfigurations } from "../api/configurations";
+import { getUnreadMsgs } from "../api/producto";
 
 PrimeReact.ripple = true;
 
@@ -38,11 +42,15 @@ export default function MyApp({ Component, pageProps }) {
     const [auth, setAuth] = useState(undefined);
     const [reloadUser, setReloadUser] = useState(false);
     const [reloadCart, setReloadCart] = useState(false);
+    const [queryCounter, setQueryCounter] = useState(0);
+    const [ordersCounter, setOrdersCounter] = useState(0);
+    const [reloadMsgCounter, setReloadMsgCounter] = useState(false);
+    const [configs, setConfigs] = useState(undefined);
     const [totalProductsCart, setTotalProductsCart] = useState(0);
 
     library.add(fab, faCheckSquare, faCoffee);
 
-    useEffect(() => {
+    useEffect(async () => {
         const token = getToken();
         if (token) {
             setAuth({
@@ -52,7 +60,10 @@ export default function MyApp({ Component, pageProps }) {
         } else {
             setAuth(null);
         }
+        const conf = await getConfigurations(logout);
+        setConfigs(conf);
         setReloadUser(false);
+
     }, [reloadUser]);
 
     useEffect(() => {
@@ -61,6 +72,20 @@ export default function MyApp({ Component, pageProps }) {
         }
         setReloadCart(false);
     }, [reloadCart, auth]);
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            const counters = await getUnreadMsgs();
+            const { queryCounter: qCounter, ordersCounter: oCounter } = counters;
+            if (qCounter !== queryCounter) {
+                setQueryCounter(qCounter);
+            }
+            if (oCounter !== ordersCounter) {
+                setOrdersCounter(oCounter);
+            }
+        }, 15000);
+        return () => clearInterval(interval);
+    }, []);
 
     const login = (token) => {
         setToken(token);
@@ -98,6 +123,12 @@ export default function MyApp({ Component, pageProps }) {
         setReloadCart(true);
     }
 
+    const settingsData = useMemo(
+        () => ({
+            configs,
+        }), [configs]
+    );
+
     const authData = useMemo(
         () => ({
             auth,
@@ -106,6 +137,14 @@ export default function MyApp({ Component, pageProps }) {
             setReloadUser,
         }),
         [auth]
+    );
+
+    const msgsData = useMemo(
+        () => ({
+            queryCounter: queryCounter,
+            ordersCounter: ordersCounter
+        }),
+        [queryCounter, ordersCounter]
     );
 
     const cartData = useMemo(
@@ -122,24 +161,28 @@ export default function MyApp({ Component, pageProps }) {
     if (auth === undefined) return null;
 
     return (
-        <AuthContext.Provider value={ authData }>
-            <CartContext.Provider value={ cartData }>
-                <MyLivingContext>
-                    <Component { ...pageProps } />
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={ 5000 }
-                        hideProgressBar
-                        newestOnTop
-                        closeOnClick
-                        rtl={ false }
-                        pauseOnFocusLoss={ false }
-                        draggable
-                        pauseOnHover
-                    />
-                </MyLivingContext>
-            </CartContext.Provider>
-        </AuthContext.Provider>
+        <MsgsContext.Provider value={ msgsData }>
+            <SettingsContext.Provider value={ settingsData }>
+                <AuthContext.Provider value={ authData }>
+                    <CartContext.Provider value={ cartData }>
+                        <MyLivingContext>
+                            <Component { ...pageProps } />
+                            <ToastContainer
+                                position="top-right"
+                                autoClose={ 5000 }
+                                hideProgressBar
+                                newestOnTop
+                                closeOnClick
+                                rtl={ false }
+                                pauseOnFocusLoss={ false }
+                                draggable
+                                pauseOnHover
+                            />
+                        </MyLivingContext>
+                    </CartContext.Provider>
+                </AuthContext.Provider>
+            </SettingsContext.Provider>
+        </MsgsContext.Provider>
     )
 }
 

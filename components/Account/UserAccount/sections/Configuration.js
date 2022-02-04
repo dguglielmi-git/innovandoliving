@@ -1,13 +1,16 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { IS_OWNER } from "../../../../utils/constants";
 import ChangeEmailForm from "../../ChangeEmailForm";
 import ChangeNameForm from "../../ChangeNameForm";
 import ChangePasswordForm from "../../ChangePasswordForm";
+import SystemSettings from "../../SystemSettings/SystemSettings";
 
 export default function Configuration(props) {
     const { user, logout, setReloadUser } = props;
     const { t } = useTranslation();
 
+    console.log(user)
     return (
         <div className="account__configuration">
             <div className="title">
@@ -28,6 +31,12 @@ export default function Configuration(props) {
                     user={ user }
                     logout={ logout }
                 />
+                { user?.isowner === IS_OWNER &&
+                    <SystemSettings
+                        logout={ logout }
+                        setReloadUser={ setReloadUser }
+                    />
+                }
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
+    STEP_CASH_AND_CARD,
     STEP_CONFIRM_ORDER,
     STEP_DELIVERY_OPTIONS,
     STEP_PAY_ORDER,
@@ -22,6 +23,10 @@ export default function ShowButtonBack(props) {
         case STEP_PAY_ORDER:
             label = STEP_CONFIRM_ORDER;
             buttonLabel = t('cartAddressShippingPreviousStep');
+            break;
+        case STEP_CASH_AND_CARD:
+            label = STEP_PAY_ORDER;
+            buttonLabel = "Go back to Previous Step"
             break;
         default:
             return <div />;

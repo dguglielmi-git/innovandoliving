@@ -240,6 +240,7 @@ export const TRANSLATION_ZH = {
     productoHeaderProductoQuantity: '數量',
     productoHeaderProductoSalesPrice: '銷售價格：',
     productoHeaderProductoAddToCart: '添加到購物車',
+    productoHeaderAddCartLogoff: 'In order to add items to your cart, you must log in into your account.',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: '發布日期：',

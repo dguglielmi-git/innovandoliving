@@ -1,6 +1,7 @@
 import React from 'react';
 import { Steps } from 'primereact/steps';
 import i18n from "../../../locales/i18n";
+import { STEP_PAY_ORDER } from '../../../utils/constants';
 
 const StepsPurchase = (props) => {
     const { activeIndex } = props
@@ -20,13 +21,17 @@ const StepsPurchase = (props) => {
         }
     ];
 
+    const getIndex = () =>
+        (activeIndex > STEP_PAY_ORDER) ? STEP_PAY_ORDER
+            : activeIndex
+
     return (
         <div className="steps-cart">
             <div className="card">
                 <div className="card-title">
                     <h5>{ i18n.t('stepPurchaseProgressTitle') }</h5>
                 </div>
-                <Steps activeIndex={ activeIndex } model={ items } />
+                <Steps activeIndex={ getIndex() } model={ items } />
             </div>
         </div>
     );

@@ -6,11 +6,12 @@ import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { confirmDialog } from "primereact/confirmdialog"
 import { formatDate } from "../../utils/util";
-import { getOpenChats } from "../../api/producto";
+import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
 import "primeicons/primeicons.css";
 import 'primereact/resources/primereact.css';
 import "primereact/resources/primereact.min.css";
 import 'primereact/resources/themes/saga-blue/theme.css';
+import { IS_NORMAL_USER } from "../../utils/constants";
 
 export default function QueryAsUser() {
     const [messages, setMessages] = useState([]);
@@ -26,7 +27,8 @@ export default function QueryAsUser() {
         setReloadMsgs(false);
     }, [reloadMsgs]);
 
-    const acceptDialog = (msg) => {
+    const acceptDialog = async (msg) => {
+        await markChatMessageAsRead(msg.productId, msg.userId, IS_NORMAL_USER);
         router.push(`/${msg.url}`)
     }
 

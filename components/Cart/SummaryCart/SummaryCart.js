@@ -7,7 +7,14 @@ import TotalPriceOfProductsList from './sections/TotalPriceOfProductsList';
 import ContinuePurchaseButton from './sections/ContinuePurchaseButton';
 
 export default function SummaryCart(props) {
-    const { products, reloadCart, setReloadCart, setStep, totalPrice, setTotalPrice } = props;
+    const {
+        products,
+        reloadCart,
+        setReloadCart,
+        setStep,
+        totalPrice,
+        setTotalPrice
+    } = props;
     const [loading, setLoading] = useState(true);
     const { removeProductCart } = useCart();
 

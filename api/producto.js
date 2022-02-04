@@ -186,3 +186,19 @@ const getJsonHeader = () => ({
         'x-token': getToken()
     }
 })
+
+export async function getUnreadMsgs() {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/chat/unreadmsg`;
+
+        const params = getJsonHeader();
+
+        const result = await fetch(url, params);
+        const response = await result.json();
+        return response;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}

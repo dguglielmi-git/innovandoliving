@@ -8,7 +8,7 @@ export default function PayOrderCashAndCard(props) {
         step,
         setStep,
         totalPrice,
-        setTotalCash
+        setTotalCash,
     } = props;
 
     if (step === STEP_CASH_AND_CARD) {

@@ -7,6 +7,7 @@ import {
     DELIVERY_OPTION_DELIVERY,
     PATH_DELIVERY_IMG,
     PAYMENT_METHOD_CASH,
+    PAYMENT_METHOD_CASH_AND_CARD,
 } from '../utils/constants';
 
 export default function Payment(props) {
@@ -46,6 +47,23 @@ export default function Payment(props) {
         return items;
     }
 
+    const getTotalCashAndCard = () => {
+        const total = ((parseFloat(purchaseTotal) + parseFloat(shippingPrice)) - parseFloat(totalCash));
+        return [{
+            title: "Total Purchase",
+            unit_price: total,
+            quantity: 1,
+            image: null,
+        }];
+    }
+
+    const getItemsDependingOnPaymentMethod = () =>
+        (paymentMethod === PAYMENT_METHOD_CASH_AND_CARD)
+            ? getTotalCashAndCard()
+            : getItems();
+
+    const getTotal = () => (parseFloat(purchaseTotal) + parseFloat(shippingPrice))
+
     const createOrderJson = async (mercadoPagoResponse) => ({
         addressDelivery: address,
         addressTransport: addressTransport,
@@ -55,7 +73,7 @@ export default function Payment(props) {
         paymentMethodSelected: paymentMethod,
         purchasePendingPayment: totalCash,
         items: getItems(),
-        purchaseTotalAmount: purchaseTotal,
+        purchaseTotalAmount: getTotal(),
         dateCreated: mercadoPagoResponse.date_created,
         orderCollectorId: mercadoPagoResponse.collector_id,
         paymentId: mercadoPagoResponse.id,
@@ -71,7 +89,8 @@ export default function Payment(props) {
 
     useEffect(() => {
         (async () => {
-            const res = await sendProductsToMercadoPago(getItems())
+
+            const res = await sendProductsToMercadoPago(getItemsDependingOnPaymentMethod())
             const response = await res.response;
             const order = await createOrderJson(response);
             const orderRes = await saveOrder(order);

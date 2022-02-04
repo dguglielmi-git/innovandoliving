@@ -54,7 +54,7 @@ export default function CashAndCard(props) {
 
     const submit = async () => {
         if (await verifyQuantity() == true) {
-            setTotalCash(parseFloat(totalAmount) - parseFloat(cashAmount))
+            setTotalCash(parseFloat(totalAmount) - parseFloat(creditCardAmount))
             setStep(STEP_FINISH_ORDER)
         }
     }

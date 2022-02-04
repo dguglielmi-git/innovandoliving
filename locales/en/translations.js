@@ -240,6 +240,7 @@ export const TRANSLATION_EN = {
     productoHeaderProductoQuantity: 'Quantity',
     productoHeaderProductoSalesPrice: 'Sale Price:',
     productoHeaderProductoAddToCart: 'Add to Cart',
+    productoHeaderAddCartLogoff: 'In order to add items to your cart, you must log in into your account.',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Release Date:',

@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
+import {
+    Menu,
+    Icon,
+    Label,
+    Dropdown
+} from "semantic-ui-react";
 import { map } from "lodash";
-import { Menu, Icon, Label, Dropdown } from "semantic-ui-react";
-import useWindowSize from "../../../hooks/useWindowSize";
-import useCart from "../../../hooks/useCart";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { RES_LARGE } from "../../../utils/breakpoint";
-import { LINK_TO_CART } from "../../../utils/constants";
+import LargeMenu from "./LargeMenu";
 import ItemsOptions from "./ItemsOptions";
 import ItemsAccount from "./ItemsAccount";
-import LargeMenu from "./LargeMenu";
-import DropdownLanguages from "./MenuItems/DropdownLanguages";
-import Link from "next/link";
+import useCart from "../../../hooks/useCart";
+import useMsgs from "../../../hooks/useMsgs"
 import { languages } from "../../../locales/i18n";
+import { RES_LARGE } from "../../../utils/breakpoint";
+import { LINK_TO_CART } from "../../../utils/constants";
+import useWindowSize from "../../../hooks/useWindowSize";
+import DropdownLanguages from "./MenuItems/DropdownLanguages";
 import i18n from "../../../locales/i18n";
 
 export default function MenuOptions(props) {
     const { onShowModal, user, logout } = props;
     const [prodCounter, setProdCounter] = useState(0);
-    const [queryCounter, setQueryCounter] = useState(0);
     const { productsCart } = useCart();
+    const { queryCounter, ordersCounter } = useMsgs();
     const { width } = useWindowSize();
     const { t } = useTranslation();
     const [languageSelected, setLanguageSelected] = useState(null)
@@ -81,6 +87,7 @@ export default function MenuOptions(props) {
                             prodCounter={ prodCounter }
                             t={ t }
                             queryCounter={ queryCounter }
+                            ordersCounter={ ordersCounter }
                             languages={ languages }
                             selectLang={ selectLang }
                             languageSelected={ languageSelected }

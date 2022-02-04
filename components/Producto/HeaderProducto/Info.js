@@ -10,15 +10,16 @@ import {
     addFavoriteApi,
     removeFavoriteApi,
 } from "../../../api/favorite";
+import { toast } from 'react-toastify';
 
 export default function Info(props) {
     const { producto, t } = props;
     const { title, summary, price, discount, url } = producto;
     const [quantity, setQuantity] = useState(1);
-    const [loading, setLoading] = useState(false);    
+    const [loading, setLoading] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
-    const [reloadFavorite, setReloadFavorite] = useState(false);    
-    const { auth, logout } = useAuth();    
+    const [reloadFavorite, setReloadFavorite] = useState(false);
+    const { auth, logout } = useAuth();
     const { addProductCart } = useCart();
 
     useEffect(() => {
@@ -53,13 +54,15 @@ export default function Info(props) {
     const addProd = async () => {
         if (auth) {
             await addProductCart(auth.idUser, producto._id, quantity);
+        } else {
+            toast.error(t('productoHeaderAddCartLogoff'))
         }
     }
 
     const changeQuantity = (e) => {
         setQuantity(e.target.value);
     }
-    
+
     const classPrice = () => {
         return discount ? 'header-producto__discount' : 'header-producto__normal-price';
     }
@@ -67,50 +70,50 @@ export default function Info(props) {
     return (
         <>
             <div className="header-producto__title">
-                {title}
+                { title }
                 <Icon
-                    name={isFavorite ? "heart red" : "heart outline"}
+                    name={ isFavorite ? "heart red" : "heart outline" }
                     link
-                    loading={loading}
-                    onClick={isFavorite ? removeFavorite : addFavorite}
+                    loading={ loading }
+                    onClick={ isFavorite ? removeFavorite : addFavorite }
                 />
             </div>
-            <div className="header-producto__delivery">{t('productoHeaderProductoDelivery24')}</div>
-            <div className="header-producto__summary" dangerouslySetInnerHTML={{ __html: summary }} />
+            <div className="header-producto__delivery">{ t('productoHeaderProductoDelivery24') }</div>
+            <div className="header-producto__summary" dangerouslySetInnerHTML={ { __html: summary } } />
             <div className="header-producto__quantity">
                 <TextField
                     id="outlined-number"
-                    label={t('productoHeaderProductoQuantity')}
+                    label={ t('productoHeaderProductoQuantity') }
                     type="number"
                     size="small"
-                    InputLabelProps={{
+                    InputLabelProps={ {
                         shrink: true,
-                    }}
-                    onChange={(e) => changeQuantity(e)}
-                    value={quantity}
+                    } }
+                    onChange={ (e) => changeQuantity(e) }
+                    value={ quantity }
                     variant="outlined"
                 />
             </div>
             <div className="header-producto__buy">
                 <div className="header-producto__buy-price">
                     <p>
-                        <Icon name="tag" />{t('productoHeaderProductoSalesPrice')}
-                        <p className={classPrice()}>${price}</p>
+                        <Icon name="tag" />{ t('productoHeaderProductoSalesPrice') }
+                        <p className={ classPrice() }>${ price }</p>
                     </p>
                     <div className="header-producto__buy-price-actions">
-                        {discount && (
+                        { discount && (
                             <>
-                                <p>-{discount}%</p>
-                                <p>${(price - Math.floor(price * discount) / 100).toFixed(2)}</p>
+                                <p>-{ discount }%</p>
+                                <p>${ (price - Math.floor(price * discount) / 100).toFixed(2) }</p>
                             </>
-                        )}
+                        ) }
                     </div>
                 </div>
 
                 <Button
                     className="header-producto__buy-btn"
-                    onClick={() => addProd()}>
-                    {t('productoHeaderProductoAddToCart')}
+                    onClick={ () => addProd() }>
+                    { t('productoHeaderProductoAddToCart') }
                 </Button>
             </div>
         </>
