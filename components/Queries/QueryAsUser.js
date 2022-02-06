@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { confirmDialog } from "primereact/confirmdialog"
 import { formatDate } from "../../utils/util";
+import useMsgs from "../../hooks/useMsgs";
 import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
 import "primeicons/primeicons.css";
 import 'primereact/resources/primereact.css';
@@ -17,18 +18,28 @@ export default function QueryAsUser() {
     const [messages, setMessages] = useState([]);
     const [selectedMessage, setSelectedMessage] = useState(null);
     const [reloadMsgs, setReloadMsgs] = useState(false);
+    const { queryCounter, setReloadMsgCounter } = useMsgs();
     const router = useRouter();
     const { t } = useTranslation();
 
     useEffect(async () => {
+        console.log('Getting Open chats')
         const msgdata = await getOpenChats();
-        msgdata.map(m => m.createAt = formatDate(m.createAt))
+        msgdata.map(m => {
+            m.createAt = formatDate(m.createAt);
+            if (m._id === selectedMessage._id) {
+                setSelectedMessage(m)
+                markChatMessageAsRead(m.productId, m.userId, IS_NORMAL_USER);
+                setReloadMsgCounter(true);
+            }
+        });
         setMessages(msgdata);
         setReloadMsgs(false);
-    }, [reloadMsgs]);
+    }, [reloadMsgs, queryCounter]);
 
     const acceptDialog = async (msg) => {
         await markChatMessageAsRead(msg.productId, msg.userId, IS_NORMAL_USER);
+        setReloadMsgCounter(true);
         router.push(`/${msg.url}`)
     }
 

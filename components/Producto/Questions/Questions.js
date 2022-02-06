@@ -6,6 +6,7 @@ import { Container, Comment } from "semantic-ui-react";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { isUserOwner } from "../../../api/orderMessage";
+import useMsgs from "../../../hooks/useMsgs";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
 import {
     addMessageToProduct,
@@ -22,6 +23,7 @@ export default function Questions(props) {
     const { product } = props;
     const { t } = useTranslation();
     const { auth, logout } = useAuth();
+    const { queryCounter, setReloadMsgCounter } = useMsgs();
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState("");
     const [renderMsg, setRenderMsg] = useState([]);
@@ -48,18 +50,11 @@ export default function Questions(props) {
 
     useEffect(async () => {
         const msgs = await getChatMessagesByProduct(product?._id, auth?.idUser);
+        await markChatMessageAsRead(product?._id, auth?.idUser, userType);
+        setReloadMsgCounter(true);
         setRenderMsg(msgs);
         setReloadChat(false);
-    }, [reloadChat]);
-
-    useEffect(() => {
-        const interval = setInterval(async () => {
-            const msgs = await getChatMessagesByProduct(product?._id, auth?.idUser);
-            await markChatMessageAsRead(product?._id, auth?.idUser, userType);
-            setRenderMsg(msgs);
-        }, 60000);
-        return () => clearInterval(interval);
-    }, []);
+    }, [reloadChat, queryCounter]);
 
     const addComment = async (event) => {
         if (!auth) {

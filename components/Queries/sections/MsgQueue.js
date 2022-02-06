@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import useMsgs from "../../../hooks/useMsgs";
 
 export default function MsgQueue(props) {
     const { messages, showData } = props;
     const [selectedMessage, setSelectedMessage] = useState(null);
+    const { setReloadMsgCounter } = useMsgs();
 
     const selectMsg = (msg) => {
         msg.unreadmsgs = 0
@@ -14,6 +16,7 @@ export default function MsgQueue(props) {
                 m = msg
             }
         });
+        setReloadMsgCounter(true);
         setSelectedMessage(msg);
         showData(msg)
     }

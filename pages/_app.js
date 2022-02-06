@@ -75,17 +75,22 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const counters = await getUnreadMsgs();
-            const { queryCounter: qCounter, ordersCounter: oCounter } = counters;
-            if (qCounter !== queryCounter) {
-                setQueryCounter(qCounter);
-            }
-            if (oCounter !== ordersCounter) {
-                setOrdersCounter(oCounter);
-            }
+            setReloadMsgCounter(true);
         }, 15000);
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(async () => {
+        const counters = await getUnreadMsgs();
+        const { queryCounter: qCounter, ordersCounter: oCounter } = counters;
+        if (qCounter !== queryCounter) {
+            setQueryCounter(qCounter);
+        }
+        if (oCounter !== ordersCounter) {
+            setOrdersCounter(oCounter);
+        }
+        setReloadMsgCounter(false);
+    }, [reloadMsgCounter]);
 
     const login = (token) => {
         setToken(token);
@@ -142,7 +147,8 @@ export default function MyApp({ Component, pageProps }) {
     const msgsData = useMemo(
         () => ({
             queryCounter: queryCounter,
-            ordersCounter: ordersCounter
+            ordersCounter: ordersCounter,
+            setReloadMsgCounter,
         }),
         [queryCounter, ordersCounter]
     );
