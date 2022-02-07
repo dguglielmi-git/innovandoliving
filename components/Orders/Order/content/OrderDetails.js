@@ -8,6 +8,7 @@ import ButtonBack from "./OrderDetailContent/ButtonBack";
 import { markMessageAsRead } from "../../../../api/orderMessage";
 import { verifyUserType } from "../../../../utils/util";
 import { useTranslation } from "react-i18next";
+import useMsgs from "../../../../hooks/useMsgs";
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import "primereact/resources/primereact.min.css";
@@ -16,6 +17,7 @@ import "primeicons/primeicons.css";
 export default function OrderDetails(props) {
     const { setShowDetail, order, setReloadOrder, userType } = props;
     const [orderBlocked, setOrderBlocked] = useState(false);
+    const { setReloadMsgCounter } = useMsgs();
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -23,6 +25,7 @@ export default function OrderDetails(props) {
             if (order) {
                 await markMessageAsRead(order._id, verifyUserType(userType))
                 setReloadOrder(true);
+                setReloadMsgCounter(true);
             }
         })()
     }, []);

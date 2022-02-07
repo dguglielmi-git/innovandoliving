@@ -3,6 +3,7 @@ import { size } from 'lodash';
 import { Comment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../../hooks/useAuth';
+import useMsgs from '../../../../hooks/useMsgs';
 import { getMeApi } from '../../../../api/user';
 import {
     addMessage,
@@ -24,6 +25,7 @@ const CommentsForm = (props) => {
     const [renderMsg, setRenderMsg] = useState([]);
     const { t } = useTranslation();
     const { logout } = useAuth();
+    const { ordersCounter, setReloadMsgCounter } = useMsgs();
 
     useEffect(() => {
         (async () => {
@@ -34,20 +36,16 @@ const CommentsForm = (props) => {
         })();
     }, []);
 
-    useEffect(() => {
-        const interval = setInterval(async () => {
-            const result = await getMessagesByOrder(order._id);
-            await markMessageAsRead(order._id, verifyUserType(userType))
-            setRenderMsg(result)
-        }, 30000);
-        return () => clearInterval(interval);
-    }, [])
+    useEffect(async () => {
+        await reloadMessage();
+    }, [ordersCounter])
 
     const reloadMessage = async () => {
         if (order) {
             const result = await getMessagesByOrder(order._id);
             await markMessageAsRead(order._id, verifyUserType(userType))
             setRenderMsg(result)
+            setReloadMsgCounter(true);
             return result;
         }
         return null;

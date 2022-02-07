@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import BasicLoading from "../../BasicLoading/BasicLoading";
-import OrderDetails from "../Order/content/OrderDetails";
 import ActiveClosedTabs from "./ActiveClosedTabs";
 import { USER_OWNER } from "../../../utils/constants";
+import OrderDetails from "../Order/content/OrderDetails";
+import BasicLoading from "../../BasicLoading/BasicLoading";
 import useAuth from "../../../hooks/useAuth";
+import useMsgs from "../../../hooks/useMsgs";
 import { getFinishedOrdersApi, getOrdersApi } from "../../../api/order";
 
 export default function OrderAdmin() {
@@ -15,6 +16,7 @@ export default function OrderAdmin() {
     const [finishedOrders, setFinishedOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [reloadOrder, setReloadOrder] = useState(false);
+    const { ordersCounter } = useMsgs();
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -31,7 +33,7 @@ export default function OrderAdmin() {
             setLoading(false);
         })()
         setReloadOrder(false);
-    }, [reloadOrder]);
+    }, [reloadOrder, ordersCounter]);
 
 
     return (

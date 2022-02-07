@@ -1,12 +1,16 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
+import PrimeReact from 'primereact/api';
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import MsgsContext from "../context/MsgsContext";
-import SettingsContext from "../context/SettingsContext";
 import MyLivingContext from "../context/LivingContext";
+import SettingsContext from "../context/SettingsContext";
+import { getUnreadMsgs } from "../api/producto";
+import { getConfigurations } from "../api/configurations";
 import { setToken, getToken, removeToken } from "../api/token"
 import {
     getCart,
@@ -15,24 +19,24 @@ import {
     countProductsCart,
     removeItemCart,
 } from "../api/cart";
-import PrimeReact from 'primereact/api';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from "react-i18next";
-import 'react-toastify/dist/ReactToastify.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+    faCheckSquare,
+    faCoffee
+} from '@fortawesome/free-solid-svg-icons';
 import "../scss/global.scss";
-import 'semantic-ui-css/semantic.min.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
+import "primeicons/primeicons.css";
 import 'primereact/resources/primereact.css';
 import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
+import 'primereact/resources/themes/saga-blue/theme.css';
+import "slick-carousel/slick/slick.css";
+import 'semantic-ui-css/semantic.min.css';
+import "slick-carousel/slick/slick-theme.css";
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "../locales/i18n";
-import { getConfigurations } from "../api/configurations";
-import { getUnreadMsgs } from "../api/producto";
+import { REFRESH_SYSTEM_DATA } from "../utils/constants";
 
 PrimeReact.ripple = true;
 
@@ -76,7 +80,7 @@ export default function MyApp({ Component, pageProps }) {
     useEffect(() => {
         const interval = setInterval(async () => {
             setReloadMsgCounter(true);
-        }, 15000);
+        }, REFRESH_SYSTEM_DATA);
         return () => clearInterval(interval);
     }, []);
 
