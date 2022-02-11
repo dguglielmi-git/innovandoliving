@@ -19,6 +19,8 @@ export const formatDate = (date) => {
 	return (d.toLocaleDateString() + ' - ' + d.toLocaleTimeString() + 'hs');
 }
 
+export const getDiscountPrice = (price, discount) => (price - ((price * discount) / 100));
+
 export function getEntries(entries) {
 	let result = {}
 	for (let entry of entries) {

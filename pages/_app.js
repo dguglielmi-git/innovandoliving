@@ -86,7 +86,7 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(async () => {
         const counters = await getUnreadMsgs();
-        const { queryCounter: qCounter, ordersCounter: oCounter } = counters;
+        const { queryCounter: qCounter, ordersCounter: oCounter } = await counters;
         if (qCounter !== queryCounter) {
             setQueryCounter(qCounter);
         }

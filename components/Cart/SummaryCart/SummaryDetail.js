@@ -8,6 +8,7 @@ import DetailQuantity from './sections/DetailQuantity';
 import DetailCategory from './sections/DetailCategory';
 import ProductAction from './sections/ProductAction';
 import "../../../locales/i18n";
+import { getDiscountPrice } from '../../../utils/util';
 
 
 export default function SummaryDetail(props) {
@@ -21,12 +22,19 @@ export default function SummaryDetail(props) {
         setShowDialog(false);
     }
 
+    const getPrice = (prod) => {
+        if (prod.producto.discount) {
+            return getDiscountPrice(prod.producto.price, prod.producto.discount)
+        }
+        return prod.producto.price;
+    }
+
     return (
         <div className="product-item" key={ data._id }>
             <img src={ `${data.producto.poster.url}` } alt="" />
             <div className="product-detail">
                 <DetailTitle title={ data.producto.title } />
-                <DetailUnitPrice t={ t } unitPrice={ data.producto.price } />
+                <DetailUnitPrice t={ t } unitPrice={ parseFloat(getPrice(data)) } />
                 <DetailQuantity t={ t } quantity={ data.quantity } />
                 <Rating
                     value={ data.producto.ranking }
@@ -37,7 +45,7 @@ export default function SummaryDetail(props) {
             </div>
             <ProductAction
                 t={ t }
-                price={ data.producto.price }
+                price={ parseFloat(getPrice(data)) }
                 quantity={ data.quantity }
                 setShowDialog={ setShowDialog }
             />

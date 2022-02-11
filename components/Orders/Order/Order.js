@@ -5,16 +5,17 @@ import OrderTitle from './content/sections/OrderTitle';
 import EmptyOrders from './content/sections/EmptyOrders';
 import ShowListOfOrders from './content/sections/ShowListOfOrders';
 import useAuth from "../../../hooks/useAuth";
+import useMsgs from '../../../hooks/useMsgs';
 import { getOrdersApi } from "../../../api/order";
 import { USER_CLIENT } from "../../../utils/constants";
 
 export default function Order(props) {
-    const { t } = props;
     const { logout } = useAuth();
-    const [reloadOrder, setReloadOrder] = useState(false);
-    const [showDetail, setShowDetail] = useState(false);
     const [orders, setOrders] = useState([]);
     const [orderSelected, setOrderSelected] = useState({});
+    const [showDetail, setShowDetail] = useState(false);
+    const [reloadOrder, setReloadOrder] = useState(false);
+    const { ordersCounter } = useMsgs();
 
     useEffect(() => {
         (async () => {
@@ -34,7 +35,7 @@ export default function Order(props) {
             }
         })()
         setReloadOrder(false);
-    }, [reloadOrder])
+    }, [reloadOrder, ordersCounter])
 
     if (orders === []) {
         return < EmptyOrders />

@@ -160,9 +160,9 @@ export const TRANSLATION_EN = {
     cartSuccessfulPaymentFooterThanks: 'Thanks for your purchase!',
 
     /* Cart - PendingPayment */
-    cartPendingPaymentTitle: `The order has been processed and is pending Payment.`,
+    cartPendingPaymentTitle: `The order has been processed and it is pending Payment.`,
     cartPendingPaymentOrderNumber: 'Ticket Number #',
-    cartPendingPaymentMsgFirstLine: `In the 'My Orders' section, you can track the order and keep in touch with our Sales Department for any query.`,
+    cartPendingPaymentMsgFirstLine: `In the 'My Orders' section, you can track the order and keep in touch with our Sales Department for any questions you may have.`,
 
     /* Cart - FailurePayment */
     cartFailurePaymentTitle: 'The order could not be processed correctly.',

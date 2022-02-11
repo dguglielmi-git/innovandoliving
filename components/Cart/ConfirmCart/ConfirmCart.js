@@ -12,7 +12,7 @@ import {
 } from '../../../utils/constants';
 import useAuth from '../../../hooks/useAuth';
 import { getAddressById } from '../../../api/address';
-import { calcShippingDelivery } from '../../../utils/util';
+import { calcShippingDelivery, getDiscountPrice } from '../../../utils/util';
 import { getConfigurations } from "../../../api/configurations";
 
 export default function ConfirmCart(props) {
@@ -58,7 +58,12 @@ export default function ConfirmCart(props) {
         let price = 0;
         (async () => {
             await forEach(products, (product) => {
-                price += product.producto.price * product.quantity;
+                if (product.producto.discount) {
+                    let discountPrice = getDiscountPrice(parseFloat(product.producto.price), product.producto.discount);
+                    price += parseFloat(discountPrice) * parseFloat(product.quantity);
+                } else {
+                    price += (parseFloat(product.producto.price) * parseFloat(product.quantity));
+                }
             });
         })()
         setTotalPrice(price);

@@ -11,8 +11,8 @@ import { getFinishedOrdersApi, getOrdersApi } from "../../../api/order";
 export default function OrderAdmin() {
     const { logout } = useAuth();
     const [showDetail, setShowDetail] = useState(false);
-    const [orderSelected, setOrderSelected] = useState({});
     const [orders, setOrders] = useState([]);
+    const [orderSelected, setOrderSelected] = useState({});
     const [finishedOrders, setFinishedOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [reloadOrder, setReloadOrder] = useState(false);

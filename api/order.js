@@ -29,7 +29,7 @@ async function getOrders(logout, active) {
     }
 }
 
-export async function UpdateOrderStatus(order, status) {
+export async function updateOrderStatus(order, status) {
     try {
         const url = `${URL_MERCADOPAGO_BACKEND}/order/status/${order._id}`;
 

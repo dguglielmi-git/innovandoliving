@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Timeline } from 'primereact/timeline';
 import { useTranslation } from "react-i18next";
-import { getOrderStatuses, UpdateOrderStatus } from "../../../../../api/order";
+import { getOrderStatuses, updateOrderStatus } from "../../../../../api/order";
 import { progressOrderReducer } from "../../../../../utils/reducer";
 import { drawTimeLineOfOrder } from "../../../../../utils/util";
 import OptionsOrderStatus from "./OptionsOrderStatus"
@@ -40,7 +40,7 @@ export default function ProgressOrder(props) {
     const handleCancel = () => closeModal();
 
     const handleUpdate = async () => {
-        const history = await UpdateOrderStatus(order, statusValue);
+        const history = await updateOrderStatus(order, statusValue);
         setHistoryStatus(history.status_history);
         setReloadOrder(true);
         if (statusValue == 99 || statusValue == 12) setOrderBlocked(true);

@@ -5,6 +5,7 @@ import SubtitleSummaryCart from "./sections/SubtitleSummaryCart"
 import ProductsListOnCart from "./sections/ProductsListOnCart";
 import TotalPriceOfProductsList from './sections/TotalPriceOfProductsList';
 import ContinuePurchaseButton from './sections/ContinuePurchaseButton';
+import { getDiscountPrice } from '../../../utils/util';
 
 export default function SummaryCart(props) {
     const {
@@ -23,7 +24,11 @@ export default function SummaryCart(props) {
         let price = 0;
         (async () => {
             await forEach(products, (product) => {
-                price += product.producto.price * product.quantity;
+                if (product.producto.discount) {
+                    price += (parseFloat(getDiscountPrice(product.producto.price, product.producto.discount)) * parseFloat(product.quantity));
+                } else {
+                    price += (parseFloat(product.producto.price) * parseFloat(product.quantity));
+                }
             });
         })()
         setTotalPrice(price);

@@ -9,6 +9,7 @@ import {
     PAYMENT_METHOD_CASH,
     PAYMENT_METHOD_CASH_AND_CARD,
 } from '../utils/constants';
+import { getDiscountPrice } from '../utils/util';
 
 export default function Payment(props) {
     const {
@@ -24,13 +25,20 @@ export default function Payment(props) {
     const { t } = useTranslation();
     const { addressInvoice, addressTransport } = useContext(LivingContext);
 
+    const getPrice = (prod) => {
+        if (prod.producto.discount) {
+            return getDiscountPrice(prod.producto.price, prod.producto.discount);
+        }
+        return prod.producto.price;
+    }
+
     const getItems = () => {
         const items = []
         if (products) {
             products.map(item => {
                 items.push({
                     title: item.producto.title,
-                    unit_price: item.producto.price,
+                    unit_price: getPrice(item),
                     quantity: item.quantity,
                     image: item.producto.poster.url,
                 })
@@ -71,20 +79,25 @@ export default function Payment(props) {
         costDelivery: shippingPrice,
         deliveryOption: deliveryOption,
         paymentMethodSelected: paymentMethod,
-        purchasePendingPayment: totalCash,
-        items: getItems(),
         purchaseTotalAmount: getTotal(),
+        cashPending: totalCash,
+        cashReceived: 0,
+        creditPending: parseFloat(getTotal() - parseFloat(totalCash)),
+        creditReceived: 0,
+        purchaseTotalReceived: 0,
+        purchaseTotalPendingPayment: getTotal(),
+        items: getItems(),
         dateCreated: mercadoPagoResponse.date_created,
         orderCollectorId: mercadoPagoResponse.collector_id,
         paymentId: mercadoPagoResponse.id,
         mercadoPagoStatus: null,
         mercadoPagoPaymentId: null,
-        mercadoPagoPaymetType: null,
+        mercadoPagoPaymentType: null,
         mercadoPagoMerchantOrderId: null,
         mercadoPagoProcessingMode: null,
     })
 
-    const urlPayCash = (merchant, method) =>
+    const urlPayCashSuccessful = (merchant, method) =>
         `/successfulPay/?merchant_order_id=${merchant}&payment_method=${method}`;
 
     useEffect(() => {
@@ -96,7 +109,7 @@ export default function Payment(props) {
             const orderRes = await saveOrder(order);
 
             if (paymentMethod === PAYMENT_METHOD_CASH) {
-                router.push(urlPayCash(orderRes.mercadoPagoMerchantOrderId, PAYMENT_METHOD_CASH));
+                router.push(urlPayCashSuccessful(orderRes.mercadoPagoMerchantOrderId, PAYMENT_METHOD_CASH));
             }
             else {
                 router.push(response.init_point)

@@ -4,7 +4,8 @@ import useCart from "../../../hooks/useCart";
 import { useTranslation } from "react-i18next";
 import { orderUpdate } from "../../../api/mercadopago";
 import { parseFinalOrder } from "../../../utils/mercadopago";
-import { PATH_SUCCESS_IMG } from "../../../utils/constants";
+import { ORDER_ORDERED, PATH_SUCCESS_IMG } from "../../../utils/constants";
+import { updateOrderStatus } from "../../../api/order";
 
 export default function SuccessfulPayment(props) {
     const { incomingData, paymentMethod } = props;
@@ -16,7 +17,12 @@ export default function SuccessfulPayment(props) {
         (async () => {
             if (!paymentMethod) {
                 const finalOrder = await parseFinalOrder(incomingData);
-                const res = await orderUpdate(finalOrder);
+                const orderResult = await orderUpdate(finalOrder);
+                const { purchaseTotalPendingPayment } = await orderResult;
+                if (parseFloat(purchaseTotalPendingPayment.$numberDecimal) === 0) {
+                    await updateOrderStatus(orderResult, ORDER_ORDERED);
+                }
+
             }
             cleanCart();
         })()
@@ -38,7 +44,7 @@ export default function SuccessfulPayment(props) {
                 <p>{ t('cartSuccessfulPaymentMsgSecondLine') } </p>
             </div>
             <div className="footer">
-                <p>{ t('cartSuccessfulPaymentFooterThanks') } 😃  </p>
+                <p>{ t('cartSuccessfulPaymentFooterThanks') } 😃 </p>
                 <p><strong>{ t('businessName') } 💕 </strong></p>
             </div>
         </div>

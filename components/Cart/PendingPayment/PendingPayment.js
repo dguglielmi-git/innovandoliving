@@ -3,7 +3,7 @@ import useCart from "../../../hooks/useCart";
 import { Image } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import { orderUpdate } from "../../../api/mercadopago";
-import { parseFinalOrder } from "../../../utils/mercadopago";
+import { parsePendingFinalOrder } from "../../../utils/mercadopago";
 import { PATH_PENDING_IMG } from "../../../utils/constants";
 
 export default function PendingPayment(props) {
@@ -14,7 +14,7 @@ export default function PendingPayment(props) {
 
     useEffect(() => {
         (async () => {
-            const finalOrder = await parseFinalOrder(incomingData);
+            const finalOrder = await parsePendingFinalOrder(incomingData);
             const res = await orderUpdate(finalOrder);
             cleanCart();
         })()

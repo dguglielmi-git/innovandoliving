@@ -23,7 +23,6 @@ export default function QueryAsUser() {
     const { t } = useTranslation();
 
     useEffect(async () => {
-        console.log('Getting Open chats')
         const msgdata = await getOpenChats();
         msgdata.map(m => {
             m.createAt = formatDate(m.createAt);

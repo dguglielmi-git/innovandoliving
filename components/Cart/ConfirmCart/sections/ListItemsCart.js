@@ -1,7 +1,7 @@
 import React from "react";
 import { map } from "lodash";
 import { Grid } from "semantic-ui-react";
-import { numToDollar } from "../../../../utils/util";
+import { getDiscountPrice, numToDollar } from "../../../../utils/util";
 
 
 export default function ListItemsCart(props) {
@@ -19,7 +19,10 @@ export default function ListItemsCart(props) {
                         </Grid.Column>
                         <Grid.Column computer={ 4 } className="price">
                             <h5>{
-                                numToDollar(product.producto.price * product.quantity)
+                                (product.producto.discount) ?
+                                    numToDollar((parseFloat(getDiscountPrice(product.producto.price, product.producto.discount)) * parseFloat(product.quantity)))
+                                    :
+                                    numToDollar((parseFloat(product.producto.price) * parseFloat(product.quantity)))
                             }</h5>
                         </Grid.Column>
                     </>

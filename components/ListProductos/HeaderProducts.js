@@ -17,7 +17,7 @@ export default function HeaderProducts({ producto }) {
             { producto.discount && (
                 <div className="p-discount">
                     <p>
-                        -{ producto.discount }% - <span>{ numToDollar(producto.price) }</span>
+                        -{ producto.discount }% - <span>{ numToDollar(parseFloat(producto.price)) }</span>
                     </p>
                 </div>
             ) }

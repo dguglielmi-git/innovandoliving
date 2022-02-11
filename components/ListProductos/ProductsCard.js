@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "primereact/card";
-import { numToDollar } from "../../utils/util";
+import { getDiscountPrice, numToDollar } from "../../utils/util";
 import HeaderProducts from "./HeaderProducts";
 
 export default function ProductsCard(props) {
@@ -9,15 +9,19 @@ export default function ProductsCard(props) {
     const footer = (
         <div></div>
     )
+    const getPrice = (prod) => {
+        if (prod.discount) {
+            return getDiscountPrice(prod.price, prod.discount);
+        }
+        return prod.price;
+    }
 
     return (
         <Card title={ producto.title } href={ `/${producto.url}` }
-            subTitle={ producto.discount ? (
+            subTitle={ (
                 <h3>
-                    { numToDollar((producto.price - Math.floor(producto.price * producto.discount) / 100).toFixed(2)) }
+                    { numToDollar(parseFloat(getPrice(producto))) }
                 </h3>
-            ) : (
-                <h3>{ numToDollar(producto.price) }</h3>
             ) }
             style={ { width: '20em', margin: '14px' } }
             header={ <HeaderProducts producto={ producto } /> }

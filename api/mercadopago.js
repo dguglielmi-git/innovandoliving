@@ -25,7 +25,8 @@ export const orderUpdate = async (order) => {
         body: JSON.stringify(order)
     })
 
-    return res;
+    const response = await res.json();
+    return response;
 }
 
 export const sendProductsToMercadoPago = async (itemsProd) => {
