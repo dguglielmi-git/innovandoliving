@@ -39,7 +39,6 @@ export default function SummaryCart(props) {
         <div className="summary-cart">
             <SubtitleSummaryCart />
             <ProductsListOnCart
-                loading={ loading }
                 products={ products }
                 setReloadCart={ setReloadCart }
                 removeProductCart={ removeProductCart }

@@ -8,12 +8,14 @@ import ComboStatus from "./ComboStatus";
 import ModalPaymentReceived from "./ModalPayRec";
 import ShowButtonUpdate from "./ShowButtonUpdate";
 import UpdateModal from "../../../../Modal/UpdateModal/UpdateModal";
+import { updatePendingBalance } from "../../../../../api/order";
 
 export default function OptionsOrderStatus(props) {
     const {
         userType,
         open,
         order,
+        setReloadOrder,
         dimmer,
         options,
         statusValue,
@@ -27,21 +29,23 @@ export default function OptionsOrderStatus(props) {
     const { t } = useTranslation();
     const [showModalPayRec, setShowModalPayRec] = useState(false);
 
-    const markAsPaid = () => {
-        console.log('updating state');
+    const markAsPaid = async (cash, other) => {
+        await updatePendingBalance(order, cash, other);
+        setReloadOrder(true);
     }
 
     return (
         ((userType == USER_OWNER) & (order?.status !== ORDER_CLOSED)) ?
             <div className="order-detail__mainbox-orderstatus-update">
                 <ModalPaymentReceived
+                    order={ order }
                     markAsPaid={ markAsPaid }
                     open={ showModalPayRec }
                     setOpen={ setShowModalPayRec }
                 />
 
                 <ShowButtonUpdate
-                    status={ order.status }
+                    order={ order }
                     orderBlocked={ orderBlocked }
                     setShowModal={ setShowModalPayRec }
                     openModal={ openModal }

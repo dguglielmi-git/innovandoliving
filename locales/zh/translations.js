@@ -312,7 +312,8 @@ export const TRANSLATION_ZH = {
 
     /* ModalPayRec */
     modalPayRecHeader: 'Mark Order as Payment Received',
-    modalPayRecContent: `If you already have received the pending payment, go on and click the 'Yes' button to enable the Status Changing. If you proceed with this, The status of this order will change to Ordered and the outstanding balance will be zero.`,
+    modalPayRecContent: `1* - Select the option(s) you want to mark as paid from the list below. After updating this data, the outstanding balance will be updated to zero.`,
+    modalPayRecContentSecond: `2* - Once you have selected the balance(s) you want to update, click on 'Yes' button to save the changes in the system.`,
     modalPayCancelButton: 'No',
     modalPayConfirmButton: 'Yes',
 

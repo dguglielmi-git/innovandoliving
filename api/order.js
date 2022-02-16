@@ -53,6 +53,47 @@ export async function updateOrderStatus(order, status) {
     }
 }
 
+export async function removeOrder(paymentId) {
+    try {
+        const url = `${URL_MERCADOPAGO_BACKEND}/order/${paymentId}`;
+
+        const params = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': "application/json",
+                "x-token": getToken()
+            }
+        }
+
+        const result = await fetch(url, params);
+        const orderRemoved = await result.json();
+        return orderRemoved;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+
+export async function updatePendingBalance(order, cash, other) {
+
+    const res = await fetch(`${URL_MERCADOPAGO_BACKEND}/order/balance/pending`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-token': getToken()
+        },
+        body: JSON.stringify({
+            orderId: order._id,
+            pendingCash: cash,
+            pendingOther: other
+        })
+    })
+
+    const response = await res.json();
+    return response;
+}
+
 export async function getOrderStatuses() {
     const token = getToken();
 

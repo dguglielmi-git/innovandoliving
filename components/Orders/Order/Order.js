@@ -9,7 +9,7 @@ import useMsgs from '../../../hooks/useMsgs';
 import { getOrdersApi } from "../../../api/order";
 import { USER_CLIENT } from "../../../utils/constants";
 
-export default function Order(props) {
+export default function Order() {
     const { logout } = useAuth();
     const [orders, setOrders] = useState([]);
     const [orderSelected, setOrderSelected] = useState({});
@@ -24,7 +24,6 @@ export default function Order(props) {
 
             const tmpOrder = [];
             if (size(data) > 0 && data.error === undefined) {
-
                 data.map(order => {
                     tmpOrder.push(order)
                     if (order._id === orderSelected._id) {

@@ -7,6 +7,7 @@ import BasicLoading from "../../BasicLoading/BasicLoading";
 import useAuth from "../../../hooks/useAuth";
 import useMsgs from "../../../hooks/useMsgs";
 import { getFinishedOrdersApi, getOrdersApi } from "../../../api/order";
+import { size } from "lodash";
 
 export default function OrderAdmin() {
     const { logout } = useAuth();
@@ -25,6 +26,14 @@ export default function OrderAdmin() {
             const result = await getOrdersApi(logout);
             const totalOrders = await result.json();
             setOrders(totalOrders);
+
+            if (size(totalOrders) > 0 && totalOrders.error === undefined) {
+                totalOrders.map(order => {
+                    if (order._id === orderSelected._id) {
+                        setOrderSelected(order);
+                    }
+                })
+            }
 
             const closedOrders = await getFinishedOrdersApi(logout);
             const totalClosedOrders = await closedOrders.json();

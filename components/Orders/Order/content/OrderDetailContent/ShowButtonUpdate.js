@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Icon } from "semantic-ui-react";
 import { ORDER_PENDING_PAYMENT } from "../../../../../utils/constants";
+import BasicLoading from "../../../../BasicLoading/BasicLoading";
 
 export default function ShowButtonUpdate(props) {
     const {
-        status,
+        order,
         orderBlocked,
         setShowModal,
         openModal
     } = props;
     const { t } = useTranslation();
+    const [status, setStatus] = useState(-1);
+
+    useEffect(() => {
+        setStatus(order.status);
+    }, [order]);
+
+    const loading = () => (status < 0) ? true : false;
 
     if (status === ORDER_PENDING_PAYMENT) {
         return (
@@ -31,8 +39,17 @@ export default function ShowButtonUpdate(props) {
         )
     }
 
+    if (loading()) {
+        return (
+            <BasicLoading />
+        )
+    }
+
     return (
-        <Button color="green" size="tiny" disabled={ orderBlocked }
+        <Button
+            color="green"
+            size="tiny"
+            disabled={ orderBlocked }
             onClick={ () => openModal() }>
             <Icon name="edit" />{ t('orderUpdateStatus') }
         </Button>

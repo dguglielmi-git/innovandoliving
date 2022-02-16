@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { orderUpdate } from "../../../api/mercadopago";
 import { parsePendingFinalOrder } from "../../../utils/mercadopago";
 import { PATH_PENDING_IMG } from "../../../utils/constants";
+import ButtonContinueShop from "../ButtonContinueShop/ButtonContinueShop";
 
 export default function PendingPayment(props) {
     const { incomingData } = props;
@@ -37,6 +38,7 @@ export default function PendingPayment(props) {
             <div className="footer">
                 <p><strong>{ t('businessName') } 💕 </strong></p>
             </div>
+            <ButtonContinueShop label="Continue Shopping" />
         </div>
     )
 }

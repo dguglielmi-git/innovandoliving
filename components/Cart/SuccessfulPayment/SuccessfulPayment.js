@@ -6,6 +6,7 @@ import { orderUpdate } from "../../../api/mercadopago";
 import { parseFinalOrder } from "../../../utils/mercadopago";
 import { ORDER_ORDERED, PATH_SUCCESS_IMG } from "../../../utils/constants";
 import { updateOrderStatus } from "../../../api/order";
+import ButtonContinueShop from "../ButtonContinueShop/ButtonContinueShop";
 
 export default function SuccessfulPayment(props) {
     const { incomingData, paymentMethod } = props;
@@ -47,6 +48,7 @@ export default function SuccessfulPayment(props) {
                 <p>{ t('cartSuccessfulPaymentFooterThanks') } 😃 </p>
                 <p><strong>{ t('businessName') } 💕 </strong></p>
             </div>
+            <ButtonContinueShop label="Continue Shopping" />
         </div>
     )
 }

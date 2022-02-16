@@ -38,6 +38,8 @@ export default function Info(props) {
             setLoading(true);
             await addFavoriteApi(auth.idUser, producto.id, logout);
             setReloadFavorite(true);
+        } else {
+            toast.error(t('productoHeaderAddCartLogoff'))
         }
         setLoading(false);
     }

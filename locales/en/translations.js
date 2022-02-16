@@ -312,8 +312,8 @@ export const TRANSLATION_EN = {
 
     /* ModalPayRec */
     modalPayRecHeader: 'Have you received the outstanding balance?',
-    modalPayRecContent: `If the customer has paid the outstanding balance, click the 'Yes' button, which will mark this order as 'Ordered' and set the current outstanding balance to zero.
-    After completing this operation, you will be able to update the order status to tell the user what stage the order is currently in.`,
+    modalPayRecContent: `1* - Select the option(s) you want to mark as paid from the list below. After updating this data, the outstanding balance will be updated to zero.`,
+    modalPayRecContentSecond: `2* - Once you have selected the balance(s) you want to update, click on 'Yes' button to save the changes in the system.`,
     modalPayCancelButton: 'No',
     modalPayConfirmButton: 'Yes',
 

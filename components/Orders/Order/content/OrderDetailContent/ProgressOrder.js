@@ -54,6 +54,7 @@ export default function ProgressOrder(props) {
                 userType={ userType }
                 open={ open }
                 order={ order }
+                setReloadOrder={ setReloadOrder }
                 dimmer={ dimmer }
                 options={ options }
                 statusValue={ statusValue }

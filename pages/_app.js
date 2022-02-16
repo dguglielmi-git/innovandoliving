@@ -85,15 +85,17 @@ export default function MyApp({ Component, pageProps }) {
     }, []);
 
     useEffect(async () => {
-        const counters = await getUnreadMsgs();
-        const { queryCounter: qCounter, ordersCounter: oCounter } = await counters;
-        if (qCounter !== queryCounter) {
-            setQueryCounter(qCounter);
+        if (auth) {
+            const counters = await getUnreadMsgs();
+            const { queryCounter: qCounter, ordersCounter: oCounter } = await counters;
+            if (qCounter !== queryCounter) {
+                setQueryCounter(qCounter);
+            }
+            if (oCounter !== ordersCounter) {
+                setOrdersCounter(oCounter);
+            }
+            setReloadMsgCounter(false);
         }
-        if (oCounter !== ordersCounter) {
-            setOrdersCounter(oCounter);
-        }
-        setReloadMsgCounter(false);
     }, [reloadMsgCounter]);
 
     const login = (token) => {
