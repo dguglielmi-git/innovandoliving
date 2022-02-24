@@ -126,9 +126,14 @@
         -ms-transform: rotate(45deg) skew(15deg, 15deg);
         transform: rotate(45deg) skew(15deg, 15deg);
         background-color: $cherry;
-        content: '';
+        content: "";
       }
     }
+  }
+  &__button-back {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-end;
   }
 }
 

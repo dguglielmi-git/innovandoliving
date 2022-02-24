@@ -92,6 +92,7 @@ export const TRANSLATION_ES = {
     authRegisterFormLastnameRequired: 'El apellido es obligatorio',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Volver al paso anterior',
     cartAddressShippingBackToCart: 'Volver al carrito',
     cartAddressShippingSelectAddress: 'Seleccione el Domicilio de entrega:',
     cartAddressShippingNotAddress: 'No hay direcciones cargadas',
@@ -239,6 +240,8 @@ export const TRANSLATION_ES = {
     productoHeaderProductoQuantity: 'Cantidad',
     productoHeaderProductoSalesPrice: 'Precio de venta:',
     productoHeaderProductoAddToCart: 'Agregar al Carrito',
+    productoHeaderAddCartLogoff: 'Para poder agregar productos al carrito, debe iniciar sesión con sus credenciales.',
+    productoHeaderGoBackButton: 'Volver',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Fecha de lanzamiento:',
@@ -293,6 +296,32 @@ export const TRANSLATION_ES = {
     queriesUserDialogYesButton: 'Si',
     queriesUserDialogRejectButton: 'Cancelar',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Seleccione el Método de Pago',
+    paymentMethodOptionCash: 'Efectivo',
+    paymentMethodOptionCreditCard: 'Tarjeta de Crédito (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Efectivo y Tarjeta de Crédito (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Finalizar',
+
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `La cantidad en ambos campos no coincide con el total de la cuenta.`,
+    cashAndCardErrorInQuantities: `La cantidad no puede ser Cero. Por favor, especifique una cantidad en cada campo.`,
+    cashAndCardNegativeValuesInFields: `Hay valores negativos en los campos, por favor, corregirlos para poder continuar.`,
+    cashAndCardHeaderLabel: 'Total Compra: ',
+    cashAndCardAmountInCashLabel: 'Especifique la cantidad a pagar en efectivo',
+    cashAndCardAmountInCreditCardLabel: 'Especifique la cantidad a pagar con tarjeta de crédito',
+
+    /* ModalPayRec */
+    modalPayRecHeader: 'Marcar la orden como Pago Recibido',
+    modalPayRecContent: `1* - Seleccione la(s) opción(es) que desea marcar como Pagada de la lista de abajo. Luego de actualizar estos datos, el saldo pendiente será Cero.`,
+    modalPayRecContentSecond: `2* - Una vez que haya seleccionado los saldos que desea actualizar, haga click en el botón 'Sí' para guardar los cambios en el sistema.`,
+    modalPayCancelButton: 'No',
+    modalPayConfirmButton: 'Sí',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Pago Recibido',
+    optionsOrderStatusMessageOrderLocked: 'Esta orden se encuentra bloqueada hasta que el pago sea recibido.',
+
     /****************************************************************
      *                Pages
      ****************************************************************/
@@ -329,7 +358,6 @@ export const TRANSLATION_ES = {
     /* account */
     accountConfigurationTitle: 'Configuración',
     accountAddressTitle: 'Direcciones',
-
 
     /****************************************************************
      *                Other Messagess

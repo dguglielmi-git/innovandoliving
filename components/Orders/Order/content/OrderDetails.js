@@ -34,7 +34,10 @@ export default function OrderDetails(props) {
 
     return (
         <div className="order-detail__mainbox">
-            <ButtonBack goBack={ goBack } />
+            <ButtonBack
+                goBack={ goBack }
+                label={ t('orderDetailsBackButton') }
+            />
             <OrderStatusLabel order={ order } />
             <ProgressOrder
                 order={ order }

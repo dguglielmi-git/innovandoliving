@@ -92,6 +92,7 @@ export const TRANSLATION_NL = {
     authRegisterFormLastnameRequired: 'Achternaam is verplicht',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Ga terug naar de vorige stap',
     cartAddressShippingBackToCart: 'Ga terug naar winkelwagen',
     cartAddressShippingSelectAddress: 'Selecteer het afleveradres:',
     cartAddressShippingNotAddress: 'Geen adressen op de lijst',
@@ -239,6 +240,8 @@ export const TRANSLATION_NL = {
     productoHeaderProductoQuantity: 'Hoeveelheid',
     productoHeaderProductoSalesPrice: 'Verkoopprijs:',
     productoHeaderProductoAddToCart: 'Voeg toe aan winkelmandje',
+    productoHeaderAddCartLogoff: 'Om artikelen aan uw winkelwagen toe te voegen, moet u inloggen op uw account.',
+    productoHeaderGoBackButton: 'Ga terug',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Publicatiedatum:',
@@ -293,7 +296,31 @@ export const TRANSLATION_NL = {
     queriesUserDialogYesButton: 'Ja',
     queriesUserDialogRejectButton: 'Annuleren',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Selecteer uw Betaalmethode',
+    paymentMethodOptionCash: 'Contant geld',
+    paymentMethodOptionCreditCard: 'CreditCard (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Contant & Creditcard (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Finish',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `Het bedrag in beide velden komt niet overeen met het totaalbedrag.`,
+    cashAndCardErrorInQuantities: `Bedragen kunnen niet 0 zijn. Geef in elk veld een bedrag op.`,
+    cashAndCardNegativeValuesInFields: `Er zijn negatieve waarden in de velden, corrigeer deze om verder te gaan.`,
+    cashAndCardHeaderLabel: 'Totale factuur:',
+    cashAndCardAmountInCashLabel: 'Geef het contant te betalen bedrag op',
+    cashAndCardAmountInCreditCardLabel: 'Geef het te betalen bedrag op met creditcard',
+
+    /* ModalPayRec */
+    modalPayRecHeader: 'Bestelling markeren als ontvangen betaling',
+    modalPayRecContent: `1* - Selecteer de optie(s) die u als betaald wilt markeren uit de onderstaande lijst. Na het bijwerken van deze gegevens wordt het openstaande saldo op nul gezet.`,
+    modalPayRecContentSecond: `2* - Nadat u de tegoeden heeft geselecteerd die u wilt bijwerken, klikt u op de knop 'Ja' om de wijzigingen in het systeem op te slaan.`,
+    modalPayCancelButton: 'Nee',
+    modalPayConfirmButton: 'Ja',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Betaling ontvangen',
+    optionsOrderStatusMessageOrderLocked: 'Deze bestelling is vergrendeld totdat de betaling is ontvangen',
 
     /****************************************************************
      *                Pages
@@ -331,7 +358,6 @@ export const TRANSLATION_NL = {
     /* account */
     accountConfigurationTitle: 'Configuratie',
     accountAddressTitle: 'Adressen',
-
 
     /****************************************************************
      *                Other Messagess

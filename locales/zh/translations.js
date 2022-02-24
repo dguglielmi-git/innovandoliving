@@ -92,7 +92,7 @@ export const TRANSLATION_ZH = {
     authRegisterFormLastnameRequired: '姓氏是必填項',
 
     /* Cart - AddressShipping */
-    cartAddressShippingPreviousStep: 'Go back to Previous Step',
+    cartAddressShippingPreviousStep: '返回上一步',
     cartAddressShippingBackToCart: '返回購物車',
     cartAddressShippingSelectAddress: '選擇收貨地址：',
     cartAddressShippingNotAddress: '列表中沒有地址',
@@ -240,7 +240,8 @@ export const TRANSLATION_ZH = {
     productoHeaderProductoQuantity: '數量',
     productoHeaderProductoSalesPrice: '銷售價格：',
     productoHeaderProductoAddToCart: '添加到購物車',
-    productoHeaderAddCartLogoff: 'In order to add items to your cart, you must log in into your account.',
+    productoHeaderAddCartLogoff: '為了將商品添加到您的購物車，您必須登錄您的帳戶。',
+    productoHeaderGoBackButton: '回去',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: '發布日期：',
@@ -296,30 +297,30 @@ export const TRANSLATION_ZH = {
     queriesUserDialogRejectButton: '取消',
 
     /* PaymentMethod */
-    paymentMethodFormHeader: 'Select your Payment Method',
-    paymentMethodOptionCash: 'Cash',
-    paymentMethodOptionCreditCard: 'Credit Card (MercadoPago)',
-    paymentMethodOptionCashAndCard: 'Cash & Credit Card (MercadoPago)',
-    paymentMethodSubmitButtonLabel: 'Finish',
+    paymentMethodFormHeader: '選擇您的付款方式',
+    paymentMethodOptionCash: '現金',
+    paymentMethodOptionCreditCard: '信用卡 (MercadoPago)',
+    paymentMethodOptionCashAndCard: '現金和信用卡（MercadoPago）',
+    paymentMethodSubmitButtonLabel: '結束',
 
     /* CashAndCard */
-    cashAndCardAmountNotEqualTotal: `The amount in both fields doesn't match the total amount.`,
-    cashAndCardErrorInQuantities: `Amounts cannot be 0. Please specify an amount in each field.`,
-    cashAndCardNegativeValuesInFields: `There are negative values in the fields, please correct them in order to continue.`,
-    cashAndCardHeaderLabel: 'Total Invoice: ',
-    cashAndCardAmountInCashLabel: 'Specify the amount to be paid in cash',
-    cashAndCardAmountInCreditCardLabel: 'Specify the amount to pay by credit card',
+    cashAndCardAmountNotEqualTotal: `兩個字段中的金額與總金額不匹配。`,
+    cashAndCardErrorInQuantities: `金額不能為 0。請在每個字段中指定一個金額。`,
+    cashAndCardNegativeValuesInFields: `字段中有負值，請更正它們以便繼續。`,
+    cashAndCardHeaderLabel: '總發票：',
+    cashAndCardAmountInCashLabel: '指定以現金支付的金額',
+    cashAndCardAmountInCreditCardLabel: '指定用信用卡支付的金額',
 
     /* ModalPayRec */
-    modalPayRecHeader: 'Mark Order as Payment Received',
-    modalPayRecContent: `1* - Select the option(s) you want to mark as paid from the list below. After updating this data, the outstanding balance will be updated to zero.`,
-    modalPayRecContentSecond: `2* - Once you have selected the balance(s) you want to update, click on 'Yes' button to save the changes in the system.`,
-    modalPayCancelButton: 'No',
-    modalPayConfirmButton: 'Yes',
+    modalPayRecHeader: '將訂單標記為已收到付款',
+    modalPayRecContent: `1* - 從下面的列表中選擇您想要標記為已付款的選項。 更新此數據後，未結餘額將更新為零。`,
+    modalPayRecContentSecond: `2* - 選擇要更新的餘額後，單擊“是”按鈕將更改保存在系統中。`,
+    modalPayCancelButton: '不',
+    modalPayConfirmButton: '是的',
 
     /* OptionsOrderStatus */
-    optionsOrderStatusButtonLocked: 'Payment Received',
-    optionsOrderStatusMessageOrderLocked: 'This order is locked until the payment is received',
+    optionsOrderStatusButtonLocked: '已收到付款',
+    optionsOrderStatusMessageOrderLocked: '此訂單被鎖定，直到收到付款',
 
     /****************************************************************
      *                Pages
@@ -357,7 +358,6 @@ export const TRANSLATION_ZH = {
     /* account */
     accountConfigurationTitle: '配置',
     accountAddressTitle: '地址',
-
 
     /****************************************************************
      *                Other Messagess

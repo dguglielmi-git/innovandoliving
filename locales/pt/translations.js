@@ -92,6 +92,7 @@ export const TRANSLATION_PT = {
     authRegisterFormLastnameRequired: 'O sobrenome é obrigatório',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Voltar para a etapa anterior',
     cartAddressShippingBackToCart: 'Voltar para o carrinho',
     cartAddressShippingSelectAddress: 'Selecione o Endereço de Entrega:',
     cartAddressShippingNotAddress: 'Nenhum endereço na lista',
@@ -239,6 +240,8 @@ export const TRANSLATION_PT = {
     productoHeaderProductoQuantity: 'Quantidade',
     productoHeaderProductoSalesPrice: 'Preço de venda:',
     productoHeaderProductoAddToCart: 'Adicionar ao carrinho',
+    productoHeaderAddCartLogoff: 'Para adicionar itens ao seu carrinho, você deve fazer login na sua conta.',
+    productoHeaderGoBackButton: 'Volte',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Data de lançamento:',
@@ -293,7 +296,31 @@ export const TRANSLATION_PT = {
     queriesUserDialogYesButton: 'Sim',
     queriesUserDialogRejectButton: 'Cancelar',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Selecione seu metodo de pagamento',
+    paymentMethodOptionCash: 'Dinheiro',
+    paymentMethodOptionCreditCard: 'Cartão de Crédito (Mercado Pago)',
+    paymentMethodOptionCashAndCard: 'Dinheiro e cartão de crédito (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Terminar',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `O valor em ambos os campos não corresponde ao valor total.`,
+    cashAndCardErrorInQuantities: `Os valores não podem ser 0. Especifique um valor em cada campo.`,
+    cashAndCardNegativeValuesInFields: `Existem valores negativos nos campos, por favor corrija-os para continuar.`,
+    cashAndCardHeaderLabel: 'Fatura total:',
+    cashAndCardAmountInCashLabel: 'Especifique o valor a ser pago em dinheiro',
+    cashAndCardAmountInCreditCardLabel: 'Especifique o valor a pagar com cartão de crédito',
+
+    /* ModalPayRec */
+    modalPayRecHeader: 'Marcar pedido como pagamento recebido',
+    modalPayRecContent: `1* - Selecione a(s) opção(ões) que deseja marcar como pagas na lista abaixo. Após a atualização desses dados, o saldo devedor será atualizado para zero.`,
+    modalPayRecContentSecond: `2* - Após selecionar o(s) saldo(s) que deseja atualizar, clique no botão 'Sim' para salvar as alterações no sistema.`,
+    modalPayCancelButton: 'Não',
+    modalPayConfirmButton: 'Sim',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Pagamento recebido',
+    optionsOrderStatusMessageOrderLocked: 'Este pedido está bloqueado até que o pagamento seja recebido',
 
     /****************************************************************
      *                Pages
@@ -331,7 +358,6 @@ export const TRANSLATION_PT = {
     /* account */
     accountConfigurationTitle: 'Configuração',
     accountAddressTitle: 'Endereços',
-
 
     /****************************************************************
      *                Other Messagess

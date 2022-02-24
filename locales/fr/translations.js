@@ -92,6 +92,7 @@ export const TRANSLATION_FR = {
     authRegisterFormLastnameRequired: 'Le nom de famille est requis',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: `Revenir à l'étape précédent`,
     cartAddressShippingBackToCart: 'Retour au panier',
     cartAddressShippingSelectAddress: `Sélectionnez l'adresse de livraison: `,
     cartAddressShippingNotAddress: 'Aucune adresse sur la liste',
@@ -239,6 +240,8 @@ export const TRANSLATION_FR = {
     productoHeaderProductoQuantity: 'Quantité',
     productoHeaderProductoSalesPrice: 'Prix de vente:',
     productoHeaderProductoAddToCart: 'Ajouter au chariot',
+    productoHeaderAddCartLogoff: 'Pour ajouter des articles à votre panier, vous devez vous connecter à votre compte.',
+    productoHeaderGoBackButton: 'Retourner',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Date de sortie:',
@@ -293,7 +296,31 @@ export const TRANSLATION_FR = {
     queriesUserDialogYesButton: 'Oui',
     queriesUserDialogRejectButton: 'Annuler',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Sélectionnez votre méthode de paiement',
+    paymentMethodOptionCash: 'En espèces',
+    paymentMethodOptionCreditCard: 'Carte de crédit (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Espèces et carte de crédit (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Finir',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `Le montant dans les deux champs ne correspond pas au montant total.`,
+    cashAndCardErrorInQuantities: `Les montants ne peuvent pas être 0. Veuillez spécifier un montant dans chaque champ.`,
+    cashAndCardNegativeValuesInFields: `Il y a des valeurs négatives dans les champs, veuillez les corriger afin de continuer.`,
+    cashAndCardHeaderLabel: 'Facture totale:',
+    cashAndCardAmountInCashLabel: 'Précisez le montant à payer en espèces',
+    cashAndCardAmountInCreditCardLabel: 'Spécifiez le montant à payer par carte de crédit',
+
+    /* ModalPayRec */
+    modalPayRecHeader: 'Marquer la commande comme paiement reçu',
+    modalPayRecContent: `1* - Sélectionnez la ou les options que vous souhaitez marquer comme payantes dans la liste ci-dessous. Après la mise à jour de ces données, le solde impayé sera mis à zéro.`,
+    modalPayRecContentSecond: `2* - Une fois que vous avez sélectionné la ou les balances que vous souhaitez mettre à jour, cliquez sur le bouton 'Oui' pour enregistrer les modifications dans le système.`,
+    modalPayCancelButton: 'Non',
+    modalPayConfirmButton: 'Oui',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Paiement reçu',
+    optionsOrderStatusMessageOrderLocked: `Cette commande est bloquée jusqu'à réception du paiement`,
 
     /****************************************************************
      *                Pages

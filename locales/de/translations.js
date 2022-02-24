@@ -92,6 +92,7 @@ export const TRANSLATION_DE = {
     authRegisterFormLastnameRequired: 'Nachname ist erforderlich',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Gehen Sie zurück zum vorherigen Schritt',
     cartAddressShippingBackToCart: 'Gehen Sie zurück zum Warenkorb',
     cartAddressShippingSelectAddress: 'Wählen Sie die Lieferadresse:',
     cartAddressShippingNotAddress: 'Keine Adressen auf der Liste',
@@ -239,6 +240,8 @@ export const TRANSLATION_DE = {
     productoHeaderProductoQuantity: 'Menge',
     productoHeaderProductoSalesPrice: 'Verkaufspreis:',
     productoHeaderProductoAddToCart: 'in den Warenkorb legen',
+    productoHeaderAddCartLogoff: 'Um Artikel zu Ihrem Warenkorb hinzuzufügen, müssen Sie sich bei Ihrem Konto anmelden.',
+    productoHeaderGoBackButton: 'Geh zurück',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Veröffentlichungsdatum:',
@@ -293,7 +296,31 @@ export const TRANSLATION_DE = {
     queriesUserDialogYesButton: 'Ja',
     queriesUserDialogRejectButton: 'Abbrechen',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Wählen Sie eine Bezahlart',
+    paymentMethodOptionCash: 'Kasse',
+    paymentMethodOptionCreditCard: 'Kreditkarte (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Bargeld & Kreditkarte (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Ziel',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `Der Betrag in beiden Feldern stimmt nicht mit dem Gesamtbetrag überein.`,
+    cashAndCardErrorInQuantities: `Beträge dürfen nicht 0 sein. Bitte geben Sie in jedem Feld einen Betrag an.`,
+    cashAndCardNegativeValuesInFields: `Die Felder enthalten negative Werte. Bitte korrigieren Sie diese, um fortzufahren.`,
+    cashAndCardHeaderLabel: 'Gesamtrechnung:',
+    cashAndCardAmountInCashLabel: 'Geben Sie den in bar zu zahlenden Betrag an',
+    cashAndCardAmountInCreditCardLabel: 'Geben Sie den per Kreditkarte zu zahlenden Betrag an',
+
+    /* ModalPayRec */
+    modalPayRecHeader: 'Bestellung als Zahlungseingang markieren',
+    modalPayRecContent: `1* - Wählen Sie die Option(en), die Sie als bezahlt markieren möchten, aus der Liste unten aus. Nach dem Aktualisieren dieser Daten wird der ausstehende Saldo auf Null aktualisiert.`,
+    modalPayRecContentSecond: `2* - Nachdem Sie die Waage(n) ausgewählt haben, die Sie aktualisieren möchten, klicken Sie auf die Schaltfläche „Ja“, um die Änderungen im System zu speichern.`,
+    modalPayCancelButton: 'Nein',
+    modalPayConfirmButton: 'Jawohl',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Zahlung erhalten',
+    optionsOrderStatusMessageOrderLocked: 'Diese Bestellung ist bis zum Zahlungseingang gesperrt',
 
     /****************************************************************
      *                Pages
@@ -331,7 +358,6 @@ export const TRANSLATION_DE = {
     /* account */
     accountConfigurationTitle: 'Aufbau',
     accountAddressTitle: 'Adressen',
-
 
     /****************************************************************
      *                Other Messagess

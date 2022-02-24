@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { size } from "lodash";
 import { Icon, Button } from "semantic-ui-react";
+import { TextField } from "@material-ui/core";
 import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
-import { TextField } from "@material-ui/core";
-import "../../../locales/i18n";
 import {
     isFavoriteApi,
     addFavoriteApi,

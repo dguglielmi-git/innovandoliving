@@ -241,6 +241,7 @@ export const TRANSLATION_EN = {
     productoHeaderProductoSalesPrice: 'Sale Price:',
     productoHeaderProductoAddToCart: 'Add to Cart',
     productoHeaderAddCartLogoff: 'In order to add items to your cart, you must log in into your account.',
+    productoHeaderGoBackButton: 'Go Back',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Release Date:',
@@ -357,7 +358,6 @@ export const TRANSLATION_EN = {
     /* account */
     accountConfigurationTitle: 'Configuration',
     accountAddressTitle: 'Addresses',
-
 
     /****************************************************************
      *                Other Messagess

@@ -92,6 +92,7 @@ export const TRANSLATION_IT = {
     authRegisterFormLastnameRequired: 'Il cognome è obbligatorio',
 
     /* Cart - AddressShipping */
+    cartAddressShippingPreviousStep: 'Torna al passaggio precedente',
     cartAddressShippingBackToCart: 'Torna al carrello',
     cartAddressShippingSelectAddress: `Seleziona l'indirizzo di consegna:`,
     cartAddressShippingNotAddress: `Nessun indirizzo nell'elenco`,
@@ -239,6 +240,8 @@ export const TRANSLATION_IT = {
     productoHeaderProductoQuantity: 'Quantità',
     productoHeaderProductoSalesPrice: 'Prezzo di vendita:',
     productoHeaderProductoAddToCart: 'Aggiungi al carrello',
+    productoHeaderAddCartLogoff: 'Per aggiungere articoli al carrello, devi accedere al tuo account.',
+    productoHeaderGoBackButton: 'Torna indietro',
 
     /* Producto - InfoProducto */
     productoInfoProductoReleaseDate: 'Data di rilascio:',
@@ -293,7 +296,31 @@ export const TRANSLATION_IT = {
     queriesUserDialogYesButton: 'Sì',
     queriesUserDialogRejectButton: 'Annulla',
 
+    /* PaymentMethod */
+    paymentMethodFormHeader: 'Seleziona il tuo metodo di pagamento',
+    paymentMethodOptionCash: 'Contanti',
+    paymentMethodOptionCreditCard: 'Carta di credito (MercadoPago)',
+    paymentMethodOptionCashAndCard: 'Contanti e carta di credito (MercadoPago)',
+    paymentMethodSubmitButtonLabel: 'Fine',
 
+    /* CashAndCard */
+    cashAndCardAmountNotEqualTotal: `L'importo in entrambi i campi non corrisponde all'importo totale.`,
+    cashAndCardErrorInQuantities: `Gli importi non possono essere 0. Specificare un importo in ogni campo.`,
+    cashAndCardNegativeValuesInFields: `Sono presenti valori negativi nei campi, correggili per continuare.`,
+    cashAndCardHeaderLabel: 'Totale fattura:',
+    cashAndCardAmountInCashLabel: `Specificare l'importo da pagare in contanti`,
+    cashAndCardAmountInCreditCardLabel: `Specificare l'importo da pagare con carta di credito`,
+
+    /* ModalPayRec */
+    modalPayRecHeader: `Contrassegna l'ordine come pagamento ricevuto`,
+    modalPayRecContent: `1* - Seleziona le opzioni che desideri contrassegnare come pagate dall'elenco sottostante. Dopo aver aggiornato questi dati, il saldo residuo verrà aggiornato a zero.`,
+    modalPayRecContentSecond: `2* - Dopo aver selezionato il/i saldo/i che si desidera aggiornare, fare clic sul pulsante 'Sì' per salvare le modifiche nel sistema.`,
+    modalPayCancelButton: 'No',
+    modalPayConfirmButton: 'Sí',
+
+    /* OptionsOrderStatus */
+    optionsOrderStatusButtonLocked: 'Pagamento ricevuto',
+    optionsOrderStatusMessageOrderLocked: 'Questo ordine è bloccato fino alla ricezione del pagamento',
 
     /****************************************************************
      *                Pages
@@ -331,7 +358,6 @@ export const TRANSLATION_IT = {
     /* account */
     accountConfigurationTitle: 'Configurazione',
     accountAddressTitle: 'Indirizzi',
-
 
     /****************************************************************
      *                Other Messagess
