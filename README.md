@@ -34,6 +34,11 @@ Pending details of deploy
 * [MaterialUI](https://material-ui.com/) - React components for faster and easier web development.
 * [PrimeReact - PrimeFaces](https://www.primefaces.org/primereact/) - The ultimate collection of design-agnostic, flexible and accessible React UI Components.
 * [SemanticUI](https://semantic-ui.com/) - Development framework that helps create beautiful, responsive layouts using human-friendly HTML.
+* [Jwt-Decode](https://www.npmjs.com/package/jwt-decode) - small browser library that helps decoding JWTs token which are Base64Url encoded.
+* [react-country-flag](https://www.npmjs.com/package/react-country-flag) - React component for emoji/svg country flags.
+* [react-toastify](https://www.npmjs.com/package/react-toastify) - React-Toastify allows you to add notifications to your app with ease. No more nonsense!
+* [react-scrollable-feed](https://www.npmjs.com/package/react-scrollable-feed) - Smart scrolling for chat UIs and feeds.
+* [react-player](https://www.npmjs.com/package/react-player) - A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, DailyMotion and Kaltura.
 * [Formik](https://formik.org/) - Formik is the world's most popular open source form library for React and React Native.
 * [Yup](https://yarnpkg.com/package/yup) - Dead simple Object schema validation.
 * [Internationalization i18n](https://react.i18next.com/) - react-i18next is a powerful internationalization framework for React / React Native which is based on i18next.
