@@ -1,10 +1,11 @@
-.datatable-templating-demo .table-header {
+.items-table .table-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
 
-.datatable-templating-demo .product-image {
+.items-table .product-image {
   width: 100px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -13,4 +14,15 @@
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.items-table {
+  display: flex;
+  width: 100%;
+
+  .responsive-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }

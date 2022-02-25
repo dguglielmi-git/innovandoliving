@@ -41,16 +41,22 @@ const ItemsTable = (props) => {
     const footer = `${t('cartSummaryCartTotalCart')}: ${numToDollar(getTotalItems(items))}`;
 
     return (
-        <div className="datatable-templating-demo">
-            <div className="card">
-                <DataTable value={ products } header={ header } footer={ footer }>
-                    <Column header={ t('itemsTableImageHeader') } body={ imageBodyTemplate }></Column>
-                    <Column field="title" header={ t('itemsTableItemDescriptionHeader') }></Column>
-                    <Column field="quantity" header={ t('itemsTableQuantityHeader') }></Column>
-                    <Column field="price" header={ t('itemsTablePriceHeader') } body={ priceBodyTemplate }></Column>
-                    <Column field="totalprice" header={ t('itemsTableTotalPriceHeader') } body={ totalPriceBodyTemplate }></Column>
-                </DataTable>
-            </div>
+        <div className="items-table">
+            {/* <div className="card"> */ }
+            <DataTable
+                className="responsive-table"
+                responsiveLayout="stack"
+                breakpoint="960px"
+                value={ products }
+                header={ header }
+                footer={ footer }>
+                <Column header={ t('itemsTableImageHeader') } body={ imageBodyTemplate }></Column>
+                <Column field="title" header={ t('itemsTableItemDescriptionHeader') }></Column>
+                <Column field="quantity" header={ t('itemsTableQuantityHeader') }></Column>
+                <Column field="price" header={ t('itemsTablePriceHeader') } body={ priceBodyTemplate }></Column>
+                <Column field="totalprice" header={ t('itemsTableTotalPriceHeader') } body={ totalPriceBodyTemplate }></Column>
+            </DataTable>
+            {/* </div> */ }
         </div>
     );
 }
