@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import ListAddress from "../../ListAddress";
 
 export default function Addresses(props) {
-    const { addresses } = props;
-    const [reloadAddresses, setReloadAddresses] = useState(false);
+    const { addresses, reloadAddresses, setReloadAddresses } = props;
     const { t } = useTranslation();
 
     return (

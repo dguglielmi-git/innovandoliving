@@ -10,6 +10,7 @@ export default function UserAccount() {
     const [user, setUser] = useState(undefined);
     const { auth, logout, setReloadUser } = useAuth();
     const [addresses, setAddresses] = useState(null);
+    const [reloadAddresses, setReloadAddresses] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -17,7 +18,8 @@ export default function UserAccount() {
             const response = await getAddressesApi(auth.idUser, logout);
             setAddresses(response || []);
         })()
-    }, []);
+        setReloadAddresses(false);
+    }, [reloadAddresses]);
 
     useEffect(() => {
         (async () => {
@@ -40,7 +42,11 @@ export default function UserAccount() {
                 logout={ logout }
                 setReloadUser={ setReloadUser }
             />
-            <Addresses addresses={ addresses } />
+            <Addresses
+                addresses={ addresses }
+                reloadAddresses={ reloadAddresses }
+                setReloadAddresses={ setReloadAddresses }
+            />
         </>
     )
 }

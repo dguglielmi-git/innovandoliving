@@ -26,6 +26,8 @@ export default function AddressShipping(props) {
             const response = await getAddressesApi(auth.idUser, logout);
             setAddresses(response || []);
         })()
+        console.log(addresses);
+        setReloadAddresses(false);
     }, [reloadAddresses]);
 
 

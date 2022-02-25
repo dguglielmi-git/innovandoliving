@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { map } from "lodash";
 import { Grid } from "semantic-ui-react";
 import Address from "./Address";
@@ -7,6 +7,7 @@ import {
     TABLET_COL_SIZE,
     COMPUTER_COL_SIZE
 } from "../../../utils/constants";
+import BasicLoading from "../../BasicLoading/BasicLoading";
 
 export default function ListAddressGrid(props) {
 
@@ -20,6 +21,11 @@ export default function ListAddressGrid(props) {
         idSelected,
         setIdSelected
     } = props;
+
+    useEffect(async () => {
+        console.log(addresses)
+    }, [addresses]);
+
 
     return (
         <Grid>

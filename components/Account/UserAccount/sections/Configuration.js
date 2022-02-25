@@ -10,7 +10,6 @@ export default function Configuration(props) {
     const { user, logout, setReloadUser } = props;
     const { t } = useTranslation();
 
-    console.log(user)
     return (
         <div className="account__configuration">
             <div className="title">

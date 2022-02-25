@@ -16,12 +16,16 @@ export async function getOriginDeliveryAddress() {
 export async function createAddressApi(address, logout) {
     try {
         const targetAddress = `${address.address}, ${address.city}, ${address.state}`;
-        const fullAddressString = await getFullAddressString(targetAddress);
+        let fullAddressString = await getFullAddressString(targetAddress);
+
+        if (!!fullAddressString.includes(address.address) === false) {
+            fullAddressString = `${address.address}, ${fullAddressString}`
+        }
 
         if (fullAddressString === NOT_FOUND) {
             throw new Error(`Not a valid Address received: ${targetAddress}`);
         }
-        const distance = await getDistanceBetweenAddresses(getOriginDeliveryAddress(), fullAddressString);
+        const distance = await getDistanceBetweenAddresses(await getOriginDeliveryAddress(), fullAddressString);
         const { text, value } = await distance;
 
         const finalAddress = {

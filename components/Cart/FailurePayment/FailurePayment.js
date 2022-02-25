@@ -12,7 +12,6 @@ export default function FailurePayment(props) {
     useEffect(async () => {
         const { preference_id } = incomingData;
         const result = await removeOrder(preference_id);
-        console.log(result);
     }, []);
 
     return (
