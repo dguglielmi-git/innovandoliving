@@ -322,6 +322,18 @@ export const TRANSLATION_DE = {
     optionsOrderStatusButtonLocked: 'Zahlung erhalten',
     optionsOrderStatusMessageOrderLocked: 'Diese Bestellung ist bis zum Zahlungseingang gesperrt',
 
+    /* SystemSettings */
+    systemSettingsHeader: 'Systemeinstellungen',
+    systemSettingsWarehouseAddress: 'Lageradresse',
+    systemSettingsWarehouseAddressPlaceholder: 'Lageradresse, z. B.: (Straße 123, Stadt, Bundesland, Land)',
+    systemSettingsRateKm: 'Preis pro km',
+    systemSettingsRateKmPlaceholder: 'Preis pro km, wenn der Preis pro km beispielsweise 50 $ beträgt, geben Sie 50 ohne das $-Symbol ein',
+    systemSettingsMinimumKmDelivery: 'Mindestkilometer für den Tarif pro km',
+    systemSettingsMinimumKmDeliveryPlaceholder: 'Legen Sie einen Festpreis für Entfernungen unter dem Mindestkilometer fest',
+    systemSettingsUpdateButton: 'Aktualisieren',
+    systemSettingsErrorUpdating: 'Fehler beim Versuch, die Einstellungen zu aktualisieren',
+    systemSettingsSuccessUpdating: 'Die Einstellungen wurden erfolgreich aktualisiert',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

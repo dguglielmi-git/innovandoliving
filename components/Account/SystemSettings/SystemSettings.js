@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { Form, Button, Label } from "semantic-ui-react";
-import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { Form, Button, Label } from "semantic-ui-react";
 import useSettings from "../../../hooks/useSettings"
 import { updateSettings } from "../../../api/configurations";
-import { toast } from "react-toastify";
 
 export default function SystemSettings(props) {
     const { logout, setReloadUser } = props;
     const [loading, setLoading] = useState(false);
     const { configs } = useSettings();
+    const { t } = useTranslation();
 
     const formik = useFormik({
-        initialValues: initialValues(configs?.address_delivery_center, configs?.km_minimum, configs?.km_price),
+        initialValues: initialValues(
+            configs?.address_delivery_center,
+            configs?.km_minimum,
+            configs?.km_price
+        ),
         validateOnChange: false,
         validateOnSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
             setLoading(true);
             const res = await updateSettings(configs._id, formData, logout);
             if (!res) {
-                toast.error("Error when trying to update Settings");
+                toast.error(t('systemSettingsErrorUpdating'));
             } else {
-                toast.success("Settings has been updated successfully")
+                toast.success(t('systemSettingsSuccessUpdating'))
             }
             setReloadUser(true);
             setLoading(false);
@@ -30,36 +36,34 @@ export default function SystemSettings(props) {
 
     return (
         <div className="system-settings">
-            <h4>System Settings</h4>
-
+            <h4>{ t('systemSettingsHeader') }</h4>
             <Form onSubmit={ formik.handleSubmit }>
-                <Label>Delivery Address</Label>
+                <Label>{ t('systemSettingsWarehouseAddress') }</Label>
                 <Form.Input
                     name="address_delivery_center"
-                    placeholder="Delivery Origin Address, ex: (Street 123, City, State, Country)"
-                    value={ configs?.address_delivery_center }
+                    placeholder={ t('systemSettingsWarehouseAddressPlaceholder') }
                     onChange={ formik.handleChange }
                     value={ formik.values.address_delivery_center }
                     error={ formik.errors.address_delivery_center }
                 />
-                <Label>Rate per Km</Label>
+                <Label>{ t('systemSettingsRateKm') }</Label>
                 <Form.Input
                     name="km_price"
-                    placeholder="Rate per Km, for instance, if the price per km is $50, type 50 without the $ symbol"
+                    placeholder={ t('systemSettingsRateKmPlaceholder') }
                     value={ formik.values.km_price }
                     error={ formik.errors.km_price }
                     onChange={ formik.handleChange }
                 />
-                <Label>Minimum Km for Delivery</Label>
+                <Label>{ t('systemSettingsMinimumKmDelivery') }</Label>
                 <Form.Input
                     name="km_minimum"
-                    placeholder="Set a minimum distance for distances too close"
+                    placeholder={ t('systemSettingsMinimumKmDeliveryPlaceholder') }
                     value={ formik.values.km_minimum }
                     error={ formik.errors.km_minimum }
                     onChange={ formik.handleChange }
                 />
                 <Button className="submit" loading={ loading }>
-                    Update
+                    { t('systemSettingsUpdateButton') }
                 </Button>
             </Form>
         </div>

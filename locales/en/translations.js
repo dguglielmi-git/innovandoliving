@@ -322,6 +322,18 @@ export const TRANSLATION_EN = {
     optionsOrderStatusButtonLocked: 'Payment Received',
     optionsOrderStatusMessageOrderLocked: 'This order is locked until the payment is received',
 
+    /* SystemSettings */
+    systemSettingsHeader: 'System Settings',
+    systemSettingsWarehouseAddress: 'Warehouse Address',
+    systemSettingsWarehouseAddressPlaceholder: 'Warehouse Address, ex: (Street 123, City, State, Country)',
+    systemSettingsRateKm: 'Rate per Km',
+    systemSettingsRateKmPlaceholder: 'Rate per Km, for instance, if the price per km is $50, type 50 without the $ symbol',
+    systemSettingsMinimumKmDelivery: 'Minimum Km for the Rate per km',
+    systemSettingsMinimumKmDeliveryPlaceholder: 'Set a fixed price for distances under the Minimum Km',
+    systemSettingsUpdateButton: 'Update',
+    systemSettingsErrorUpdating: 'Error when trying to update Settings',
+    systemSettingsSuccessUpdating: 'Settings have been updated successfully',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

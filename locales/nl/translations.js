@@ -322,6 +322,18 @@ export const TRANSLATION_NL = {
     optionsOrderStatusButtonLocked: 'Betaling ontvangen',
     optionsOrderStatusMessageOrderLocked: 'Deze bestelling is vergrendeld totdat de betaling is ontvangen',
 
+    /* SystemSettings */
+    systemSettingsHeader: 'Systeem instellingen',
+    systemSettingsWarehouseAddress: 'Magazijnadres:',
+    systemSettingsWarehouseAddressPlaceholder: 'Magazijnadres, bijv: (Straat 123, Stad, Staat, Land)',
+    systemSettingsRateKm: 'Tarief per Km',
+    systemSettingsRateKmPlaceholder: 'Tarief per km, bijvoorbeeld, als de prijs per km $ 50 is, typt u 50 zonder het $-teken',
+    systemSettingsMinimumKmDelivery: 'Minimum Km voor het Tarief per km',
+    systemSettingsMinimumKmDeliveryPlaceholder: 'Stel een vaste prijs in voor afstanden onder de Minimum Km',
+    systemSettingsUpdateButton: 'Bijwerken',
+    systemSettingsErrorUpdating: 'Fout bij het updaten van Instellingen',
+    systemSettingsSuccessUpdating: 'Instellingen zijn succesvol bijgewerkt',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

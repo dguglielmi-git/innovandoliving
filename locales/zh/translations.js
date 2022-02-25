@@ -322,6 +322,18 @@ export const TRANSLATION_ZH = {
     optionsOrderStatusButtonLocked: '已收到付款',
     optionsOrderStatusMessageOrderLocked: '此訂單被鎖定，直到收到付款',
 
+    /* SystemSettings */
+    systemSettingsHeader: '系統設置',
+    systemSettingsWarehouseAddress: '倉庫地址',
+    systemSettingsWarehouseAddressPlaceholder: '例如倉庫地址。 123街； 城市 ; 州，國家',
+    systemSettingsRateKm: '每公里費率',
+    systemSettingsRateKmPlaceholder: '例如，每公里價格為 50 美元，請鍵入不帶 $ 符號的 50',
+    systemSettingsMinimumKmDelivery: '每公里費率的最低公里數',
+    systemSettingsMinimumKmDeliveryPlaceholder: '為最小公里以下的距離設定一個固定價格',
+    systemSettingsUpdateButton: '更新',
+    systemSettingsErrorUpdating: '嘗試更新設置時出錯',
+    systemSettingsSuccessUpdating: '設置已成功更新',
+
     /****************************************************************
      *                Pages
      ****************************************************************/

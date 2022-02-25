@@ -6,6 +6,7 @@ import { getLastProductosApi } from "../api/producto";
 import { useTranslation } from "react-i18next";
 import ListProductos from "../components/ListProductos";
 import Seo from "../components/Seo";
+import Footer from "../components/Footer/Footer";
 import "../locales/i18n";
 
 export default function Home() {
@@ -35,6 +36,8 @@ export default function Home() {
           <ListProductos productos={ productos } />
         </>
       ) }
+      <Footer />
+
     </BasicLayout>
   );
 }

@@ -322,6 +322,18 @@ export const TRANSLATION_FR = {
     optionsOrderStatusButtonLocked: 'Paiement reçu',
     optionsOrderStatusMessageOrderLocked: `Cette commande est bloquée jusqu'à réception du paiement`,
 
+    /* SystemSettings */
+    systemSettingsHeader: 'Les paramètres du système',
+    systemSettingsWarehouseAddress: `Adresse de l'entrepôt`,
+    systemSettingsWarehouseAddressPlaceholder: `Adresse de l'entrepôt, ex : (Rue 123, Ville, État, Pays)`,
+    systemSettingsRateKm: 'Tarif au Km',
+    systemSettingsRateKmPlaceholder: 'Tarif au km, par exemple, si le prix au km est de 50 $, tapez 50 sans le symbole $',
+    systemSettingsMinimumKmDelivery: 'Km minimum pour le tarif au km',
+    systemSettingsMinimumKmDeliveryPlaceholder: 'Fixez un prix fixe pour les distances inférieures au Km minimum',
+    systemSettingsUpdateButton: 'Mettre à jour',
+    systemSettingsErrorUpdating: 'Erreur lors de la tentative de mise à jour des paramètres',
+    systemSettingsSuccessUpdating: 'Les paramètres ont été mis à jour avec succès',
+
     /****************************************************************
      *                Pages
      ****************************************************************/
