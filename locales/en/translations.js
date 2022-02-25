@@ -60,7 +60,7 @@ export const TRANSLATION_EN = {
     /* Account - ListAddress */
     accountListAddressNewAddressTitle: 'New Address',
     accountListAddressAddAddress: 'Add Address',
-    accountListAddressNotAddress: 'No addresses on the list',
+    accountListAddressNotAddress: 'No addresses found',
     accountListAddressOkDelete: 'The address has been deleted successfully',
     accountListAddressErrorDelete: 'Error when trying to delete the address',
     accountListAddressQuestionDelete: 'Are you sure you want to delete the address?',
@@ -95,7 +95,7 @@ export const TRANSLATION_EN = {
     cartAddressShippingPreviousStep: 'Go back to Previous Step',
     cartAddressShippingBackToCart: 'Go back to Cart',
     cartAddressShippingSelectAddress: 'Select the Delivery Address:',
-    cartAddressShippingNotAddress: 'No Addresses on the list',
+    cartAddressShippingNotAddress: 'No Addresses found',
     cartAddressShippingSelectPayment: 'Continue',
     cartAddressShippingSelectDelivery: 'Select your Delivery Option:',
     cartAddressShippingTakeAway: `Pickup at Seller's Office.`,

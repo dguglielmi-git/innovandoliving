@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router"
 import { isUserOwner } from '../api/orderMessage';
 import BasicLayout from '../layouts/BasicLayout';
 import Seo from "../components/Seo";
@@ -13,6 +14,7 @@ export default function orders() {
     const { auth } = useAuth();
     const [loading, setLoading] = useState(true);
     const [showAdmin, setShowAdmin] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         (async () => {
@@ -21,6 +23,8 @@ export default function orders() {
                 const { idUser } = auth;
                 const res = await isUserOwner(idUser);
                 setShowAdmin(res);
+            } else {
+                router.push("/");
             }
             setLoading(false);
         })()
