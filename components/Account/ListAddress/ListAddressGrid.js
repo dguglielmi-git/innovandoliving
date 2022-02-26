@@ -22,11 +22,6 @@ export default function ListAddressGrid(props) {
         setIdSelected
     } = props;
 
-    useEffect(async () => {
-        console.log(addresses)
-    }, [addresses]);
-
-
     return (
         <Grid>
             <div>

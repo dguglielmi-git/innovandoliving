@@ -104,6 +104,24 @@ export async function updateEmail(idUser, email, logout) {
     }
 }
 
+export async function updateLanguage(idUser, language, logout) {
+    try {
+        const url = `${SERVER_ADDRESS}/users/${idUser}`;
+        const params = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ language }),
+        };
+        const result = await authFetch(url, params, logout);
+        return result ? result : null;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 export async function updatePasswordApi(idUser, password, logout) {
     try {
         const url = `${SERVER_ADDRESS}/users/${idUser}`;

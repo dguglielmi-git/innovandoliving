@@ -37,7 +37,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "../locales/i18n";
 import { REFRESH_SYSTEM_DATA } from "../utils/constants";
-
 PrimeReact.ripple = true;
 
 export default function MyApp({ Component, pageProps }) {

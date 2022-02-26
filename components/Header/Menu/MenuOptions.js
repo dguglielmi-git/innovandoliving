@@ -17,6 +17,8 @@ import { languages } from "../../../locales/i18n";
 import { RES_LARGE } from "../../../utils/breakpoint";
 import { LINK_TO_CART } from "../../../utils/constants";
 import useWindowSize from "../../../hooks/useWindowSize";
+import { updateLanguage } from "../../../api/user";
+import useAuth from "../../../hooks/useAuth";
 import DropdownLanguages from "./MenuItems/DropdownLanguages";
 import i18n from "../../../locales/i18n";
 
@@ -27,6 +29,7 @@ export default function MenuOptions(props) {
     const { queryCounter, ordersCounter } = useMsgs();
     const { width } = useWindowSize();
     const { t } = useTranslation();
+    const { setReloadUser } = useAuth();
     const [languageSelected, setLanguageSelected] = useState(null)
 
     useEffect(() => {
@@ -36,17 +39,24 @@ export default function MenuOptions(props) {
         })();
     }, [productsCart]);
 
+    const defaultLang = () => (user) ? user.language : i18n.language
+
     useEffect(() => {
         map(languages.resources, (lang) => {
-            if (lang.lang == i18n.language) {
+            if (lang.lang === defaultLang()) {
                 setLanguageSelected(lang);
+                i18n.changeLanguage(lang.lang)
             }
         })
-    }, [])
+    }, [user])
 
-    const selectLang = (lang) => {
+    const selectLang = async (lang) => {
         setLanguageSelected(lang);
         i18n.changeLanguage(lang.lang);
+        if (user) {
+            await updateLanguage(user.id, lang.lang, logout)
+            setReloadUser(true)
+        }
     }
 
     const textUser = (user) && `${user.name} ${user.lastname}`;
@@ -96,10 +106,17 @@ export default function MenuOptions(props) {
                     ) }
                 </>
             ) : (
-                <Menu.Item as="a" onClick={ onShowModal }>
-                    <Icon name="user outline" />
-                    { t('headerMenuMyAccount') }
-                </Menu.Item>
+                <>
+                    <DropdownLanguages
+                        languages={ languages }
+                        onClick={ selectLang }
+                        languageSelected={ languageSelected }
+                    />
+                    <Menu.Item as="a" onClick={ onShowModal }>
+                        <Icon name="user outline" />
+                        { t('headerMenuMyAccount') }
+                    </Menu.Item>
+                </>
             ) }
         </Menu >
     )

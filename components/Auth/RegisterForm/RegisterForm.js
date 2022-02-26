@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Button } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -19,9 +18,8 @@ export default function RegisterForm(props) {
         validateOnChange: false,
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            formData.preventDefault();
+            // formData.preventDefault();
             setLoading(true);
-            setIsSaving(true);
             const response = await registerApi(formData);
             if (response?.jwt) {
                 toast.success(t('authRegisterFormOkRegister'));
@@ -47,7 +45,8 @@ function initialValues() {
         lastname: "",
         username: "",
         email: "",
-        password: ""
+        password: "",
+        language: i18n.language,
     }
 }
 
@@ -58,5 +57,6 @@ function validationSchema() {
         username: Yup.string().required(true),
         email: Yup.string().email(true).required(true),
         password: Yup.string().required(true),
+        language: Yup.string().required(true),
     }
 }

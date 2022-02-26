@@ -11,6 +11,7 @@ import {
 import ListProductos from "../../components/ListProductos";
 import Pagination from "../../components/Pagination";
 import "../../locales/i18n";
+import Footer from '../../components/Footer/Footer';
 
 const limitPerPage = 20;
 
@@ -61,6 +62,7 @@ export default function Platform() {
                         limitPerPage={ limitPerPage }
                     />
                 ) : null }
+            <Footer />
         </BasicLayout>
     )
 }
