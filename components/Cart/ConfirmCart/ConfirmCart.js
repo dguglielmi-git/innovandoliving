@@ -10,7 +10,6 @@ import {
     DELIVERY_OPTION_DELIVERY,
     DELIVERY_OPTION_EXTERNAL_PROVIDER
 } from '../../../utils/constants';
-import useAuth from '../../../hooks/useAuth';
 import { getAddressById } from '../../../api/address';
 import { calcShippingDelivery, getDiscountPrice } from '../../../utils/util';
 import { getConfigurations } from "../../../api/configurations";
@@ -26,11 +25,10 @@ export default function ConfirmCart(props) {
         setShippingPrice } = props;
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(false);
-    const { logout } = useAuth();
 
     useEffect(async () => {
         setLoading(true);
-        const configs = await getConfigurations(logout);
+        const configs = await getConfigurations();
 
         if (address) {
             const clientAddress = await getAddressById(address);

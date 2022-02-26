@@ -64,7 +64,7 @@ export default function MyApp({ Component, pageProps }) {
         } else {
             setAuth(null);
         }
-        const conf = await getConfigurations(logout);
+        const conf = await getConfigurations();
         setConfigs(conf);
         setReloadUser(false);
 
