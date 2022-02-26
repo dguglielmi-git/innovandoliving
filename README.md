@@ -59,7 +59,7 @@ We used [SemVer](http://semver.org/) for versioning. Check out the whole version
 
 ## License 📄
 
-There is no license available.
+No license required.
 
 ## Thanks 🎁
 

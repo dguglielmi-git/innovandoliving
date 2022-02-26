@@ -63,7 +63,6 @@
 
 .p-card-content {
   height: 105px;
-  //background-color: yellow;
 }
 
 .p-button {
@@ -71,7 +70,6 @@
 }
 
 .p-card-header {
-
   img {
     &:hover {
       cursor: pointer;
@@ -81,7 +79,7 @@
     position: relative;
     margin-top: -30px;
     background: linear-gradient(rgba(235, 184, 184, 0.4), rgba(0, 0, 0, 0.7));
-    color:white;
+    color: white;
     font-weight: bold;
     font-size: 15px !important;
 
