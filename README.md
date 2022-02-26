@@ -6,6 +6,8 @@ This is an eCommerce project for InnovandoLiving business in Argentina. Innovand
 # Architecture 
 ![Architectyre](./assets/architecture.png)
 
+* [NodeJS Backend MercadoPago](https://github.com/dguglielmi-git/innovandoliving-mercadopago) - Backend project for payment processing through the gateway of MercadoPago.
+* [Strapi Backend](https://github.com/dguglielmi-git/innovandoliving-backend) - Backend project required for website administration, CRUD of Products, system settings, etc.
 ## Getting Started 🚀
 
 Have a look at 'How to Install' to proceed with the installation
