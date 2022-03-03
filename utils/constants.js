@@ -1,3 +1,4 @@
+export const BUSINESS_NAME = "InnovandoLiving";
 export const CART = "cart";
 export const TOKEN = "token";
 export const CORS_PROXY = process.env.NODE_ENV == "development" ? "https://cors-anywhere.herokuapp.com/" : '';

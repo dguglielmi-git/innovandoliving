@@ -8,6 +8,7 @@ import ListProductos from "../components/ListProductos";
 import Seo from "../components/Seo";
 import Footer from "../components/Footer/Footer";
 import "../locales/i18n";
+import { BUSINESS_NAME } from "../utils/constants";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ export default function Home() {
 
   return (
     <BasicLayout className="home">
-      <Seo title="InnovandoLiving" />
+      <Seo title={ BUSINESS_NAME } />
       { !productos && <Loader active>{ t('indexLoadingProducts') }</Loader> }
       { productos && size(productos) === 0 && (
         <div>
