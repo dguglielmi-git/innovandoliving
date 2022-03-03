@@ -114,7 +114,6 @@ export default function Cart() {
                 deliveryOption={ deliveryOption }
                 paymentMethodSelected={ paymentMethodSelected }
             />
-
         </BasicLayout>
     )
 }

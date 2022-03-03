@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Icon, Confirm } from "semantic-ui-react";
+import { Confirm } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import { deleteAddressApi } from "../../../api/address";
-import AddressCardHeader from './sections/AddressCardHeader';
-import AddressCardBody from './sections/AddressCardBody';
+import AddressCard from "./sections/AddressCard";
 
 export default function Address(props) {
     const {
@@ -42,25 +41,16 @@ export default function Address(props) {
         setShowDialog(false);
     };
 
-
-
     return (
         <>
-            <div className="box-address" onClick={ () => handleClick() }>
-                <div className={ idSelected === address.id ? "card active" : "card" }>
-                    <AddressCardHeader
-                        t={ t }
-                        address={ address }
-                        loadingDelete={ loadingDelete }
-                        openDelete={ openDelete }
-                        openModal={ openModal }
-                    />
-                    <AddressCardBody
-                        t={ t }
-                        address={ address }
-                    />
-                </div>
-            </div>
+            <AddressCard
+                handleClick={ handleClick }
+                idSelected={ idSelected }
+                address={ address }
+                loadingDelete={ loadingDelete }
+                openDelete={ openDelete }
+                openModal={ openModal }
+            />
 
             <Confirm
                 size="mini"

@@ -8,8 +8,6 @@ export default function ShowRoom() {
         <BasicLayout>
             <div>
                 <h1>ShowRoom</h1>
-                
-
             </div>
         </BasicLayout>
     );

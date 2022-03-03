@@ -31,28 +31,26 @@ export default function ChangeNameForm(props) {
 
     return (
         <div className="change-name-form">
-            <h4>{t('accountChangeNameFormChangeLabel')}</h4>
-            <Form onSubmit={formik.handleSubmit}>
+            <h4>{ t('accountChangeNameFormChangeLabel') }</h4>
+            <Form onSubmit={ formik.handleSubmit }>
                 <Form.Group widths="equal">
                     <Form.Input
                         name="name"
-                        placeholder={t('accountChangeNameFormNewName')}
-                        value={user.name}
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                        error={formik.errors.name}
+                        placeholder={ t('accountChangeNameFormNewName') }
+                        onChange={ formik.handleChange }
+                        value={ formik.values.name }
+                        error={ formik.errors.name }
                     />
                     <Form.Input
                         name="lastname"
-                        placeholder={t('accountChangeNameFormNewLastname')}
-                        value={user.lastname}
-                        onChange={formik.handleChange}
-                        value={formik.values.lastname}
-                        error={formik.errors.lastname}
+                        placeholder={ t('accountChangeNameFormNewLastname') }
+                        onChange={ formik.handleChange }
+                        value={ formik.values.lastname }
+                        error={ formik.errors.lastname }
                     />
                 </Form.Group>
-                <Button className="submit" loading={loading}>
-                    {t('accountChangeNameFormButtonUpdate')}
+                <Button className="submit" loading={ loading }>
+                    { t('accountChangeNameFormButtonUpdate') }
                 </Button>
             </Form>
         </div>

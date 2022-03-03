@@ -38,7 +38,6 @@ export default function Home() {
         </>
       ) }
       <Footer />
-
     </BasicLayout>
   );
 }
