@@ -1,5 +1,5 @@
 /**
- * HTTP Responses used within the Project
+ * HTTP Response Code List
  */
 
 export const HTTP_BAD_REQUEST = 400;
