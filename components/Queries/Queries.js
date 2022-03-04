@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
 import QueryAsUser from "./QueryAsUser";
 import QueryAsAdmin from "./QueryAsAdmin";
+import useAuth from "../../hooks/useAuth";
 import { isUserOwner } from "../../api/orderMessage";
 import BasicLoading from "../BasicLoading/BasicLoading";
 import { USER_CLIENT, USER_OWNER } from "../../utils/constants";
