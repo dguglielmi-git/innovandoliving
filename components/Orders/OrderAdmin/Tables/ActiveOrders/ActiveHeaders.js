@@ -1,8 +1,8 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-export default function ActiveHeaders() {
 
+export default function ActiveHeaders() {
     const { t } = useTranslation();
 
     return (
