@@ -6,8 +6,8 @@ import useMsgs from "../../../hooks/useMsgs";
 
 export default function MsgQueue(props) {
     const { messages, showData } = props;
-    const [selectedMessage, setSelectedMessage] = useState(null);
     const { setReloadMsgCounter } = useMsgs();
+    const [selectedMessage, setSelectedMessage] = useState(null);
 
     const selectMsg = (msg) => {
         msg.unreadmsgs = 0
@@ -26,14 +26,14 @@ export default function MsgQueue(props) {
             <div className="msg-queue">
                 <div className="datatable-selection-demo">
                     <DataTable
-                        dataKey="_id"
-                        sortField="unreadmsgs"
-                        sortOrder={ -1 }
                         scrollable
+                        dataKey="_id"
+                        sortOrder={ -1 }
+                        value={ messages }
                         scrollHeight="300px"
                         selectionMode="single"
+                        sortField="unreadmsgs"
                         responsiveLayout="scroll"
-                        value={ messages }
                         selection={ selectedMessage }
                         onSelectionChange={ e => selectMsg(e.value) }
                     >
