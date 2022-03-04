@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import BasicLayout from "../../layouts/BasicLayout";
-import { Loader } from "semantic-ui-react";
-import { useRouter } from "next/router";
 import { size } from "lodash";
+import { useRouter } from "next/router";
+import { Loader } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import BasicLayout from "../../layouts/BasicLayout";
+import Pagination from "../../components/Pagination";
+import Footer from '../../components/Footer/Footer';
+import ListProductos from "../../components/ListProductos";
 import {
     getProductosPlatformApi,
     getTotalProductosPlatform
 } from "../../api/producto";
-import ListProductos from "../../components/ListProductos";
-import Pagination from "../../components/Pagination";
 import "../../locales/i18n";
-import Footer from '../../components/Footer/Footer';
 
 const limitPerPage = 20;
 
@@ -26,6 +26,7 @@ export default function Platform() {
         if (!query.page || currentPages === 1) return 0;
         else return currentPages * limitPerPage - limitPerPage;
     }
+
     useEffect(() => {
         (async () => {
             if (query.platform) {
@@ -35,22 +36,20 @@ export default function Platform() {
                     getStartItem());
                 setProductos(response);
             }
-        })()
-    }, [query]);
-
-    useEffect(() => {
-        (async () => {
             const response = await getTotalProductosPlatform(query.platform);
             setTotalProductos(response);
         })()
+
     }, [query]);
 
     return (
         <BasicLayout>
             { !productos && <Loader active>{ t('productosPlatformLoadingProds') }</Loader> }
+
             { productos && size(productos) === 0 && (
                 <div><h3>{ t('productosPlatformNotProductFound') }</h3></div>
             ) }
+
             { size(productos) > 0 && <ListProductos productos={ productos } /> }
 
             { totalProductos
@@ -62,6 +61,7 @@ export default function Platform() {
                         limitPerPage={ limitPerPage }
                     />
                 ) : null }
+
             <Footer />
         </BasicLayout>
     )
