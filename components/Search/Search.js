@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Loader } from "semantic-ui-react";
-import { useRouter } from "next/router";
 import { size } from "lodash";
-import { searchProductosApi } from "../../api/producto";
+import { useRouter } from "next/router";
+import { Loader } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import ListProductos from "../ListProductos";
+import { searchProductosApi } from "../../api/producto";
 
 export default function Search() {
     const { t } = useTranslation();
@@ -30,11 +30,13 @@ export default function Search() {
     return (
         <div>
             { !productos && <Loader active>{ t('searchLoadingProducts') }</Loader> }
+
             { productos && size(productos) === 0 && (
                 <div>
                     <h3>{ t('searchProductsNotFound') }</h3>
                 </div>
             ) }
+
             { size(productos) > 0 && <ListProductos productos={ productos } /> }
         </div>
     )
