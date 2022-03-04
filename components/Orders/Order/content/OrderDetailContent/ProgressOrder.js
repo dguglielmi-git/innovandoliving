@@ -52,11 +52,11 @@ export default function ProgressOrder(props) {
             <h5>{ t('progressOrderTitle') }</h5>
 
             <OptionsOrderStatus
-                userType={ userType }
                 open={ open }
                 order={ order }
                 dimmer={ dimmer }
                 options={ options }
+                userType={ userType }
                 statusValue={ statusValue }
                 orderBlocked={ orderBlocked }
                 openModal={ openModal }
