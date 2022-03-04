@@ -9,6 +9,7 @@ export default function ProductsCard(props) {
     const footer = (
         <div></div>
     )
+
     const getPrice = (prod) => {
         if (prod.discount) {
             return getDiscountPrice(prod.price, prod.discount);
@@ -28,6 +29,5 @@ export default function ProductsCard(props) {
             footer={ footer }
         >
         </Card>
-
     )
 }

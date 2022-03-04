@@ -3,13 +3,11 @@ import { useTranslation } from "react-i18next";
 import { Confirm } from "semantic-ui-react";
 import { Rating } from 'primereact/rating';
 import DetailTitle from './sections/DetailTitle';
-import DetailUnitPrice from './sections/DetailUnitPrice';
+import ProductAction from './sections/ProductAction';
 import DetailQuantity from './sections/DetailQuantity';
 import DetailCategory from './sections/DetailCategory';
-import ProductAction from './sections/ProductAction';
-import "../../../locales/i18n";
+import DetailUnitPrice from './sections/DetailUnitPrice';
 import { getDiscountPrice } from '../../../utils/util';
-
 
 export default function SummaryDetail(props) {
     const { data, setReloadCart, removeProductCart } = props;
