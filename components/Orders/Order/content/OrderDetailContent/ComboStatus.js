@@ -16,11 +16,11 @@ export default function ComboStatus(props) {
     return (
         <div className="order-combo-status">
             <Dropdown
-                onChange={ handleChange }
-                options={ statusList }
-                placeholder={ t('comboStatusPlaceholder') }
                 selection
                 value={ statusValue }
+                options={ statusList }
+                onChange={ handleChange }
+                placeholder={ t('comboStatusPlaceholder') }
             />
         </div>
     )
