@@ -10,9 +10,10 @@ import {
     getMessagesByOrder,
     markMessageAsRead
 } from '../../../../api/orderMessage';
-import { verifyUserType } from '../../../../utils/util';
 import FormComment from '../FormComment';
 import CommentBody from './sections/CommentBody';
+import CommentHeader from './sections/CommentHeader';
+import { verifyUserType } from '../../../../utils/util';
 
 const CommentsForm = (props) => {
     const {
@@ -60,18 +61,9 @@ const CommentsForm = (props) => {
         setReloadOrder(true);
     }
 
-    const CommentHeader = () => (
-        <div>
-            <h3>{
-                (order?.status !== 99)
-                    ? t('commentsSupportContact')
-                    : t('commentsHistory') } </h3>
-        </div>
-    );
-
     return (
         <Comment.Group>
-            <CommentHeader />
+            <CommentHeader order={ order } />
             <CommentBody
                 renderMsg={ renderMsg }
             />
