@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { size } from 'lodash';
-import OrderDetails from './content/OrderDetails';
-import OrderTitle from './content/sections/OrderTitle';
-import EmptyOrders from './content/sections/EmptyOrders';
-import ShowListOfOrders from './content/sections/ShowListOfOrders';
 import useAuth from "../../../hooks/useAuth";
 import useMsgs from '../../../hooks/useMsgs';
 import { getOrdersApi } from "../../../api/order";
 import { USER_CLIENT } from "../../../utils/constants";
+import OrderDetails from './content/OrderDetails';
+import OrderTitle from './content/sections/OrderTitle';
+import EmptyOrders from './content/sections/EmptyOrders';
+import ShowListOfOrders from './content/sections/ShowListOfOrders';
 
 export default function Order() {
     const { logout } = useAuth();
@@ -36,25 +36,23 @@ export default function Order() {
         setReloadOrder(false);
     }, [reloadOrder, ordersCounter])
 
-    if (orders === []) {
-        return < EmptyOrders />
-    }
+    if (orders === []) return < EmptyOrders />
 
     return (
         <div className="order">
             <OrderTitle />
             <ShowListOfOrders
-                showDetail={ showDetail }
                 orders={ orders }
-                setOrderSelected={ setOrderSelected }
+                showDetail={ showDetail }
                 setShowDetail={ setShowDetail }
+                setOrderSelected={ setOrderSelected }
             />
             <div className="order-detail">
                 { showDetail && <OrderDetails
-                    setShowDetail={ setShowDetail }
                     order={ orderSelected }
-                    setReloadOrder={ setReloadOrder }
                     userType={ USER_CLIENT }
+                    setShowDetail={ setShowDetail }
+                    setReloadOrder={ setReloadOrder }
                 /> }
             </div>
         </div>
