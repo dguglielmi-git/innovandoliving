@@ -1,10 +1,9 @@
 import React from 'react';
-import { Grid, Image, Button, Icon } from "semantic-ui-react";
 import { useRouter } from 'next/router';
 import { useTranslation } from "react-i18next";
-import Info from './Info';
+import { Grid, Image, Button, Icon } from "semantic-ui-react";
 import { MOBILE_COL_SIZE } from '../../../utils/constants';
-import "../../../locales/i18n";
+import Info from './Info';
 
 export default function HeaderProducto(props) {
     const { producto } = props;
