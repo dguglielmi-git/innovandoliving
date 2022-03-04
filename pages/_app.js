@@ -3,8 +3,8 @@ import jwtDecode from "jwt-decode";
 import PrimeReact from 'primereact/api';
 import { useRouter } from "next/router";
 import {
-    faCheckSquare,
-    faCoffee
+    faCoffee,
+    faCheckSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,8 +19,8 @@ import {
     getCart,
     cleanCart,
     addToCart,
-    countProductsCart,
     removeItemCart,
+    countProductsCart
 } from "../api/cart";
 import { getUnreadMsgs } from "../api/producto";
 import { getConfigurations } from "../api/configurations";
