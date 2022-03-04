@@ -1,9 +1,9 @@
 import React from "react";
 import { size } from "lodash";
-import { Table, Button } from "semantic-ui-react";
-import { formatDate, numToDollar, translateStatus } from "../../../../../utils/util";
 import { useTranslation } from "react-i18next";
+import { Table, Button } from "semantic-ui-react";
 import { USER_OWNER } from "../../../../../utils/constants";
+import { formatDate, numToDollar, translateStatus } from "../../../../../utils/util";
 
 export default function ActiveBody(props) {
     const { orders, openDetails, userType } = props;
