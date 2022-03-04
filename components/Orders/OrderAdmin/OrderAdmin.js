@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { size } from "lodash";
 import { useTranslation } from "react-i18next";
 import ActiveClosedTabs from "./ActiveClosedTabs";
 import { USER_OWNER } from "../../../utils/constants";
@@ -7,7 +8,6 @@ import BasicLoading from "../../BasicLoading/BasicLoading";
 import useAuth from "../../../hooks/useAuth";
 import useMsgs from "../../../hooks/useMsgs";
 import { getFinishedOrdersApi, getOrdersApi } from "../../../api/order";
-import { size } from "lodash";
 
 export default function OrderAdmin() {
     const { logout } = useAuth();
@@ -43,7 +43,6 @@ export default function OrderAdmin() {
         })()
         setReloadOrder(false);
     }, [reloadOrder, ordersCounter]);
-
 
     return (
         <div className="order-admin">
