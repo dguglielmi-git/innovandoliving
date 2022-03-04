@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
 import { Grid } from "semantic-ui-react";
 import { Column } from "primereact/column";
+import { useTranslation } from "react-i18next";
 import { DataTable } from "primereact/datatable";
 import { confirmDialog } from "primereact/confirmdialog"
-import { formatDate } from "../../utils/util";
 import useMsgs from "../../hooks/useMsgs";
+import { formatDate } from "../../utils/util";
+import { IS_NORMAL_USER } from "../../utils/constants";
 import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
 import "primeicons/primeicons.css";
 import 'primereact/resources/primereact.css';
 import "primereact/resources/primereact.min.css";
 import 'primereact/resources/themes/saga-blue/theme.css';
-import { IS_NORMAL_USER } from "../../utils/constants";
 
 export default function QueryAsUser() {
-    const [messages, setMessages] = useState([]);
-    const [selectedMessage, setSelectedMessage] = useState(null);
-    const [reloadMsgs, setReloadMsgs] = useState(false);
-    const { queryCounter, setReloadMsgCounter } = useMsgs();
     const router = useRouter();
     const { t } = useTranslation();
+    const [messages, setMessages] = useState([]);
+    const [reloadMsgs, setReloadMsgs] = useState(false);
+    const { queryCounter, setReloadMsgCounter } = useMsgs();
+    const [selectedMessage, setSelectedMessage] = useState(null);
 
     useEffect(async () => {
         const msgdata = await getOpenChats();
