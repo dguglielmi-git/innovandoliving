@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Image } from "semantic-ui-react";
-import useCart from "../../../hooks/useCart";
 import { useTranslation } from "react-i18next";
+import useCart from "../../../hooks/useCart";
+import { updateOrderStatus } from "../../../api/order";
 import { orderUpdate } from "../../../api/mercadopago";
 import { parseFinalOrder } from "../../../utils/mercadopago";
 import { ORDER_ORDERED, PATH_SUCCESS_IMG } from "../../../utils/constants";
-import { updateOrderStatus } from "../../../api/order";
 import ButtonContinueShop from "../ButtonContinueShop/ButtonContinueShop";
 
 export default function SuccessfulPayment(props) {
@@ -23,7 +23,6 @@ export default function SuccessfulPayment(props) {
                 if (parseFloat(purchaseTotalPendingPayment.$numberDecimal) === 0) {
                     await updateOrderStatus(orderResult, ORDER_ORDERED);
                 }
-
             }
             cleanCart();
         })()
