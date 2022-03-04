@@ -3,8 +3,8 @@ import { size, forEach } from "lodash";
 import { Loader } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import useAuth from "../../hooks/useAuth";
-import { getFavoriteApi } from "../../api/favorite";
 import ListProductos from "../ListProductos";
+import { getFavoriteApi } from "../../api/favorite";
 
 export default function Wishlist() {
     const { t } = useTranslation();
@@ -40,9 +40,11 @@ export default function Wishlist() {
                 { !productos && <Loader active>
                     { t('wishlistLoadingProducts') }
                 </Loader> }
+
                 { productos && size(productos) === 0 && (
                     <WishListEmpty />
                 ) }
+
                 { size(productos) > 0 && <ListProductos productos={ productos } /> }
             </div>
         </div>
