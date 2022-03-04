@@ -42,7 +42,6 @@ const ItemsTable = (props) => {
 
     return (
         <div className="items-table">
-            {/* <div className="card"> */ }
             <DataTable
                 className="responsive-table"
                 responsiveLayout="stack"
@@ -56,7 +55,6 @@ const ItemsTable = (props) => {
                 <Column field="price" header={ t('itemsTablePriceHeader') } body={ priceBodyTemplate }></Column>
                 <Column field="totalprice" header={ t('itemsTableTotalPriceHeader') } body={ totalPriceBodyTemplate }></Column>
             </DataTable>
-            {/* </div> */ }
         </div>
     );
 }
