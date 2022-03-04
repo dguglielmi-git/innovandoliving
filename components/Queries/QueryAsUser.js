@@ -68,14 +68,14 @@ export default function QueryAsUser() {
                 <Grid.Row>
                     <div className="queries-user__queue">
                         <DataTable
-                            dataKey="_id"
-                            sortField="clientUnreadMsg"
-                            sortOrder={ -1 }
                             scrollable
+                            dataKey="_id"
+                            sortOrder={ -1 }
+                            value={ messages }
                             scrollHeight="350px"
                             selectionMode="single"
                             responsiveLayout="scroll"
-                            value={ messages }
+                            sortField="clientUnreadMsg"
                             selection={ selectedMessage }
                             onSelectionChange={ e => selectMsg(e.value) }
                         >
