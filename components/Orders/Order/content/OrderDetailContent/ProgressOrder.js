@@ -1,10 +1,10 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Timeline } from 'primereact/timeline';
 import { useTranslation } from "react-i18next";
-import { getOrderStatuses, updateOrderStatus } from "../../../../../api/order";
-import { progressOrderReducer } from "../../../../../utils/reducer";
-import { drawTimeLineOfOrder } from "../../../../../utils/util";
+import OrderTimeLine from "./OrderTimeLine";
 import OptionsOrderStatus from "./OptionsOrderStatus"
+import { drawTimeLineOfOrder } from "../../../../../utils/util";
+import { progressOrderReducer } from "../../../../../utils/reducer";
+import { getOrderStatuses, updateOrderStatus } from "../../../../../api/order";
 
 export default function ProgressOrder(props) {
     const {
@@ -50,11 +50,11 @@ export default function ProgressOrder(props) {
     return (
         <div className="order-detail__mainbox-orderstatus">
             <h5>{ t('progressOrderTitle') }</h5>
+
             <OptionsOrderStatus
                 userType={ userType }
                 open={ open }
                 order={ order }
-                setReloadOrder={ setReloadOrder }
                 dimmer={ dimmer }
                 options={ options }
                 statusValue={ statusValue }
@@ -64,12 +64,13 @@ export default function ProgressOrder(props) {
                 handleCancel={ handleCancel }
                 handleUpdate={ handleUpdate }
                 handleChange={ handleChange }
+                setReloadOrder={ setReloadOrder }
             />
-            <div className="order-detail__mainbox-timeline">
-                <Timeline
-                    value={ drawTimeLineOfOrder(historyStatus) }
-                    content={ (item) => item.status } />
-            </div>
+
+            <OrderTimeLine
+                historyStatus={ historyStatus }
+                drawTimeLineOfOrder={ drawTimeLineOfOrder }
+            />
         </div>
     )
 }
