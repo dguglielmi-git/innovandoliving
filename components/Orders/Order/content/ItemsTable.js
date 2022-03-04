@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { getTotalItems, numToDollar } from '../../../../utils/util';
-import { URL_ERROR_PLACEHOLDER } from '../../../../utils/constants';
 import { useTranslation } from 'react-i18next';
+import { DataTable } from 'primereact/datatable';
+import { URL_ERROR_PLACEHOLDER } from '../../../../utils/constants';
+import { getTotalItems, numToDollar } from '../../../../utils/util';
 
 const ItemsTable = (props) => {
     const { items } = props;
@@ -17,20 +17,18 @@ const ItemsTable = (props) => {
     const formatCurrency = (value) =>
         value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-
-    const imageBodyTemplate = (rowData) => {
-        return <img src={ rowData.image }
-            onError={ (e) => e.target.src = URL_ERROR_PLACEHOLDER }
-            alt={ rowData.image }
-            className="product-image" />;
-    }
-
     const priceBodyTemplate = (rowData) =>
         formatCurrency(rowData.unit_price);
 
     const totalPriceBodyTemplate = (rowData) =>
         formatCurrency(rowData.unit_price * rowData.quantity)
 
+    const imageBodyTemplate = (rowData) => (
+        <img src={ rowData.image }
+            onError={ (e) => e.target.src = URL_ERROR_PLACEHOLDER }
+            alt={ rowData.image }
+            className="product-image" />
+    )
 
     const header = (
         <div className="table-header">
@@ -58,4 +56,5 @@ const ItemsTable = (props) => {
         </div>
     );
 }
+
 export default ItemsTable;
