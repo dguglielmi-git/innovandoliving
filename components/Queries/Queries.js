@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { isUserOwner } from "../../api/orderMessage";
 import useAuth from "../../hooks/useAuth";
-import { USER_CLIENT, USER_OWNER } from "../../utils/constants";
-import BasicLoading from "../BasicLoading/BasicLoading";
-import QueryAsAdmin from "./QueryAsAdmin";
 import QueryAsUser from "./QueryAsUser";
+import QueryAsAdmin from "./QueryAsAdmin";
+import { isUserOwner } from "../../api/orderMessage";
+import BasicLoading from "../BasicLoading/BasicLoading";
+import { USER_CLIENT, USER_OWNER } from "../../utils/constants";
 
 export default function Queries() {
     const { auth } = useAuth();
@@ -29,5 +29,4 @@ export default function Queries() {
 
     if (userType === USER_OWNER) return <QueryAsAdmin />
     else return <QueryAsUser />
-
 }
