@@ -20,24 +20,22 @@ export default function ShowButtonUpdate(props) {
 
     const loading = () => (status < 0) ? true : false;
 
-    if (status === ORDER_PENDING_PAYMENT) {
-        return (
-            <>
-                <Button
-                    color="red"
-                    size="mini"
-                    disabled={ orderBlocked }
-                    onClick={ () => setShowModal(true) }
-                >
-                    <Icon name="dollar sign" />
-                    { t('optionsOrderStatusButtonLocked') }
-                </Button>
-                <div className="order-locked">
-                    { t('optionsOrderStatusMessageOrderLocked') }
-                </div>
-            </>
-        )
-    }
+    if (status === ORDER_PENDING_PAYMENT) return (
+        <>
+            <Button
+                color="red"
+                size="mini"
+                disabled={ orderBlocked }
+                onClick={ () => setShowModal(true) }
+            >
+                <Icon name="dollar sign" />
+                { t('optionsOrderStatusButtonLocked') }
+            </Button>
+            <div className="order-locked">
+                { t('optionsOrderStatusMessageOrderLocked') }
+            </div>
+        </>
+    )
 
     if (loading()) return <BasicLoading />
 
