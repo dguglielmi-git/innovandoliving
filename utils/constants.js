@@ -47,10 +47,10 @@ export const LINK_TO_QUESTIONS = "/queries";
 
 export const PAYMENT_METHOD_CASH = "cash";
 export const PAYMENT_METHOD_CREDIT_CARD = "creditcard";
-export const PAYMENT_METHOD_CASH_AND_CARD = "cashandcard";
 export const PAYMENT_METHOD_MERCADOPAGO = "mercadopago";
+export const PAYMENT_METHOD_CASH_AND_CARD = "cashandcard";
 
-export const DELIVERY_OPTION_STORE = 'store';
 export const DELIVERY_OPTION_TBD = 'tbd';
+export const DELIVERY_OPTION_STORE = 'store';
 export const DELIVERY_OPTION_DELIVERY = 'delivery';
 export const DELIVERY_OPTION_EXTERNAL_PROVIDER = 'deliveryExternal';
