@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Divider } from "semantic-ui-react";
-import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
-import ChatSection from "./sections/ChatSection";
 import MsgQueue from "./sections/MsgQueue";
+import useMsgs from "../../hooks/useMsgs";
 import { formatDate } from "../../utils/util";
 import { IS_OWNER } from "../../utils/constants";
-import useMsgs from "../../hooks/useMsgs";
+import ChatSection from "./sections/ChatSection";
+import { getOpenChats, markChatMessageAsRead } from "../../api/producto";
 
 export default function QueryAsAdmin() {
     const [messages, setMessages] = useState([]);
-    const [selectedMsg, setSelectedMsg] = useState({});
     const [reloadMsgs, setReloadMsgs] = useState(false);
+    const [selectedMsg, setSelectedMsg] = useState({});
     const { queryCounter, setReloadMsgCounter } = useMsgs();
 
     useEffect(async () => {
@@ -39,7 +39,9 @@ export default function QueryAsAdmin() {
                     selectedMsg={ selectedMsg }
                     setReloadMsgs={ setReloadMsgs }
                 />
+
                 <Divider section />
+
                 <MsgQueue
                     messages={ messages }
                     showData={ showData }
