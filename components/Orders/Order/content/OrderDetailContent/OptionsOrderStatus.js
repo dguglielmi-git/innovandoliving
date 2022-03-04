@@ -7,8 +7,8 @@ import {
 import ComboStatus from "./ComboStatus";
 import ModalPaymentReceived from "./ModalPayRec";
 import ShowButtonUpdate from "./ShowButtonUpdate";
-import UpdateModal from "../../../../Modal/UpdateModal/UpdateModal";
 import { updatePendingBalance } from "../../../../../api/order";
+import UpdateModal from "../../../../Modal/UpdateModal/UpdateModal";
 
 export default function OptionsOrderStatus(props) {
     const {
@@ -39,16 +39,16 @@ export default function OptionsOrderStatus(props) {
             <div className="order-detail__mainbox-orderstatus-update">
                 <ModalPaymentReceived
                     order={ order }
-                    markAsPaid={ markAsPaid }
                     open={ showModalPayRec }
+                    markAsPaid={ markAsPaid }
                     setOpen={ setShowModalPayRec }
                 />
 
                 <ShowButtonUpdate
                     order={ order }
+                    openModal={ openModal }
                     orderBlocked={ orderBlocked }
                     setShowModal={ setShowModalPayRec }
-                    openModal={ openModal }
                 />
 
                 <UpdateModal
@@ -64,8 +64,8 @@ export default function OptionsOrderStatus(props) {
                 >
                     { t('modalProgressOrderChildrenLabel') }
                     <ComboStatus
-                        handleChange={ handleChange }
                         options={ options }
+                        handleChange={ handleChange }
                         statusValue={ statusValue }
                     />
                 </UpdateModal>
