@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { size } from "lodash";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import { Container, Comment } from "semantic-ui-react";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
-import { isUserOwner } from "../../../api/orderMessage";
 import useMsgs from "../../../hooks/useMsgs";
+import { isUserOwner } from "../../../api/orderMessage";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
 import {
     addMessageToProduct,
@@ -23,9 +23,11 @@ export default function Questions(props) {
     const { product } = props;
     const { t } = useTranslation();
     const { auth, logout } = useAuth();
-    const { queryCounter, setReloadMsgCounter } = useMsgs();
-    const [loading, setLoading] = useState(false);
+    const {
+        queryCounter,
+        setReloadMsgCounter } = useMsgs();
     const [username, setUsername] = useState("");
+    const [loading, setLoading] = useState(false);
     const [renderMsg, setRenderMsg] = useState([]);
     const [userType, setUserType] = useState(false);
     const [reloadChat, setReloadChat] = useState(false);
@@ -73,16 +75,21 @@ export default function Questions(props) {
         setReloadChat(true);
     }
 
-    if (loading) return <BasicLoading classValue="questions" label={ t('questionsLoadingProduct') } />
+    if (loading) return <BasicLoading
+        classValue="questions"
+        label={ t('questionsLoadingProduct') }
+    />
 
     return (
         <div className="questions">
             <Container>
                 <Comment.Group>
                     <CommentsHeader />
+
                     { ((size(renderMsg) > 0)
                         ? <CommentBody renderMsg={ renderMsg } />
                         : <CommentsEmpty />) }
+
                     <FormComment
                         addComment={ addComment }
                         sendLabel={ t('questionsSendMessageLabel') }
