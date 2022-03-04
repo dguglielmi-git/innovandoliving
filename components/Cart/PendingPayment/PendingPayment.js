@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import useCart from "../../../hooks/useCart";
 import { Image } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import useCart from "../../../hooks/useCart";
 import { orderUpdate } from "../../../api/mercadopago";
-import { parsePendingFinalOrder } from "../../../utils/mercadopago";
 import { PATH_PENDING_IMG } from "../../../utils/constants";
+import { parsePendingFinalOrder } from "../../../utils/mercadopago";
 import ButtonContinueShop from "../ButtonContinueShop/ButtonContinueShop";
 
 export default function PendingPayment(props) {
