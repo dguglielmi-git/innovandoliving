@@ -3,14 +3,17 @@ import { size } from "lodash";
 import { useTranslation } from "react-i18next";
 import ReactScrollableFeed from "react-scrollable-feed";
 import { Container, Comment, Grid } from "semantic-ui-react";
-import useAuth from "../../../hooks/useAuth";
+import {
+    addMessageToProduct,
+    getChatMessagesByProduct
+} from "../../../api/producto";
 import { getMeApi } from "../../../api/user";
+import useAuth from "../../../hooks/useAuth";
 import { isUserOwner } from "../../../api/orderMessage";
-import { addMessageToProduct, getChatMessagesByProduct } from "../../../api/producto";
 import { USER_CLIENT, USER_OWNER } from "../../../utils/constants";
-import CommentBody from "../../Orders/Order/content/sections/CommentBody";
 import FormComment from "../../Orders/Order/FormComment";
 import BasicLoading from "../../BasicLoading/BasicLoading";
+import CommentBody from "../../Orders/Order/content/sections/CommentBody";
 
 export default function ChatSection(props) {
     const { selectedMsg, setReloadMsgs } = props;
@@ -75,6 +78,7 @@ export default function ChatSection(props) {
                         <div className="chat-section__header">
                             <h3>{ t('queriesChatHeader') }</h3>
                         </div>
+
                         <div className="chat-section__feed">
                             <ReactScrollableFeed>
                                 { ((size(renderMsg) > 0)
@@ -82,6 +86,7 @@ export default function ChatSection(props) {
                                 }
                             </ReactScrollableFeed>
                         </div>
+
                         <FormComment
                             addComment={ addComment }
                             sendLabel={ t('queriesSendReply') }
