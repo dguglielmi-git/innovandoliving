@@ -1,17 +1,20 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 import PrimeReact from 'primereact/api';
 import { useRouter } from "next/router";
+import {
+    faCheckSquare,
+    faCoffee
+} from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import MsgsContext from "../context/MsgsContext";
 import MyLivingContext from "../context/LivingContext";
 import SettingsContext from "../context/SettingsContext";
-import { getUnreadMsgs } from "../api/producto";
-import { getConfigurations } from "../api/configurations";
-import { setToken, getToken, removeToken } from "../api/token"
 import {
     getCart,
     cleanCart,
@@ -19,24 +22,22 @@ import {
     countProductsCart,
     removeItemCart,
 } from "../api/cart";
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-    faCheckSquare,
-    faCoffee
-} from '@fortawesome/free-solid-svg-icons';
+import { getUnreadMsgs } from "../api/producto";
+import { getConfigurations } from "../api/configurations";
+import { setToken, getToken, removeToken } from "../api/token"
+import { REFRESH_SYSTEM_DATA } from "../utils/constants";
+import "../locales/i18n";
 import "../scss/global.scss";
 import "primeicons/primeicons.css";
-import 'primereact/resources/primereact.css';
-import "primereact/resources/primereact.min.css";
-import 'primereact/resources/themes/saga-blue/theme.css';
 import "slick-carousel/slick/slick.css";
 import 'semantic-ui-css/semantic.min.css';
+import 'primereact/resources/primereact.css';
 import "slick-carousel/slick/slick-theme.css";
 import 'react-toastify/dist/ReactToastify.css';
+import "primereact/resources/primereact.min.css";
+import 'primereact/resources/themes/saga-blue/theme.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import "../locales/i18n";
-import { REFRESH_SYSTEM_DATA } from "../utils/constants";
+
 PrimeReact.ripple = true;
 
 export default function MyApp({ Component, pageProps }) {
