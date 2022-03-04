@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Image, Modal } from "semantic-ui-react";
 import { map } from "lodash";
+import { Image, Modal } from "semantic-ui-react";
 import { Carousel } from 'react-responsive-carousel';
 
 const settings = {
@@ -38,18 +38,16 @@ export default function CarouselScreenshots(props) {
             </Slider>
                 */}
             <div className="carousel-box">
-                <Carousel itemWidth="50px"  autoPlay>
-
-                    {map(screenshots, (screenshot) => (
+                <Carousel itemWidth="50px" autoPlay>
+                    { map(screenshots, (screenshot) => (
                         <div className="carousel-box__image">
-                            <Image size="big" alt="" src={screenshot.url} />
+                            <Image size="big" alt="" src={ screenshot.url } />
                         </div>
-                    ))}
-
+                    )) }
                 </Carousel>
             </div>
-            <Modal open={showModal} onClose={() => setShowModal(false)} size="large">
-                <Image src={urlImage} alt={title} />
+            <Modal open={ showModal } onClose={ () => setShowModal(false) } size="large">
+                <Image src={ urlImage } alt={ title } />
             </Modal>
         </>
     )
