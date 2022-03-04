@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Icon } from "semantic-ui-react";
-import { ORDER_PENDING_PAYMENT } from "../../../../../utils/constants";
 import BasicLoading from "../../../../BasicLoading/BasicLoading";
+import { ORDER_PENDING_PAYMENT } from "../../../../../utils/constants";
 
 export default function ShowButtonUpdate(props) {
     const {
@@ -39,11 +39,7 @@ export default function ShowButtonUpdate(props) {
         )
     }
 
-    if (loading()) {
-        return (
-            <BasicLoading />
-        )
-    }
+    if (loading()) return <BasicLoading />
 
     return (
         <Button
@@ -51,7 +47,7 @@ export default function ShowButtonUpdate(props) {
             size="tiny"
             disabled={ orderBlocked }
             onClick={ () => openModal() }>
-            <Icon name="edit" />{ t('orderUpdateStatus') }
+            <Icon name="edit" /> { t('orderUpdateStatus') }
         </Button>
     )
 
