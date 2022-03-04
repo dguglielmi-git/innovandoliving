@@ -1,8 +1,8 @@
 import React from "react";
 import { size } from "lodash";
+import { useTranslation } from "react-i18next";
 import { Table, Button } from "semantic-ui-react";
 import { formatDate, numToDollar } from "../../../../../utils/util";
-import { useTranslation } from "react-i18next";
 
 export default function ClosedBody(props) {
     const { orders, openDetails } = props;
