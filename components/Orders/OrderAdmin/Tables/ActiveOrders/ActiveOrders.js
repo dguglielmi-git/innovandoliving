@@ -1,6 +1,5 @@
 import React from "react";
 import OrderTable from "../../../Order/content/OrderTable";
-import useAuth from "../../../../../hooks/useAuth";
 import { USER_OWNER } from "../../../../../utils/constants";
 
 export default function ActiveOrders(props) {
