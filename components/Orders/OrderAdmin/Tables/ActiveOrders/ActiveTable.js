@@ -1,6 +1,6 @@
 import React from "react";
-import ActiveHeaders from "./ActiveHeaders";
 import ActiveBody from "./ActiveBody";
+import ActiveHeaders from "./ActiveHeaders";
 
 export default function ActiveTable(props) {
     const { orders, openDetails, userType } = props;
