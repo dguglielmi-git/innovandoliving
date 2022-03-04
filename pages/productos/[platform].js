@@ -39,7 +39,6 @@ export default function Platform() {
             const response = await getTotalProductosPlatform(query.platform);
             setTotalProductos(response);
         })()
-
     }, [query]);
 
     return (
