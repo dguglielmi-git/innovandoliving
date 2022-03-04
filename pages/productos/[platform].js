@@ -3,9 +3,9 @@ import { size } from "lodash";
 import { useRouter } from "next/router";
 import { Loader } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import Footer from '../../components/Footer/Footer';
 import BasicLayout from "../../layouts/BasicLayout";
 import Pagination from "../../components/Pagination";
-import Footer from '../../components/Footer/Footer';
 import ListProductos from "../../components/ListProductos";
 import {
     getProductosPlatformApi,
