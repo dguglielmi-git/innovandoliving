@@ -1,16 +1,17 @@
 import {
     SERVER_ADDRESS,
     NOT_FOUND,
-    ORIGIN_DELIVERY_ADDRESS,
     CORS_PROXY,
     GOOGLE_MAPS_GEOCODE_URL,
     GOOGLE_MAPS_DISTANCE_MATRIX_URL
 } from "../utils/constants";
-import { INTERNAL_SERVER_ERROR } from "../utils/http_constants";
 import { authFetch } from "../utils/fetch";
+import { getConfigurations } from "./configurations";
+import { INTERNAL_SERVER_ERROR } from "../utils/http_constants";
 
 export async function getOriginDeliveryAddress() {
-    return ORIGIN_DELIVERY_ADDRESS;
+    const configs = await getConfigurations();
+    return configs?.address_delivery_center;
 }
 
 export async function createAddressApi(address, logout) {
