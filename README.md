@@ -14,7 +14,7 @@ Have a look at 'Deploy' section to proceed with its deploy.
 
 
 ### Pre-requisites 📋
-* [Google Maps API Configured](#) - You need to have available your Google Maps API into your GCP account. It is required the API Key for configuring this environment variable mentioned in the deploy section.
+* [Google Maps API Configured](#) - You need to have available your Google Maps API into your GCP account. The API key is required for configuring this environment variable mentioned in the deploy section.
 
 * [NodeJS Installed](#) - It is required to have installed NodeJS or at least, install it on a system that has NodeJs available.
 
