@@ -39,7 +39,7 @@ Deploy on Netlify:
 Drag and drop the 'out' folder inside your Netlify account for deploying this solution. Once you finish with this, you will have online your site.
 
 After deploy it, go to 'Site Settings' -> 'Build & deploy' -> 'Environment' -> 'Environment variables' and set the following variables with your values.
-NEXT_PUBLIC_MAPS_API_KEY
+NEXT_PUBLIC_MAPS_API_KEY 
 NEXT_PUBLIC_STRIPE_TOKEN
 
 Examples:
