@@ -28,7 +28,7 @@ module.exports = {
     distDir: "build",
 };
 
-* [Set value for the Constants URL](#) - got to utils/constants.js and replace the right URLs for SERVER_ADDRESS and URL_MERCADOPAGO_BACKEND. Do it before deploying it.
+* [Set the values to the URL Constants variables](#) - got to utils/constants.js and replace the right URLs for SERVER_ADDRESS and URL_MERCADOPAGO_BACKEND. Do it before deploying it.
 
 ## Deploy 📦
 
