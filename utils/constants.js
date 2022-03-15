@@ -1,12 +1,18 @@
+// Development Environment Variables
+//export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:1337";
+//export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:5000/api/mercadopago"
+// -- End of Development Environment Variables --
+// Production Environment Variables
+export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-strapi.herokuapp.com";
+export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-mercadopago.herokuapp.com"
+// -- End of Production Environment Variables --
+
 export const BUSINESS_NAME = "InnovandoLiving";
 export const CART = "cart";
 export const TOKEN = "token";
 export const CORS_PROXY = process.env.NODE_ENV == "development" ? "https://cors-anywhere.herokuapp.com/" : '';
-export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:1337";
-export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:5000/api/mercadopago"
 export const REFRESH_SYSTEM_DATA = 15000;
 
-export const ORIGIN_DELIVERY_ADDRESS = "Deán Funes 3920, B1826EYI Lanús, Provincia de Buenos Aires, Argentina";
 export const GOOGLE_MAPS_GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
 export const GOOGLE_MAPS_DISTANCE_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
 export const URL_ERROR_PLACEHOLDER = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png';

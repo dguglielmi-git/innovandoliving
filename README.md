@@ -10,20 +10,45 @@ This is an eCommerce project for InnovandoLiving business in Argentina. Innovand
 * [Strapi Backend](https://github.com/dguglielmi-git/innovandoliving-backend) - Backend project required for website administration, CRUD of Products, system settings, etc.
 ## Getting Started 🚀
 
-Have a look at 'How to Install' to proceed with the installation
+Have a look at 'Deploy' section to proceed with its deploy.
 
 
 ### Pre-requisites 📋
+* [Google Maps API Configured](#)
+You need to have available your Google Maps API into your GCP account. It is required the API Key for configuring this environment variable mentioned in the deploy section.
 
-It is required to have installed NodeJS.
+* [NodeJS Installed](#)
+- It is required to have installed NodeJS or at least, install it on a system that has NodeJs available.
 
-### How to Install 🔧
+* [NextJS Configurations](#)
+- In package.json verify that you find the following attributes inside Scripts section:
+"build": "next build",
+"export": "next build && next export"
 
-Pending adding detail of installation.
+If you don't find the "next.config.js" file inside the project, please create it with the following content:
+
+module.exports = {
+    distDir: "build",
+};
 
 ## Deploy 📦
 
-Pending details of deploy
+If all pre-requisites are successfully fulfilled, run the following commands inside your project's console:
+'yarn export'
+
+- Once this command ends its work, we should have a new folder called 'out'. This folder is the compiled version of your project.
+
+Deploy on Netlify:
+Drag and drop the 'out' folder inside your Netlify account for deploying this solution. Once you finish with this, you will have online your site.
+
+After deploy it, go to 'Site Settings' -> 'Build & deploy' -> 'Environment' -> 'Environment variables' and set the following variables with your values.
+NEXT_PUBLIC_MAPS_API_KEY
+NEXT_PUBLIC_STRIPE_TOKEN
+
+Examples:
+NEXT_PUBLIC_MAPS_API_KEY=OUsaSyUFOSHjUdAa44XYzxcCONSXaCgkkdkLuz1
+NEXT_PUBLIC_STRIPE_TOKEN=pk_test_51Ix2UOC5rKZURZ3Y6Z6GmYioksibjpEWgJdSRFnws9543f0MSiIUYghdepZ6bBqI23jWE3xKich5u6TSSOI9u47qKi22lQ5e3jh8
+
 
 
 ## Built with 🛠️
@@ -56,7 +81,7 @@ We used [SemVer](http://semver.org/) for versioning. Check out the whole version
 
 ## Author ✒️
 
-* **Daniel Guglielmi** - *Designer, Architect, Front-End, Backend, Documentation, Translator* - [dguglielmi-git](https://github.com/dguglielmi-git)
+* **Daniel Guglielmi** - *Design, Architecture, Front-End, Backend, Documentation, Translation* - [dguglielmi-git](https://github.com/dguglielmi-git)
 
 
 ## License 📄
