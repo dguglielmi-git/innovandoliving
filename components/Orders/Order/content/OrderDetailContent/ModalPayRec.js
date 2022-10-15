@@ -33,16 +33,16 @@ export default function ModalPaymentReceived(props) {
                     <Form>
                         <Form.Field>
                             <Checkbox
-                                label={ `Outstanding balance in Cash: ${numToDollar(order.cashPending.$numberDecimal)}` }
+                                label={ `Outstanding balance in Cash: ${numToDollar(order.cashPending?.$numberDecimal)}` }
                                 ref={ chkCash }
                                 disabled={ showLabel(order.cashPending.$numberDecimal) }
                             />
                         </Form.Field>
                         <Form.Field>
                             <Checkbox
-                                label={ `Outstanding Balance other payment method: ${numToDollar(order.creditPending.$numberDecimal)}` }
+                                label={ `Outstanding Balance other payment method: ${numToDollar(order.creditPending?.$numberDecimal)}` }
                                 ref={ chkOther }
-                                disabled={ showLabel(order.creditPending.$numberDecimal) }
+                                disabled={ showLabel(order.creditPending?.$numberDecimal) }
                             />
                         </Form.Field>
                     </Form>

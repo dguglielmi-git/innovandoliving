@@ -1,10 +1,10 @@
 // Development Environment Variables
-//export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:1337";
-//export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:5000/api/mercadopago"
+export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:1337";
+export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "http://eqfam:5000/api/mercadopago"
 // -- End of Development Environment Variables --
 // Production Environment Variables
-export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-strapi.herokuapp.com";
-export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-mercadopago.herokuapp.com"
+// export const SERVER_ADDRESS = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-strapi.herokuapp.com";
+// export const URL_MERCADOPAGO_BACKEND = process.env.NODE_ENV === 'test' ? '' : "https://innovandoliving-mercadopago.herokuapp.com"
 // -- End of Production Environment Variables --
 
 export const BUSINESS_NAME = "InnovandoLiving";

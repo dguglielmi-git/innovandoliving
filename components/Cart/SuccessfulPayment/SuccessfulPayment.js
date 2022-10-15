@@ -20,7 +20,7 @@ export default function SuccessfulPayment(props) {
                 const finalOrder = await parseFinalOrder(incomingData);
                 const orderResult = await orderUpdate(finalOrder);
                 const { purchaseTotalPendingPayment } = await orderResult;
-                if (parseFloat(purchaseTotalPendingPayment.$numberDecimal) === 0) {
+                if (parseFloat(purchaseTotalPendingPayment?.$numberDecimal) === 0) {
                     await updateOrderStatus(orderResult, ORDER_ORDERED);
                 }
             }

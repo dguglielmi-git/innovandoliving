@@ -26,7 +26,7 @@ export default function QueryAsUser() {
         const msgdata = await getOpenChats();
         msgdata.map(m => {
             m.createAt = formatDate(m.createAt);
-            if (m._id === selectedMessage._id) {
+            if (m._id === selectedMessage?._id) {
                 setSelectedMessage(m)
                 markChatMessageAsRead(m.productId, m.userId, IS_NORMAL_USER);
                 setReloadMsgCounter(true);

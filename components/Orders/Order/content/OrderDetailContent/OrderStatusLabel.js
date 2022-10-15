@@ -15,12 +15,13 @@ export default function OrderStatusLabel(props) {
         </div>
     )
 
+    console.log(order)
     return (
         <div className="order-detail__mainbox-title">
             { statusLabel(t('orderDetailTicketNumberLabel'), order && order.mercadoPagoMerchantOrderId) }
             { statusLabel(t('orderDetailOrderDateLabel'), order && formatDate(order.dateCreated)) }
             { statusLabel(t('orderDetailStatusLabel'), order && translateStatus(order.status)) }
-            { statusLabel(t('orderDetailPendingPayment'), order && numToDollar(order.purchaseTotalPendingPayment.$numberDecimal)) }
+            { statusLabel(t('orderDetailPendingPayment'), order && numToDollar(order.purchaseTotalPendingPayment?.$numberDecimal)) }
         </div>
     )
 }
