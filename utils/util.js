@@ -9,9 +9,6 @@ export function numToDollar(number) {
 	return "$".concat(dollarFormat.format(number).replace('ARS', ''));
 }
 
-// export const numToDollar = (number) =>
-//   '$'.concat(dollarFormat.format(number).replace('ARS', ''));
-
 export const formatDate = (date) => {
   const d = new Date(date);
   return d.toLocaleDateString() + ' - ' + d.toLocaleTimeString() + 'hs';
@@ -41,7 +38,6 @@ export function verifyUserType(userType) {
     return IS_OWNER;
   }
 }
-
 
 export const getTotalItems = (items) =>
   items.reduce((sum, item) => sum + item.quantity * item.unit_price, 0);
