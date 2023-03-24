@@ -15,7 +15,6 @@ export default function OrderStatusLabel(props) {
         </div>
     )
 
-    console.log(order)
     return (
         <div className="order-detail__mainbox-title">
             { statusLabel(t('orderDetailTicketNumberLabel'), order && order.mercadoPagoMerchantOrderId) }

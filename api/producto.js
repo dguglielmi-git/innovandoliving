@@ -22,7 +22,6 @@ export async function getLastProductosApi(limit) {
         const url = `${SERVER_ADDRESS}/productos?${limitItems}&${sortItems}`;
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result)
         return result;
     } catch (error) {
         console.log(error);

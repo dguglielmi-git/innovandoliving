@@ -60,7 +60,6 @@ export default function MenuOptions(props) {
     }
 
     const textUser = (user) && `${user.name} ${user.lastname}`;
-    console.log(textUser)
     return (
         <Menu secondary>
             { user ? (

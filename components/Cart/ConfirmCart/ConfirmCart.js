@@ -45,7 +45,7 @@ export default function ConfirmCart(props) {
                 }
 
             } catch (error) {
-                console.log("Error happened when trying to get Address details: " + error)
+                console.log("An Error happened when trying to get the Address details: " + error)
             }
         }
         setLoading(false);
