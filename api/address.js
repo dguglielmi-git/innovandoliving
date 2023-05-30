@@ -5,7 +5,7 @@ import {
     GOOGLE_MAPS_GEOCODE_URL,
     GOOGLE_MAPS_DISTANCE_MATRIX_URL
 } from "../utils/constants";
-import { authFetch } from "../utils/fetch";
+import { authFetch, fetchRetry } from "../utils/fetch";
 import { getConfigurations } from "./configurations";
 import { INTERNAL_SERVER_ERROR } from "../utils/http_constants";
 
@@ -53,7 +53,7 @@ export async function createAddressApi(address, logout) {
 
 export async function getFullAddressString(address) {
     try {
-        const result = await fetch(`${CORS_PROXY}${getMapsGeocodeUrl(address)}`);
+        const result = await fetchRetry(`${CORS_PROXY}${getMapsGeocodeUrl(address)}`);
         const { results } = await result.json();
         if (results) {
             return results[0].formatted_address
@@ -79,7 +79,7 @@ const getMapsDistanceMatrixUrl = (from, to) => {
 }
 
 export async function getDistanceBetweenAddresses(from, to) {
-    const result = await fetch(`${CORS_PROXY}${getMapsDistanceMatrixUrl(from, to)}`);
+    const result = await fetchRetry(`${CORS_PROXY}${getMapsDistanceMatrixUrl(from, to)}`);
     const data = await result.json();
     return data.rows[0].elements[0].distance
 }

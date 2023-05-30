@@ -12,8 +12,7 @@ import {
     getTotalProductosPlatform
 } from "../../api/producto";
 import "../../locales/i18n";
-
-const limitPerPage = 20;
+import { LIMIT_PER_PAGE } from '../../utils/constants';
 
 export default function Platform() {
     const { query } = useRouter();
@@ -24,7 +23,7 @@ export default function Platform() {
     const getStartItem = () => {
         const currentPages = parseInt(query.page);
         if (!query.page || currentPages === 1) return 0;
-        else return currentPages * limitPerPage - limitPerPage;
+        else return currentPages * LIMIT_PER_PAGE - LIMIT_PER_PAGE;
     }
 
     useEffect(() => {
@@ -32,7 +31,7 @@ export default function Platform() {
             if (query.platform) {
                 const response = await getProductosPlatformApi(
                     query.platform,
-                    limitPerPage,
+                    LIMIT_PER_PAGE,
                     getStartItem());
                 setProductos(response);
             }
@@ -57,7 +56,7 @@ export default function Platform() {
                         totalProductos={ totalProductos }
                         page={ query.page ?
                             parseInt(query.page) : 1 }
-                        limitPerPage={ limitPerPage }
+                        limitPerPage={ LIMIT_PER_PAGE }
                     />
                 ) : null }
 

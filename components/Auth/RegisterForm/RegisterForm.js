@@ -18,7 +18,6 @@ export default function RegisterForm(props) {
         validateOnChange: false,
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            // formData.preventDefault();
             setLoading(true);
             const response = await registerApi(formData);
             if (response?.jwt) {

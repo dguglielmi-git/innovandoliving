@@ -60,3 +60,8 @@ export const DELIVERY_OPTION_TBD = 'tbd';
 export const DELIVERY_OPTION_STORE = 'store';
 export const DELIVERY_OPTION_DELIVERY = 'delivery';
 export const DELIVERY_OPTION_EXTERNAL_PROVIDER = 'deliveryExternal';
+
+export const DELAY_RETRY_FETCH = 5000
+export const RETRY_QUERY_ATTEMPTS = 6
+
+export const LIMIT_PER_PAGE = 20

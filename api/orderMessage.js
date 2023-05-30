@@ -1,4 +1,5 @@
 import { URL_MERCADOPAGO_BACKEND, USER_CLIENT, USER_OWNER } from "../utils/constants";
+import { fetchRetryParams } from "../utils/fetch";
 import { getToken } from "./token";
 
 export async function addMessage(username, orderId, message, icon) {
@@ -22,7 +23,7 @@ export async function addMessage(username, orderId, message, icon) {
             })
         }
 
-        const result = await fetch(url, params);
+        const result = await fetchRetryParams(url, params);
         return result;
     } catch (error) {
         console.log(error);
@@ -46,7 +47,7 @@ export async function markMessageAsRead(orderId, userType) {
             })
         }
 
-        const result = await fetch(url, params);
+        const result = await fetchRetryParams(url, params);
         return result;
     } catch (error) {
         console.log(error);
@@ -65,7 +66,7 @@ export async function getMessagesByOrder(orderId) {
             }
         }
 
-        const result = await fetch(url, params);
+        const result = await fetchRetryParams(url, params);
         const response = await result.json();
         return response;
     }
@@ -86,7 +87,7 @@ export async function isUserOwner(userId) {
             }
         }
 
-        const resultCall = await fetch(url, params);
+        const resultCall = await fetchRetryParams(url, params);
         const response = await resultCall.json();
         const { result } = await response
         return result;

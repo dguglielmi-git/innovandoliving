@@ -14,8 +14,8 @@ export default function ListProductos(props) {
     return (
         <Grid className="grid-prods">
             <Grid.Row columns={ getColumnsRender(width) }>
-                { map(productos, (producto) => (
-                    <ProductsCard key={ producto._id } producto={ producto } />
+                { productos && map(productos, (producto) => (
+                    <ProductsCard key={ producto?._id } producto={ producto } />
                 )) }
             </Grid.Row>
         </Grid>

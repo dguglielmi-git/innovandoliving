@@ -37,3 +37,4 @@ yarn-error.log*
 # temp
 .vscode
 package-lock.json
+*.lock

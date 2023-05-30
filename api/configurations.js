@@ -1,10 +1,10 @@
 import { SERVER_ADDRESS } from "../utils/constants";
-import { authFetch } from "../utils/fetch";
+import { authFetch, fetchRetry } from "../utils/fetch";
 
 export async function getConfigurations() {
     try {
         const url = `${SERVER_ADDRESS}/configurations`;
-        const response = await fetch(url);
+        const response = await fetchRetry(url);
         const result = await response.json();
         return result[0];
     } catch (error) {

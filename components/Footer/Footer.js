@@ -12,6 +12,7 @@ export default function Footer() {
     useEffect(async () => {
         setLoading(true);
         const conf = await getConfigurations();
+        console.log(conf)
         setConfigs(conf);
         setLoading(false);
     }, []);
@@ -30,16 +31,16 @@ export default function Footer() {
     return (
         <div className="footer-page">
             <div className="footer-page__links">
-                <DivItem icon="facebook" func={ configs.facebook_url } />
-                <DivItem icon="instagram" func={ configs.instagram_url } />
-                <DivItem icon="whatsapp" func={ configs.whatsapp_num } />
-                <DivItem icon="mail" func={ configs.mail_url } />
+                <DivItem icon="facebook" func={ configs?.facebook_url || ""} />
+                <DivItem icon="instagram" func={ configs?.instagram_url || ""} />
+                <DivItem icon="whatsapp" func={ configs?.whatsapp_num || ""} />
+                <DivItem icon="mail" func={ configs?.mail_url || ""} />
             </div>
             <div className="footer-page__logo">
                 <Image src={ `/${PATH_LOGO_IMG}` } alt="logo" size="tiny" />
             </div>
             <div className="footer-page__text">
-                <h4>{ configs.footer_text || "-" }</h4>
+                <h4>{ configs?.footer_text || "-" }</h4>
             </div>
         </div>
     )

@@ -20,7 +20,6 @@ export default function Order() {
     useEffect(() => {
         (async () => {
             const result = await getOrdersApi(logout);
-            console.log(result)
             const data = await result.json();
 
             const tmpOrder = [];

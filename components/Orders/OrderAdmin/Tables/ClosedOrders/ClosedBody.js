@@ -15,21 +15,24 @@ export default function ClosedBody(props) {
 
     return (
         <Table.Body>
-            { (size(orders) >= 0) && orders.map((order, index) => (
-                <Table.Row key={ index }>
-                    <Table.Cell>{ formatDate(order.dateCreated) }</Table.Cell>
-                    <Table.Cell>{ formatDate(order.dateClosed) }</Table.Cell>
-                    <Table.Cell>{ order.mercadoPagoMerchantOrderId }</Table.Cell>
-                    <Table.Cell>{ totalOrder(order) }</Table.Cell>
-                    <Table.Cell>
-                        <Button size={ buttonSize } color={ buttonColor }
-                            onClick={ () => openDetails(order) }>
-                            { t('orderTableSeeDetailButtonLabel') }
-                        </Button>
-                    </Table.Cell>
-                </Table.Row>
-            )) }
-            { (size(orders) === 0) && (<p>{ t('orderTableNoOrderProcessed') }</p>) }
+            { Array.isArray(orders) && orders.length > 0 ? (
+                orders.map((order, index) => (
+                    <Table.Row key={ index }>
+                        <Table.Cell>{ formatDate(order.dateCreated) }</Table.Cell>
+                        <Table.Cell>{ formatDate(order.dateClosed) }</Table.Cell>
+                        <Table.Cell>{ order.mercadoPagoMerchantOrderId }</Table.Cell>
+                        <Table.Cell>{ totalOrder(order) }</Table.Cell>
+                        <Table.Cell>
+                            <Button size={ buttonSize } color={ buttonColor }
+                                onClick={ () => openDetails(order) }>
+                                { t('orderTableSeeDetailButtonLabel') }
+                            </Button>
+                        </Table.Cell>
+                    </Table.Row>
+                ))
+            ) : (
+                <p>{ t('orderTableNoOrderProcessed') }</p>
+            )}
         </Table.Body>
     )
 }

@@ -1,13 +1,13 @@
 import { toast } from "react-toastify";
 import { size, map, includes, remove } from "lodash";
 import { SERVER_ADDRESS, CART } from "../utils/constants";
-import { authFetch } from "../utils/fetch";
+import { authFetch, fetchRetry } from "../utils/fetch";
 import i18n from "../locales/i18n";
 
 export async function getCart(idUser) {
     try {
         const url = `${SERVER_ADDRESS}/carts?users_permissions_user=${idUser}`;
-        const response = await fetch(url);
+        const response = await fetchRetry(url);
         const result = await response.json();
         return result;
     } catch (error) {

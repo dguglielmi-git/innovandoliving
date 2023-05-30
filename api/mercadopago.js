@@ -1,8 +1,9 @@
 import { getToken } from "./token"
 import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
+import { fetchRetryParams } from "../utils/fetch";
 
 export const saveOrder = async (order) => {
-    const orderRes = await fetch(`${URL_MERCADOPAGO_BACKEND}/order`, {
+    const orderRes = await fetchRetryParams(`${URL_MERCADOPAGO_BACKEND}/order`, {
         headers: {
             'Content-Type': 'application/json',
             "x-token": getToken()
@@ -16,7 +17,7 @@ export const saveOrder = async (order) => {
 
 export const orderUpdate = async (order) => {
 
-    const res = await fetch(`${URL_MERCADOPAGO_BACKEND}/order`, {
+    const res = await fetchRetryParams(`${URL_MERCADOPAGO_BACKEND}/order`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -30,8 +31,7 @@ export const orderUpdate = async (order) => {
 }
 
 export const sendProductsToMercadoPago = async (itemsProd) => {
-
-    const result = await fetch(`${URL_MERCADOPAGO_BACKEND}/payment`, {
+    const result = await fetchRetryParams(`${URL_MERCADOPAGO_BACKEND}/payment`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
