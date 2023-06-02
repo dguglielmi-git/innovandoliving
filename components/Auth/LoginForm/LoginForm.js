@@ -7,7 +7,6 @@ import useAuth from "../../../hooks/useAuth";
 import { loginApi, resetPasswordApi } from "../../../api/user";
 import LoginFormBody from "./LoginFormBody";
 import "../../../locales/i18n";
-// import 'fontsource-roboto';
 
 export default function LoginForm(props) {
     const { showRegisterForm, onCloseModal } = props;

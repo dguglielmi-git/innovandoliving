@@ -12,8 +12,8 @@ export default function DropdownLanguages(props) {
             <Dropdown.Menu>
                 <div className="languages-box">
                     {
-                        map(languages.resources, (lang) => (
-                            <div className="lang-list" onClick={ () => { onClick(lang) } }>
+                        map(languages.resources, (lang, index) => (
+                            <div className="lang-list" onClick={ () => { onClick(lang) } } key={index}>
                                 <ReactCountryFlag countryCode={ lang.flag } />
                                 <div className="lang-list__text"><Typography variant="subtitle2">{ lang.text }</Typography></div>
                             </div>

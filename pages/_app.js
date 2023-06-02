@@ -25,7 +25,6 @@ import {
 import { getUnreadMsgs } from "../api/producto";
 import { getConfigurations } from "../api/configurations";
 import { setToken, getToken, removeToken } from "../api/token"
-import { REFRESH_SYSTEM_DATA } from "../utils/constants";
 import "../locales/i18n";
 import "../scss/global.scss";
 import "primeicons/primeicons.css";
@@ -80,7 +79,7 @@ export default function MyApp({ Component, pageProps }) {
     useEffect(() => {
         const interval = setInterval(async () => {
             setReloadMsgCounter(true);
-        }, REFRESH_SYSTEM_DATA);
+        }, process.env.NEXT_PUBLIC_REFRESH_SYSTEM_DATA);
         return () => clearInterval(interval);
     }, []);
 
