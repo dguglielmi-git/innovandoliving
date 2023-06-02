@@ -25,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.development
@@ -38,3 +39,7 @@ yarn-error.log*
 .vscode
 package-lock.json
 *.lock
+
+# firebase
+.firebase*
+firebase.json
