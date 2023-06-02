@@ -9,7 +9,7 @@ Below you will find the details of the published versions organized by: `[versio
 
 
 ---
-## v1.1.0-rc - 2023-
+## v2.0.0-rc - 2023-06-02
 
 ### Added
 InnovandoLiving's backend has been moved to a Cloud Function architecture, and we've adapted the front-end communication to address delays in response time while the backend is waking up. This improvement ensures a seamless user experience and is part of our ongoing efforts to provide a reliable and high-performance platform for our users.
