@@ -1,4 +1,3 @@
-import { URL_MERCADOPAGO_BACKEND } from "../utils/constants";
 import { getToken } from "./token";
 import { fetchRetryParams } from "../utils/fetch";
 
@@ -13,7 +12,7 @@ async function getOrders(logout, active) {
   }
 
   try {
-    const url = `${URL_MERCADOPAGO_BACKEND}/orders`;
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/orders`;
     const params = {
       headers: {
         "x-token": token,
@@ -32,7 +31,7 @@ async function getOrders(logout, active) {
 
 export async function updateOrderStatus(order, status) {
   try {
-    const url = `${URL_MERCADOPAGO_BACKEND}/order/status/${order._id}`;
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/order/status/${order._id}`;
 
     const params = {
       method: "PUT",
@@ -56,7 +55,7 @@ export async function updateOrderStatus(order, status) {
 
 export async function removeOrder(paymentId) {
   try {
-    const url = `${URL_MERCADOPAGO_BACKEND}/order/${paymentId}`;
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/order/${paymentId}`;
 
     const params = {
       method: "DELETE",
@@ -77,7 +76,7 @@ export async function removeOrder(paymentId) {
 
 export async function updatePendingBalance(order, cash, other) {
   const res = await fetchRetryParams(
-    `${URL_MERCADOPAGO_BACKEND}/order/balance/pending`,
+    `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/order/balance/pending`,
     {
       method: "PUT",
       headers: {
@@ -104,7 +103,7 @@ export async function getOrderStatuses() {
   }
 
   try {
-    const url = `${URL_MERCADOPAGO_BACKEND}/orderstatus`;
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/orderstatus`;
     const params = {
       headers: {
         "x-token": token,

@@ -12,7 +12,6 @@ export default function Footer() {
     useEffect(async () => {
         setLoading(true);
         const conf = await getConfigurations();
-        console.log(conf)
         setConfigs(conf);
         setLoading(false);
     }, []);
