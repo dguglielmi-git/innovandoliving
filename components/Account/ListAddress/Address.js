@@ -22,9 +22,9 @@ export default function Address(props) {
     const openDelete = () => setShowDialog(true);
     const cancelDelete = () => setShowDialog(false);
 
-    const handleClick = () => {
+    const handleClick = (addressId) => {
         if (selectEnable) {
-            setIdSelected(address.id);
+            setIdSelected(addressId);
         }
     }
 
