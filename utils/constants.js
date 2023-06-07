@@ -48,3 +48,5 @@ export const DELIVERY_OPTION_TBD = 'tbd';
 export const DELIVERY_OPTION_STORE = 'store';
 export const DELIVERY_OPTION_DELIVERY = 'delivery';
 export const DELIVERY_OPTION_EXTERNAL_PROVIDER = 'deliveryExternal';
+
+export const ERROR_GETTING_ADDRESS_DETAILS = "An Error happened when trying to get the Address details:";
