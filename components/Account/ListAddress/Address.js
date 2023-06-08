@@ -30,7 +30,7 @@ export default function Address(props) {
 
     const deleteAddress = async () => {
         setLoadingDelete(true);
-        const response = await deleteAddressApi(address.id, logout);
+        const response = await deleteAddressApi(address._id, logout);
         if (response) {
             setReloadAddresses(true);
             toast.success(t('accountListAddressOkDelete'));
