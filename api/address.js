@@ -1,5 +1,9 @@
-import { NOT_FOUND, CORS_PROXY } from "../utils/constants";
-import { authFetch, fetchRetry, fetchRetryParams } from "../utils/fetch";
+import {
+  NOT_FOUND,
+  CORS_PROXY,
+  ERROR_NOT_VALID_ADDRESS,
+} from "../utils/constants";
+import { fetchRetry, fetchRetryParams } from "../utils/fetch";
 import { getConfigurations } from "./configurations";
 import { INTERNAL_SERVER_ERROR } from "../utils/http_constants";
 import { getToken } from "./token";
@@ -46,13 +50,7 @@ export async function getDistanceBetweenAddresses(from, to) {
   return data.rows[0].elements[0].distance;
 }
 
-export async function createAddressApi(address, logout) {
-  const token = getToken();
-
-  if (!token) {
-    logout();
-  }
-
+async function getAddressDistanceFormatted(address) {
   try {
     const targetAddress = `${address.address}, ${address.city}, ${address.state}`;
     let fullAddressString = await getFullAddressString(targetAddress);
@@ -62,7 +60,7 @@ export async function createAddressApi(address, logout) {
     }
 
     if (fullAddressString === NOT_FOUND) {
-      throw new Error(`Not a valid Address received: ${targetAddress}`);
+      throw new Error(`${ERROR_NOT_VALID_ADDRESS} ${targetAddress}`);
     }
     const distance = await getDistanceBetweenAddresses(
       await getOriginDeliveryAddress(),
@@ -70,10 +68,29 @@ export async function createAddressApi(address, logout) {
     );
     const { text, value } = await distance;
 
-    const finalAddress = {
-      ...address,
+    return {
       formatted_distance: text,
       value_distance: value,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+}
+
+export async function createAddressApi(address, logout) {
+  const token = getToken();
+
+  if (!token) {
+    logout();
+  }
+
+  try {
+    const formattedDistance = await getAddressDistanceFormatted(address);
+    const finalAddress = {
+      ...address,
+      formatted_distance: formattedDistance.formatted_distance,
+      value_distance: formattedDistance.value_distance,
     };
 
     const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/addresses`;
@@ -149,7 +166,7 @@ export async function deleteAddressApi(idAddress, logout) {
     if (!token) {
       logout();
     }
-  
+
     const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/addresses/${idAddress}`;
     const params = {
       method: "DELETE",
@@ -169,18 +186,29 @@ export async function deleteAddressApi(idAddress, logout) {
 
 export async function updateAddressApi(idAddress, address, logout) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/addresses/${idAddress}`;
+    const token = getToken();
+
+    if (!token) {
+      logout();
+    }
+    const updatedDistance = await getAddressDistanceFormatted(address);
+    address.formatted_distance = updatedDistance.formatted_distance;
+    address.value_distance = updatedDistance.value_distance;
+
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/addresses/${idAddress}`;
     const params = {
       method: "PUT",
       headers: {
+        "x-token": token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(address),
     };
-    const result = await authFetch(url, params, logout);
-    return result;
+
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 }
