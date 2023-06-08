@@ -144,18 +144,25 @@ export async function getAddressById(addressId, logout) {
 
 export async function deleteAddressApi(idAddress, logout) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/addresses/${idAddress}`;
+    const token = getToken();
+
+    if (!token) {
+      logout();
+    }
+  
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/addresses/${idAddress}`;
     const params = {
       method: "DELETE",
       headers: {
+        "x-token": token,
         "Content-Type": "application/json",
       },
     };
-    const result = await authFetch(url, params, logout);
-    if (result.statusCode === INTERNAL_SERVER_ERROR) throw "Server Error";
+    await fetchRetryParams(url, params);
+
     return true;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 }
