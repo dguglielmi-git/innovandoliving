@@ -1,15 +1,19 @@
 export const BUSINESS_NAME = "InnovandoLiving";
 export const CART = "cart";
 export const TOKEN = "token";
-export const CORS_PROXY = process.env.NODE_ENV == "development" ? "https://cors-anywhere.herokuapp.com/" : '';
+export const CORS_PROXY =
+  process.env.NODE_ENV == "development"
+    ? "https://cors-anywhere.herokuapp.com/"
+    : "";
 
-export const URL_ERROR_PLACEHOLDER = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png';
+export const URL_ERROR_PLACEHOLDER =
+  "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png";
 
 export const IS_OWNER = 1;
 export const IS_NORMAL_USER = 0;
 export const USER_OWNER = "owner";
 export const USER_CLIENT = "client";
-export const NOT_FOUND = "Not Found"
+export const NOT_FOUND = "Not Found";
 
 export const STEP_VERIFY_PRODUCTS = 0;
 export const STEP_DELIVERY_OPTIONS = 1;
@@ -44,7 +48,11 @@ export const PAYMENT_METHOD_CREDIT_CARD = "creditcard";
 export const PAYMENT_METHOD_MERCADOPAGO = "mercadopago";
 export const PAYMENT_METHOD_CASH_AND_CARD = "cashandcard";
 
-export const DELIVERY_OPTION_TBD = 'tbd';
-export const DELIVERY_OPTION_STORE = 'store';
-export const DELIVERY_OPTION_DELIVERY = 'delivery';
-export const DELIVERY_OPTION_EXTERNAL_PROVIDER = 'deliveryExternal';
+export const DELIVERY_OPTION_TBD = "tbd";
+export const DELIVERY_OPTION_STORE = "store";
+export const DELIVERY_OPTION_DELIVERY = "delivery";
+export const DELIVERY_OPTION_EXTERNAL_PROVIDER = "deliveryExternal";
+
+export const ERROR_GETTING_ADDRESS_DETAILS =
+  "An Error happened when trying to get the Address details:";
+export const ERROR_NOT_VALID_ADDRESS = "Not a valid Address received:";

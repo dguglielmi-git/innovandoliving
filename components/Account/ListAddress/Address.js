@@ -22,15 +22,15 @@ export default function Address(props) {
     const openDelete = () => setShowDialog(true);
     const cancelDelete = () => setShowDialog(false);
 
-    const handleClick = () => {
+    const handleClick = (addressId) => {
         if (selectEnable) {
-            setIdSelected(address.id);
+            setIdSelected(addressId);
         }
     }
 
     const deleteAddress = async () => {
         setLoadingDelete(true);
-        const response = await deleteAddressApi(address.id, logout);
+        const response = await deleteAddressApi(address._id, logout);
         if (response) {
             setReloadAddresses(true);
             toast.success(t('accountListAddressOkDelete'));

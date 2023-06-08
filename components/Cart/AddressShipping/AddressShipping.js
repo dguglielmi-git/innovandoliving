@@ -23,7 +23,7 @@ export default function AddressShipping(props) {
 
     useEffect(() => {
         (async () => {
-            const response = await getAddressesApi(auth.idUser, logout);
+            const response = await getAddressesApi(logout);
             setAddresses(response || []);
         })()
         setReloadAddresses(false);
