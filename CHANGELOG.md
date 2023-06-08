@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Below you will find the details of the published versions organized by: `[version Number - Release Date]`
 
+---
+## v2.1.0-rc - 2023-06-08
+
+### Changed
+- Updated the calls from the Strapi backend to utilize the Mercadopago Cloud function backend for Address Management.
+
+### Fixed
+- Now, when updating an address, the calculation of the distance from the origin to the new address is recalculated.
 
 ---
 ## v2.0.0-rc - 2023-06-02
