@@ -27,9 +27,9 @@ export default function Payment(props) {
 
     const getPrice = (prod) => {
         if (prod.producto.discount) {
-            return getDiscountPrice(prod.producto.price, prod.producto.discount);
+            return getDiscountPrice(parseFloat(prod.producto.price.$numberDecimal), prod.producto.discount);
         }
-        return prod.producto.price;
+        return parseFloat(prod.producto.price.$numberDecimal);
     }
 
     const getItems = () => {
@@ -40,7 +40,7 @@ export default function Payment(props) {
                     title: item.producto.title,
                     unit_price: getPrice(item),
                     quantity: item.quantity,
-                    image: item.producto.poster.url,
+                    image: item.producto.url,
                 })
             })
             if (deliveryOption === DELIVERY_OPTION_DELIVERY) {

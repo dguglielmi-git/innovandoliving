@@ -5,6 +5,8 @@ import i18n from '../locales/i18n';
 const dollarCurrency = { style: 'currency', currency: 'ARS' };
 const dollarFormat = new Intl.NumberFormat('es-ES', dollarCurrency);
 
+export const getBackendURL = ()=> process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND;
+
 export function numToDollar(number) {
 	return "$".concat(dollarFormat.format(number).replace('ARS', ''));
 }

@@ -7,10 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import BasicLayout from "../../layouts/BasicLayout";
 import Pagination from "../../components/Pagination";
 import ListProductos from "../../components/ListProductos";
-import {
-  getProductosPlatformApi,
-  getTotalProductosPlatform,
-} from "../../api/producto";
+import { getProductsByPlatform } from "../../api/producto";
 import "../../locales/i18n";
 
 export default function Platform() {
@@ -31,16 +28,17 @@ export default function Platform() {
 
   useEffect(() => {
     (async () => {
+      let totalProds = 0;
       if (query.platform) {
-        const response = await getProductosPlatformApi(
+        const response = await getProductsByPlatform(
           query.platform,
           process.env.NEXT_PUBLIC_LIMIT_PER_PAGE,
           getStartItem()
         );
         setProductos(response);
+        totalProds = (await response?.length) || 0;
       }
-      const response = await getTotalProductosPlatform(query.platform);
-      setTotalProductos(response);
+      setTotalProductos(totalProds);
     })();
   }, [query]);
 

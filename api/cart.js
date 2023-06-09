@@ -1,18 +1,27 @@
 import { toast } from "react-toastify";
 import { size, map } from "lodash";
 import { CART } from "../utils/constants";
-import { authFetch, fetchRetry } from "../utils/fetch";
+import { authFetch, fetchRetry, fetchRetryParams } from "../utils/fetch";
 import i18n from "../locales/i18n";
+import { getToken } from "./token";
 
 export async function getCart(idUser) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/carts?users_permissions_user=${idUser}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result;
+    const token = getToken();
+    if (!token) return [];
+
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/carts`;
+    const params = {
+      headers: {
+        "x-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
   } catch (error) {
     console.log(error);
-    return null;
+    return [];
   }
 }
 

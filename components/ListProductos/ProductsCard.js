@@ -12,13 +12,13 @@ export default function ProductsCard(props) {
 
     const getPrice = (prod) => {
         if (prod.discount) {
-            return getDiscountPrice(prod.price, prod.discount);
+            return getDiscountPrice(parseFloat(prod.price.$numberDecimal), prod.discount);
         }
-        return prod.price;
+        return prod.price.$numberDecimal;
     }
 
     return (
-        <Card title={ producto.title } href={ `/${producto.url}` }
+        <Card title={ producto.title } href={ `/${producto?._id}` }
             subTitle={ (
                 <h3>
                     { numToDollar(parseFloat(getPrice(producto))) }
