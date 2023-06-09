@@ -38,7 +38,6 @@ export default function SummaryCart(props) {
       });
     })();
     setTotalPrice(price);
-    console.log(`price: ${price}`);
     setReloadCart(false);
   }, [products, reloadCart]);
 

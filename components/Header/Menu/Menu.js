@@ -3,7 +3,7 @@ import { Container, Grid } from "semantic-ui-react";
 import Auth from "../../Auth/";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
-import { getPlatformsApi } from "../../../api/platform";
+import { getSortedPlatforms } from "../../../api/platform";
 import BasicModal from "../../Modal/BasicModal";
 import GridCategories from "./Grid/GridCategories";
 import GridOptions from "./Grid/GridOptions";
@@ -24,7 +24,7 @@ export default function MenuWeb() {
 
     useEffect(() => {
         (async () => {
-            const response = await getPlatformsApi();
+            const response = await getSortedPlatforms();
             setPlatforms(response || []);
         })();
     }, []);

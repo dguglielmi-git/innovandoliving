@@ -1,72 +1,105 @@
-import { USER_CLIENT, USER_OWNER } from "../utils/constants";
-import { fetchRetry, fetchRetryParams } from "../utils/fetch";
+import {
+  DEFAULT_SORT_PRODUCT_ITEMS,
+  FILTER_PRODUCTS_BY_PLATFORM,
+  TOKEN_IS_MISSING,
+  USER_CLIENT,
+  USER_OWNER,
+} from "../utils/constants";
+import { fetchRetryParams } from "../utils/fetch";
+import { getBackendURL } from "../utils/util";
 import { getToken } from "./token";
 
-export async function getLastProductosApi(limit) {
+export async function getPublishedProducts(limit) {
   try {
-    const limitItems = `_limit=${limit}`;
-    const sortItems = `_sort=createAt:desc&publish=true`;
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/productos?${limitItems}&${sortItems}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result;
+    const token = getToken();
+    if (!token) {
+      console.error(`getPublishedProducts: ${TOKEN_IS_MISSING}`);
+      return [];
+    }
+
+    const params = {
+      headers: {
+        "x-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const url = `${getBackendURL()}/publishedProducts?${DEFAULT_SORT_PRODUCT_ITEMS}${limit}`;
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
+  } catch (error) {
+    console.error(`getPublishedProducts error: ${error}`);
+    return [];
+  }
+}
+
+export async function getProductsByPlatform(platform, limit, start) {
+  try {
+    const token = getToken();
+    if (!token) {
+      console.error(`getProductsByPlatform: ${TOKEN_IS_MISSING}`);
+      return [];
+    }
+
+    const params = {
+      headers: {
+        "x-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const url = `${getBackendURL()}/productsByPlatform/${platform}?${FILTER_PRODUCTS_BY_PLATFORM}${start}&limit=${limit}`;
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
+  } catch (error) {
+    console.log(error);
+    console.error(`getProductsByPlatform error: ${error}`);
+    return [];
+  }
+}
+
+export async function getProductByID(idProduct) {
+  try {
+    const token = getToken();
+    if (!token) {
+      console.error(`getProductByID: ${TOKEN_IS_MISSING}`);
+      return [];
+    }
+
+    const params = {
+      headers: {
+        "x-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const url = `${getBackendURL()}/productById/${idProduct}`;
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
-/**
- *
- * @param {Platform needed} platform
- * @param {Quantity limit of products to receive} limit
- * @param {Starting point of the pagination for retrieving} start
- */
-export async function getProductosPlatformApi(platform, limit, start) {
+export async function searchProductByTitle(title) {
   try {
-    const limitItems = `_limit=${limit}`;
-    const sortItems = `_sort=createAt:desc`;
-    const startItems = `_start=${start}`;
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/productos?platform.url=${platform}&${limitItems}&${sortItems}&${startItems}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
+    const token = getToken();
+    if (!token) {
+      console.error(`searchProductByTitle: ${TOKEN_IS_MISSING}`);
+      return [];
+    }
 
-export async function getTotalProductosPlatform(platform) {
-  try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/productos/count?platform.url=${platform}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
+    const params = {
+      headers: {
+        "x-token": token,
+        "Content-Type": "application/json",
+      },
+    };
 
-export async function getProductoByUrlApi(path) {
-  try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/productos?url=${path}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result[0];
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
-
-export async function searchProductosApi(title) {
-  try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/productos?_q=${title}`;
-    const response = await fetchRetry(url);
-    const result = await response.json();
-    return result;
+    const url = `${getBackendURL()}/productByTitle/${title}`;
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
   } catch (error) {
     console.log(error);
     return null;

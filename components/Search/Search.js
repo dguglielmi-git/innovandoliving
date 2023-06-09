@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Loader } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import ListProductos from "../ListProductos";
-import { searchProductosApi } from "../../api/producto";
+import { searchProductByTitle } from "../../api/producto";
 
 export default function Search() {
     const { t } = useTranslation();
@@ -12,13 +12,13 @@ export default function Search() {
     const { query } = useRouter();
 
     useEffect(() => {
-        document.getElementById("search-producto").focus();
+        document.getElementById("search-product").focus();
     }, []);
 
     useEffect(() => {
         (async () => {
             if (size(query.query) > 0) {
-                const response = await searchProductosApi(query.query);
+                const response = await searchProductByTitle(query.query);
                 if (size(response) > 0) setProductos(response);
                 else setProductos([]);
             } else {
