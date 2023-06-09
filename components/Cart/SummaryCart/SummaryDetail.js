@@ -22,14 +22,14 @@ export default function SummaryDetail(props) {
 
     const getPrice = (prod) => {
         if (prod.producto.discount) {
-            return getDiscountPrice(prod.producto.price, prod.producto.discount)
+            return getDiscountPrice(parseFloat(prod.producto.price.$numberDecimal), prod.producto.discount)
         }
-        return prod.producto.price;
+        return parseFloat(prod.producto.price.$numberDecimal);
     }
 
     return (
         <div className="product-item" key={ data._id }>
-            <img src={ `${data.producto.poster.url}` } alt="" />
+            <img src={ `${data.producto.url}` } alt="" />
             <div className="product-detail">
                 <DetailTitle title={ data.producto.title } />
                 <DetailUnitPrice t={ t } unitPrice={ parseFloat(getPrice(data)) } />
