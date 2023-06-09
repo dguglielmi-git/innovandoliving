@@ -5,13 +5,14 @@ import { URL_ERROR_PLACEHOLDER } from "../../utils/constants";
 
 export default function HeaderProducts({ producto }) {
 
+    console.log(producto)
     return (
         <div>
             <Link href={ `/${producto.url}` }>
                 <img
                     alt={ producto.title }
                     height="200px"
-                    src={ producto.poster.url }
+                    src={ producto.url }
                     onError={ (e) => e.target.src = URL_ERROR_PLACEHOLDER } />
             </Link>
             { producto.discount && (

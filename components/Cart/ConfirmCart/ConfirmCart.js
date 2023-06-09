@@ -60,13 +60,13 @@ export default function ConfirmCart(props) {
       await forEach(products, (product) => {
         if (product.producto.discount) {
           let discountPrice = getDiscountPrice(
-            parseFloat(product.producto.price),
+            parseFloat(product.producto.price.$numberDecimal),
             product.producto.discount
           );
           price += parseFloat(discountPrice) * parseFloat(product.quantity);
         } else {
           price +=
-            parseFloat(product.producto.price) * parseFloat(product.quantity);
+            parseFloat(product.producto.price.$numberDecimal) * parseFloat(product.quantity);
         }
       });
     })();

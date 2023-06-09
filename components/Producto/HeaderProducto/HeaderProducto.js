@@ -15,7 +15,7 @@ export default function HeaderProducto(props) {
         <Grid className="header-producto">
             <Grid.Column mobile={ MOBILE_COL_SIZE } tablet={ 6 } computer={ 6 }>
                 <div className="header-producto__image">
-                    <Image src={ poster.url } alt={ title } />
+                    <Image src={ producto.url } alt={ title } />
                 </div>
             </Grid.Column>
             <Grid.Column mobile={ MOBILE_COL_SIZE } tablet={ 10 } computer={ 10 }>

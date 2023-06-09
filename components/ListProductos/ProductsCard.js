@@ -12,7 +12,7 @@ export default function ProductsCard(props) {
 
     const getPrice = (prod) => {
         if (prod.discount) {
-            return getDiscountPrice(prod.price, prod.discount);
+            return getDiscountPrice(parseFloat(prod.price), prod.discount);
         }
         return prod.price;
     }
