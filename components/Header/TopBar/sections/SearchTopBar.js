@@ -17,7 +17,7 @@ export default function SearchTopBar() {
     return (
         <Grid.Column width={ 4 } className="top-bar__right">
             <Input
-                id="search-producto"
+                id="search-product"
                 icon={ { name: "search" } }
                 value={ router.query.query }
                 onChange={ (_, data) => setSearchStr(data.value) }
