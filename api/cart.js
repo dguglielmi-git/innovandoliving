@@ -1,16 +1,16 @@
 import { toast } from "react-toastify";
 import { size, map } from "lodash";
-import { CART } from "../utils/constants";
-import { authFetch, fetchRetry, fetchRetryParams } from "../utils/fetch";
-import i18n from "../locales/i18n";
 import { getToken } from "./token";
+import { getBackendURL } from "../utils/util";
+import { fetchRetryParams } from "../utils/fetch";
+import i18n from "../locales/i18n";
 
-export async function getCart(idUser) {
+export async function getCart() {
   try {
     const token = getToken();
     if (!token) return [];
 
-    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/carts`;
+    const url = `${getBackendURL()}/carts`;
     const params = {
       headers: {
         "x-token": token,
@@ -27,18 +27,24 @@ export async function getCart(idUser) {
 
 export async function cleanCart(idUser, logout) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/carts`;
+    const token = getToken();
+    if (!token) {
+      logout();
+    }
+
+    const url = `${getBackendURL()}/carts`;
     const params = {
       method: "DELETE",
       headers: {
+        "x-token": token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         users_permissions_user: idUser,
       }),
     };
-    const result = await authFetch(url, params, logout);
-    return result;
+    const result = await fetchRetryParams(url, params);
+    return await result.json();
   } catch (error) {
     console.log(error);
     return null;
@@ -46,7 +52,12 @@ export async function cleanCart(idUser, logout) {
 }
 
 export async function addToCart(idUser, product, quantity, logout) {
-  const cart = await getCart(idUser);
+  const token = getToken();
+  if (!token) {
+    logout();
+  }
+
+  const cart = await getCart();
 
   if (cart) {
     let found = false;
@@ -60,10 +71,11 @@ export async function addToCart(idUser, product, quantity, logout) {
   }
 
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/carts`;
+    const url = `${getBackendURL()}/addToCart`;
     const params = {
       method: "POST",
       headers: {
+        "x-token": token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -73,37 +85,37 @@ export async function addToCart(idUser, product, quantity, logout) {
       }),
     };
 
-    const result = await authFetch(url, params, logout);
+    const result = await fetchRetryParams(url, params);
     toast.success(i18n.t("cartProductAddedSuccessfully"));
-    return result;
+    return await result.json();
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
-export async function countProductsCart(idUser) {
-  const cart = await getCart(idUser);
-
-  if (!cart) {
-    return 0;
-  } else {
-    return size(cart);
-  }
-}
-
-export async function removeItemCart(product, logout) {
+export async function removeItemCart(idItemCart, logout) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/carts/${product}`;
+    const token = getToken();
+    if (!token) {
+      logout();
+    }
+
+    const url = `${getBackendURL()}/removeFromCart`;
     const params = {
       method: "DELETE",
       headers: {
+        "x-token": token,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        itemCartToRemove: idItemCart,
+      }),
     };
-    const result = await authFetch(url, params, logout);
+
+    const result = await fetchRetryParams(url, params);
     toast.success(i18n.t("cartItemRemovedSuccessfully"));
-    return result;
+    return await result.json();
   } catch (error) {
     console.log(error);
     toast.error(i18n.t("cartErrorTryingToDeleteItem"));
@@ -111,30 +123,12 @@ export async function removeItemCart(product, logout) {
   }
 }
 
-export async function paymentCartApi(token, products, idUser, address, logout) {
-  try {
-    const addressShipping = address;
-    delete addressShipping.user;
-    delete addressShipping.createAd;
+export async function countProductsCart() {
+  const cart = await getCart();
 
-    const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/orders`;
-    const params = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token,
-        products,
-        idUser,
-        addressShipping,
-      }),
-    };
-
-    const result = await authFetch(url, params, logout);
-    return result;
-  } catch (error) {
-    console.log(error);
-    return null;
+  if (!cart) {
+    return 0;
+  } else {
+    return size(cart);
   }
 }
