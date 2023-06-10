@@ -26,13 +26,13 @@ export default function SummaryCart(props) {
           price +=
             parseFloat(
               getDiscountPrice(
-                parseFloat(product.producto.price.$numberDecimal),
+                parseFloat(product.producto?.price?.$numberDecimal),
                 product.producto.discount
               )
             ) * parseFloat(product.quantity);
         } else {
           price +=
-            parseFloat(product.producto.price.$numberDecimal) *
+            parseFloat(product.producto?.price?.$numberDecimal) *
             parseFloat(product.quantity);
         }
       });

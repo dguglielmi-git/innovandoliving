@@ -3,7 +3,8 @@ export const CART = "cart";
 export const TOKEN = "token";
 export const CORS_PROXY =
   process.env.NODE_ENV == "development"
-    ? "https://cors-anywhere.herokuapp.com/"
+    // ? "https://cors-anywhere.herokuapp.com/"
+    ? "https://cors-proxy.htmldriven.com/"
     : "";
 
 export const URL_ERROR_PLACEHOLDER =

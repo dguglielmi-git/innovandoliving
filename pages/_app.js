@@ -71,7 +71,7 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if (auth) {
-            setTotalProductsCart(countProductsCart(auth.idUser));
+            setTotalProductsCart(countProductsCart());
         }
         setReloadCart(false);
     }, [reloadCart, auth]);
