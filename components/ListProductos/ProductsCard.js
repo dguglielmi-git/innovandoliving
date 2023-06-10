@@ -12,9 +12,9 @@ export default function ProductsCard(props) {
 
     const getPrice = (prod) => {
         if (prod.discount) {
-            return getDiscountPrice(parseFloat(prod.price.$numberDecimal), prod.discount);
+            return getDiscountPrice(parseFloat(prod?.price?.$numberDecimal), prod.discount);
         }
-        return prod.price.$numberDecimal;
+        return prod?.price?.$numberDecimal;
     }
 
     return (

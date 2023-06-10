@@ -99,13 +99,13 @@ export default function Info(props) {
                 <div className="header-producto__buy-price">
                     <p>
                         <Icon name="tag" />{ t('productoHeaderProductoSalesPrice') }
-                        <p className={ classPrice() }>${ parseFloat(price.$numberDecimal) }</p>
+                        <p className={ classPrice() }>${ parseFloat(price?.$numberDecimal) }</p>
                     </p>
                     <div className="header-producto__buy-price-actions">
                         { discount && (
                             <>
                                 <p>-{ discount }%</p>
-                                <p>${ (price - Math.floor(parseFloat(price.$numberDecimal) * discount) / 100).toFixed(2) }</p>
+                                <p>${ (price - Math.floor(parseFloat(price?.$numberDecimal) * discount) / 100).toFixed(2) }</p>
                             </>
                         ) }
                     </div>

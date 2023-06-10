@@ -22,9 +22,9 @@ export default function SummaryDetail(props) {
 
     const getPrice = (prod) => {
         if (prod.producto.discount) {
-            return getDiscountPrice(parseFloat(prod.producto.price.$numberDecimal), prod.producto.discount)
+            return getDiscountPrice(parseFloat(prod.producto?.price?.$numberDecimal), prod.producto.discount)
         }
-        return parseFloat(prod.producto.price.$numberDecimal);
+        return parseFloat(prod.producto?.price?.$numberDecimal);
     }
 
     return (
@@ -51,7 +51,7 @@ export default function SummaryDetail(props) {
                 size="mini"
                 open={ showDialog }
                 onCancel={ () => setShowDialog(false) }
-                onConfirm={ () => removeProduct(data.id) }
+                onConfirm={ () => removeProduct(data._id) }
                 content={ t('summaryDetailAskForRemovalConfirmation') }
             />
         </div>

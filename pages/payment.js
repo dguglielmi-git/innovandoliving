@@ -27,9 +27,9 @@ export default function Payment(props) {
 
     const getPrice = (prod) => {
         if (prod.producto.discount) {
-            return getDiscountPrice(parseFloat(prod.producto.price.$numberDecimal), prod.producto.discount);
+            return getDiscountPrice(parseFloat(prod.producto?.price?.$numberDecimal), prod.producto.discount);
         }
-        return parseFloat(prod.producto.price.$numberDecimal);
+        return parseFloat(prod.producto?.price?.$numberDecimal);
     }
 
     const getItems = () => {

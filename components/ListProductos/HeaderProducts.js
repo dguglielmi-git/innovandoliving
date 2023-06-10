@@ -19,7 +19,7 @@ export default function HeaderProducts({ producto }) {
           <p>
             -{producto.discount}% -{" "}
             <span>
-              {numToDollar(parseFloat(producto.price.$numberDecimal))}
+              {numToDollar(parseFloat(producto?.price?.$numberDecimal))}
             </span>
           </p>
         </div>

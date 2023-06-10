@@ -42,7 +42,7 @@ export default function Cart() {
     useEffect(() => {
         (async () => {
             if (idUser) {
-                const _cart = await getCart(idUser);
+                const _cart = await getCart();
                 if (_cart) {
                     setProductsData(_cart);
                 }

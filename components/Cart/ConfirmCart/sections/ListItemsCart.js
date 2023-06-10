@@ -22,13 +22,13 @@ export default function ListItemsCart(props) {
                   ? numToDollar(
                       parseFloat(
                         getDiscountPrice(
-                          parseFloat(product.producto.price.$numberDecimal),
+                          parseFloat(product.producto?.price?.$numberDecimal),
                           product.producto.discount
                         )
                       ) * parseFloat(product.quantity)
                     )
                   : numToDollar(
-                      parseFloat(product.producto.price.$numberDecimal) *
+                      parseFloat(product.producto?.price?.$numberDecimal) *
                         parseFloat(product.quantity)
                     )}
               </h5>
