@@ -7,46 +7,42 @@ import ListProductos from "../ListProductos";
 import { getFavoriteApi } from "../../api/favorite";
 
 export default function Wishlist() {
-    const { t } = useTranslation();
-    const [productos, setProductos] = useState(null);
-    const { auth, logout } = useAuth();
+  const { t } = useTranslation();
+  const [productos, setProductos] = useState(null);
+  const { logout } = useAuth();
 
-    useEffect(() => {
-        (async () => {
-            const response = await getFavoriteApi(auth.idUser, logout);
-            if (size(response) > 0) {
-                const productoList = [];
-                forEach(response, (data) => {
-                    productoList.push(data.producto);
-                });
-                setProductos(productoList);
-            } else {
-                setProductos([]);
-            }
-        })();
-    }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await getFavoriteApi(logout);
+      if (size(response) > 0) {
+        const productoList = [];
+        forEach(response, (data) => {
+          productoList.push(data.producto);
+        });
+        setProductos(productoList);
+      } else {
+        setProductos([]);
+      }
+    })();
+  }, []);
 
-    const WishListEmpty = () => (
-        <div className="data__not-found">
-            <h3>{ t('wishlistNotProductsOnList') }</h3>
-        </div>
-    )
+  const WishListEmpty = () => (
+    <div className="data__not-found">
+      <h3>{t("wishlistNotProductsOnList")}</h3>
+    </div>
+  );
 
-    return (
-        <div className="wishlist__block">
-            <div className="title">{ t('wishlistTitle') }</div>
+  return (
+    <div className="wishlist__block">
+      <div className="title">{t("wishlistTitle")}</div>
 
-            <div className="data">
-                { !productos && <Loader active>
-                    { t('wishlistLoadingProducts') }
-                </Loader> }
+      <div className="data">
+        {!productos && <Loader active>{t("wishlistLoadingProducts")}</Loader>}
 
-                { productos && size(productos) === 0 && (
-                    <WishListEmpty />
-                ) }
+        {productos && size(productos) === 0 && <WishListEmpty />}
 
-                { size(productos) > 0 && <ListProductos productos={ productos } /> }
-            </div>
-        </div>
-    )
+        {size(productos) > 0 && <ListProductos productos={productos} />}
+      </div>
+    </div>
+  );
 }

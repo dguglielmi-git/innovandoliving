@@ -3,8 +3,8 @@ export const CART = "cart";
 export const TOKEN = "token";
 export const CORS_PROXY =
   process.env.NODE_ENV == "development"
-    // ? "https://cors-anywhere.herokuapp.com/"
-    ? "https://cors-proxy.htmldriven.com/"
+    ? // ? "https://cors-anywhere.herokuapp.com/"
+      "https://cors-proxy.htmldriven.com/"
     : "";
 
 export const URL_ERROR_PLACEHOLDER =
@@ -20,7 +20,7 @@ export const DEFAULT_LIMIT_MAIN_PRODUCTS = 50;
 export const DEFAULT_SORT_PRODUCT_ITEMS =
   "sort=createAt:-1&publish=true&limit=";
 export const FILTER_PRODUCTS_BY_PLATFORM = "sort=createAt:-1&skip=";
-export const FILTER_SORTED_PLATFORMS = 'sort=position:-1';
+export const FILTER_SORTED_PLATFORMS = "sort=position:-1";
 
 export const STEP_VERIFY_PRODUCTS = 0;
 export const STEP_DELIVERY_OPTIONS = 1;
@@ -65,3 +65,11 @@ export const ERROR_GETTING_ADDRESS_DETAILS =
 export const ERROR_NOT_VALID_ADDRESS = "Not a valid Address received:";
 export const TOKEN_IS_MISSING =
   "Token is missing, please provide a valid token in the request.";
+export const ALREADY_IN_FAVORITES = "Item is already a favorite";
+export const ITEM_NOT_ADDED_TO_FAVORITES =
+  "Server could not add the item to favorites. detail:";
+export const ITEM_ADDED_TO_FAVORITES = "Item Added to favorites";
+export const ITEM_REMOVED_FROM_FAVORITES =
+  "Item was successfully removed from favorites";
+export const ITEM_NOT_REMOVED =
+  "Something went wrong when trying to removed the Item, Server status code: ";
