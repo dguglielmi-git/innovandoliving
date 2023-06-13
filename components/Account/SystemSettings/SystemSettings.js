@@ -17,7 +17,7 @@ export default function SystemSettings(props) {
         initialValues: initialValues(
             configs?.address_delivery_center,
             configs?.km_minimum,
-            configs?.km_price
+            configs?.km_price?.$numberDecimal
         ),
         validateOnChange: false,
         validateOnSchema: Yup.object(validationSchema()),
@@ -62,7 +62,7 @@ export default function SystemSettings(props) {
                     error={ formik.errors.km_minimum }
                     onChange={ formik.handleChange }
                 />
-                <Button className="submit" loading={ loading }>
+                <Button type="submit" className="submit" loading={ loading }>
                     { t('systemSettingsUpdateButton') }
                 </Button>
             </Form>

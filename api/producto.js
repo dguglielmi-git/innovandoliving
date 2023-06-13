@@ -1,7 +1,6 @@
 import {
   DEFAULT_SORT_PRODUCT_ITEMS,
   FILTER_PRODUCTS_BY_PLATFORM,
-  TOKEN_IS_MISSING,
   USER_CLIENT,
   USER_OWNER,
 } from "../utils/constants";
@@ -11,15 +10,8 @@ import { getToken } from "./token";
 
 export async function getPublishedProducts(limit) {
   try {
-    const token = getToken();
-    if (!token) {
-      console.error(`getPublishedProducts: ${TOKEN_IS_MISSING}`);
-      return [];
-    }
-
     const params = {
       headers: {
-        "x-token": token,
         "Content-Type": "application/json",
       },
     };
@@ -35,15 +27,8 @@ export async function getPublishedProducts(limit) {
 
 export async function getProductsByPlatform(platform, limit, start) {
   try {
-    const token = getToken();
-    if (!token) {
-      console.error(`getProductsByPlatform: ${TOKEN_IS_MISSING}`);
-      return [];
-    }
-
     const params = {
       headers: {
-        "x-token": token,
         "Content-Type": "application/json",
       },
     };
@@ -60,15 +45,9 @@ export async function getProductsByPlatform(platform, limit, start) {
 
 export async function getProductByID(idProduct) {
   try {
-    const token = getToken();
-    if (!token) {
-      console.error(`getProductByID: ${TOKEN_IS_MISSING}`);
-      return [];
-    }
-
+ 
     const params = {
       headers: {
-        "x-token": token,
         "Content-Type": "application/json",
       },
     };
@@ -84,15 +63,9 @@ export async function getProductByID(idProduct) {
 
 export async function searchProductByTitle(title) {
   try {
-    const token = getToken();
-    if (!token) {
-      console.error(`searchProductByTitle: ${TOKEN_IS_MISSING}`);
-      return [];
-    }
-
+    
     const params = {
       headers: {
-        "x-token": token,
         "Content-Type": "application/json",
       },
     };
