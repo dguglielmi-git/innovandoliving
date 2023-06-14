@@ -73,3 +73,4 @@ export const ITEM_REMOVED_FROM_FAVORITES =
   "Item was successfully removed from favorites";
 export const ITEM_NOT_REMOVED =
   "Something went wrong when trying to removed the Item, Server status code: ";
+export const ERROR_GETTING_DOCTYPES = "Error trying to get documents from the backend.";
