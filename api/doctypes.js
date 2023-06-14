@@ -1,17 +1,6 @@
+import { fetchRetryParams } from "../utils/fetch";
 import { getBackendURL } from "../utils/util";
 import { getToken } from "./token";
-
-// export async function getDocTypes() {
-//   try {
-//     const url = `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/doc-types`;
-//     const response = await fetchRetry(url);
-//     const result = await response.json();
-//     return result;
-//   } catch (error) {
-//     console.log(error);
-//     return null;
-//   }
-// }
 
 export async function getDocTypes() {
   try {
@@ -28,7 +17,7 @@ export async function getDocTypes() {
       },
     };
     const result = await fetchRetryParams(url, params);
-    return await response.json();
+    return await result.json();
   } catch (error) {
     console.log(error);
     return null;
