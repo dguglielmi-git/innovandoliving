@@ -9,52 +9,46 @@ import GridCategories from "./Grid/GridCategories";
 import GridOptions from "./Grid/GridOptions";
 
 export default function MenuWeb() {
-    const [platforms, setPlatforms] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [titleModal, setTitleModal] = useState("Inicia sesion");
-    const [user, setUser] = useState(undefined);
-    const { auth, logout } = useAuth();
+  const [platforms, setPlatforms] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [titleModal, setTitleModal] = useState("Inicia sesion");
+  const [user, setUser] = useState(null);
+  const { auth, logout } = useAuth();
 
-    useEffect(() => {
-        (async () => {
-            const response = await getMeApi(logout);
-            setUser(response);
-        })();
-    }, [auth])
+  useEffect(() => {
+    (async () => {
+      const response = await getMeApi(logout);
+      setUser(response);
+    })();
+  }, [auth]);
 
-    useEffect(() => {
-        (async () => {
-            const response = await getSortedPlatforms();
-            setPlatforms(response || []);
-        })();
-    }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await getSortedPlatforms();
+      setPlatforms(response || []);
+    })();
+  }, []);
 
-    const onShowModal = () => setShowModal(true);
-    const onCloseModal = () => setShowModal(false);
+  const onShowModal = () => setShowModal(true);
+  const onCloseModal = () => setShowModal(false);
 
-    return (
-        <div className="menu">
-            <Container>
-                <Grid>
-                    <GridCategories platforms={ platforms } />
-                    <GridOptions
-                        user={ user }
-                        onShowModal={ onShowModal }
-                        logout={ logout }
-                    />
-                </Grid>
-            </Container>
+  return (
+    <div className="menu">
+      <Container>
+        <Grid>
+          <GridCategories platforms={platforms} />
+          <GridOptions user={user} onShowModal={onShowModal} logout={logout} />
+        </Grid>
+      </Container>
 
-            <BasicModal
-                show={ showModal }
-                setShow={ setShowModal }
-                title={ titleModal }
-                size="small">
-                <Auth
-                    onCloseModal={ onCloseModal }
-                    setTitleModal={ setTitleModal }
-                />
-            </BasicModal>
-        </div>
-    )
+      <BasicModal
+        show={showModal}
+        setShow={setShowModal}
+        title={titleModal}
+        size="small"
+      >
+        <Auth onCloseModal={onCloseModal} setTitleModal={setTitleModal} />
+      </BasicModal>
+    </div>
+  );
 }
