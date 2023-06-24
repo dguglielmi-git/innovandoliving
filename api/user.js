@@ -76,7 +76,6 @@ export async function updateUser(fieldToUpdate, logout) {
       logout();
       return null;
     }
-    console.log(fieldToUpdate);
 
     const url = `${getBackendURL()}/users/update`;
     const params = {
