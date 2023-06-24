@@ -20,7 +20,7 @@ export default function RegisterForm(props) {
         onSubmit: async (formData) => {
             setLoading(true);
             const response = await registerApi(formData);
-            if (response?.jwt) {
+            if (response?.registered) {
                 toast.success(t('authRegisterFormOkRegister'));
                 showLoginForm();
             } else {
