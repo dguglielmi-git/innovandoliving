@@ -15,7 +15,10 @@ import {
 export async function isFavoriteApi(idProduct, logout) {
   try {
     const token = getToken();
-    if (!token) logout();
+    if (!token) {
+      logout();
+      return false;
+    }
 
     const url = `${getBackendURL()}/isFavorite/${idProduct}`;
     const params = {
@@ -35,10 +38,12 @@ export async function isFavoriteApi(idProduct, logout) {
 export async function addFavoriteApi(idProduct, logout) {
   try {
     const token = getToken();
-    if (!token) logout();
+    if (!token) {
+      logout();
+      return null;
+    }
 
     const url = `${getBackendURL()}/favorite`;
-
     const params = {
       method: "POST",
       headers: {
@@ -66,7 +71,10 @@ export async function addFavoriteApi(idProduct, logout) {
 export async function removeFavoriteApi(idProduct, logout) {
   try {
     const token = getToken();
-    if (!token) logout();
+    if (!token) {
+      logout();
+      return null;
+    }
 
     const url = `${getBackendURL()}/favorite/${idProduct}`;
     const params = {
@@ -92,7 +100,10 @@ export async function removeFavoriteApi(idProduct, logout) {
 export async function getFavoriteApi(logout) {
   try {
     const token = getToken();
-    if (!token) logout();
+    if (!token) {
+      logout();
+      return null;
+    }
 
     const url = `${getBackendURL()}/favorites`;
     const params = {
@@ -102,6 +113,9 @@ export async function getFavoriteApi(logout) {
       },
     };
     const result = await fetchRetryParams(url, params);
+    if (result.status !== SUCCESSFUL_HTTP_REQUEST) {
+      return null;
+    }
     return result.json();
   } catch (error) {
     console.log(error);
