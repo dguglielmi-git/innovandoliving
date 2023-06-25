@@ -30,7 +30,7 @@ export default function Configuration(props) {
                     user={ user }
                     logout={ logout }
                 />
-                { user?.isowner === IS_OWNER &&
+                { user?.isOwner === IS_OWNER &&
                     <SystemSettings
                         logout={ logout }
                         setReloadUser={ setReloadUser }
