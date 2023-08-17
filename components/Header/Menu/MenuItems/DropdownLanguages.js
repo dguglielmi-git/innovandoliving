@@ -8,7 +8,8 @@ export default function DropdownLanguages(props) {
     const { onClick, languages, languageSelected } = props;
 
     return (
-        <Dropdown icon={ <ReactCountryFlag countryCode={ languageSelected?.flag } /> } pointing="top left">
+        // <Dropdown icon={ <ReactCountryFlag countryCode={ languageSelected?.flag } /> } pointing="top left">
+        <Dropdown icon={ <ReactCountryFlag countryCode="GB" /> } pointing="top left">
             <Dropdown.Menu>
                 <div className="languages-box">
                     {
