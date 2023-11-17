@@ -1,76 +1,76 @@
-import React, { useState, useReducer, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import OrderTimeLine from "./OrderTimeLine";
-import OptionsOrderStatus from "./OptionsOrderStatus"
-import { drawTimeLineOfOrder } from "../../../../../utils/util";
-import { progressOrderReducer } from "../../../../../utils/reducer";
-import { getOrderStatuses, updateOrderStatus } from "../../../../../api/order";
+import React, { useState, useReducer, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import OrderTimeLine from './OrderTimeLine'
+import OptionsOrderStatus from './OptionsOrderStatus'
+import { drawTimeLineOfOrder } from '../../../../../utils/util'
+import { progressOrderReducer } from '../../../../../utils/reducer'
+import { getOrderStatuses, updateOrderStatus } from '../../../../../api/order'
 
-export default function ProgressOrder(props) {
-    const {
-        order,
-        userType,
-        setReloadOrder,
-        orderBlocked,
-        setOrderBlocked } = props;
-    const [options, setOptions] = useState([]);
-    const [statusValue, setStatusValue] = useState(-1);
-    const [historyStatus, setHistoryStatus] = useState([]);
-    const { t } = useTranslation();
+export default function ProgressOrder (props) {
+  const { order, userType, setReloadOrder, orderBlocked, setOrderBlocked } =
+    props
+  const [options, setOptions] = useState([])
+  const [statusValue, setStatusValue] = useState(-1)
+  const [historyStatus, setHistoryStatus] = useState([])
+  const { t } = useTranslation()
 
-    useEffect(async () => {
-        setHistoryStatus(order.status_history);
-        const statuses = await getOrderStatuses();
-        setOptions(statuses);
-        setStatusValue(order.status);
-    }, [order]);
+  const setStatuses = async () => {
+    const statuses = await getOrderStatuses()
+    setOptions(statuses)
+  }
 
-    const [state, dispatch] = useReducer(progressOrderReducer, {
-        open: false,
-        dimmer: undefined,
-    })
-    const { open, dimmer } = state
+  useEffect(() => {
+    setHistoryStatus(order.status_history)
+    setStatuses()
+    setStatusValue(order.status)
+  }, [order])
 
-    const openModal = () => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })
+  const [state, dispatch] = useReducer(progressOrderReducer, {
+    open: false,
+    dimmer: undefined
+  })
+  const { open, dimmer } = state
 
-    const closeModal = () => dispatch({ type: 'CLOSE_MODAL' });
+  const openModal = () => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })
 
-    const handleChange = async (e, { value }) => setStatusValue(value)
+  const closeModal = () => dispatch({ type: 'CLOSE_MODAL' })
 
-    const handleCancel = () => closeModal();
+  const handleChange = async (e, { value }) => setStatusValue(value)
 
-    const handleUpdate = async () => {
-        const history = await updateOrderStatus(order, statusValue);
-        setHistoryStatus(history.status_history);
-        setReloadOrder(true);
-        if (statusValue == 99 || statusValue == 12) setOrderBlocked(true);
-        closeModal();
-    }
+  const handleCancel = () => closeModal()
 
-    return (
-        <div className="order-detail__mainbox-orderstatus">
-            <h5>{ t('progressOrderTitle') }</h5>
+  const handleUpdate = async () => {
+    const history = await updateOrderStatus(order, statusValue)
+    setHistoryStatus(history.status_history)
+    setReloadOrder(true)
+    if (statusValue == 99 || statusValue == 12) setOrderBlocked(true)
+    closeModal()
+  }
 
-            <OptionsOrderStatus
-                open={ open }
-                order={ order }
-                dimmer={ dimmer }
-                options={ options }
-                userType={ userType }
-                statusValue={ statusValue }
-                orderBlocked={ orderBlocked }
-                openModal={ openModal }
-                closeModal={ closeModal }
-                handleCancel={ handleCancel }
-                handleUpdate={ handleUpdate }
-                handleChange={ handleChange }
-                setReloadOrder={ setReloadOrder }
-            />
+  return (
+    <div className='order-detail__mainbox-orderstatus'>
+      <h5>{t('progressOrderTitle')}</h5>
 
-            <OrderTimeLine
-                historyStatus={ historyStatus }
-                drawTimeLineOfOrder={ drawTimeLineOfOrder }
-            />
-        </div>
-    )
+      <OptionsOrderStatus
+        open={open}
+        order={order}
+        dimmer={dimmer}
+        options={options}
+        userType={userType}
+        statusValue={statusValue}
+        orderBlocked={orderBlocked}
+        openModal={openModal}
+        closeModal={closeModal}
+        handleCancel={handleCancel}
+        handleUpdate={handleUpdate}
+        handleChange={handleChange}
+        setReloadOrder={setReloadOrder}
+      />
+
+      <OrderTimeLine
+        historyStatus={historyStatus}
+        drawTimeLineOfOrder={drawTimeLineOfOrder}
+      />
+    </div>
+  )
 }

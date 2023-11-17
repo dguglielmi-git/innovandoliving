@@ -8,16 +8,16 @@ export default function HeaderProducts({ producto }) {
     <div>
       <Link href={`/${producto?._id}`}>
         <img
-          alt={producto.title}
+          alt={producto?.title}
           height="200px"
-          src={producto.url}
+          src={producto?.url}
           onError={(e) => (e.target.src = URL_ERROR_PLACEHOLDER)}
         />
       </Link>
-      {producto.discount && (
+      {producto?.discount && (
         <div className="p-discount">
           <p>
-            -{producto.discount}% -{" "}
+            -{producto?.discount}% -{" "}
             <span>
               {numToDollar(parseFloat(producto?.price?.$numberDecimal))}
             </span>

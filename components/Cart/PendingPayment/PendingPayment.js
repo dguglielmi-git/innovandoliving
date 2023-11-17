@@ -16,7 +16,7 @@ export default function PendingPayment(props) {
     useEffect(() => {
         (async () => {
             const finalOrder = await parsePendingFinalOrder(incomingData);
-            const res = await orderUpdate(finalOrder);
+            await orderUpdate(finalOrder);
             cleanCart();
         })()
     }, []);

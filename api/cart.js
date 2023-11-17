@@ -25,23 +25,20 @@ export async function getCart() {
   }
 }
 
-export async function cleanCart(idUser, logout) {
+export async function cleanCart(logout) {
   try {
     const token = getToken();
     if (!token) {
       logout();
     }
 
-    const url = `${getBackendURL()}/carts`;
+    const url = `${getBackendURL()}/cleanCart`;
     const params = {
       method: "DELETE",
       headers: {
         "x-token": token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        users_permissions_user: idUser,
-      }),
     };
     const result = await fetchRetryParams(url, params);
     return await result.json();

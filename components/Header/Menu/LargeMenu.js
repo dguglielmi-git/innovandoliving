@@ -72,7 +72,7 @@ export default function LargeMenu(props) {
                         onClick={ selectLang }
                         languageSelected={ languageSelected }
                     />
-                    <Link href={ LINK_TO_CART }>
+                    <Link  href={ LINK_TO_CART }>
                         <Menu.Item as="a" className="m-0">
                             <Icon name="cart" />
                             { prodCounter > 0 &&
