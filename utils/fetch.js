@@ -54,7 +54,7 @@ export function fetchRetryParams(
   tries = process.env.NEXT_PUBLIC_RETRY_QUERY_ATTEMPTS
 ) {
   function onError(err) {
-    console.log("Retrying fetch...");
+    console.log("Retrying fetchRetryParams...");
     let triesLeft = tries - 1;
     if (!triesLeft) {
       return new Response(JSON.stringify({}), { status: 200 });

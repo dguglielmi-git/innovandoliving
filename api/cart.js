@@ -31,6 +31,7 @@ export async function cleanCart(logout) {
     if (!token) {
       logout();
     }
+    console.log('cleaning cart')
 
     const url = `${getBackendURL()}/cleanCart`;
     const params = {
@@ -55,6 +56,7 @@ export async function addToCart(idUser, product, quantity, logout) {
   }
 
   const cart = await getCart();
+  console.log(cart)
 
   if (cart) {
     let found = false;
@@ -83,6 +85,7 @@ export async function addToCart(idUser, product, quantity, logout) {
     };
 
     const result = await fetchRetryParams(url, params);
+    console.log(result)
     toast.success(i18n.t("cartProductAddedSuccessfully"));
     return await result.json();
   } catch (error) {

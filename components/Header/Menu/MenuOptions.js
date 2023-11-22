@@ -13,7 +13,6 @@ import { RES_LARGE } from '../../../utils/breakpoint'
 import { LINK_TO_CART } from '../../../utils/constants'
 import useWindowSize from '../../../hooks/useWindowSize'
 import { updateUser } from '../../../api/user'
-import useAuth from '../../../hooks/useAuth'
 import DropdownLanguages from './MenuItems/DropdownLanguages'
 import i18n from '../../../locales/i18n'
 
@@ -24,8 +23,16 @@ export default function MenuOptions (props) {
   const { queryCounter, ordersCounter } = useMsgs()
   const { width } = useWindowSize()
   const { t } = useTranslation()
-  const { setReloadUser } = useAuth()
   const [languageSelected, setLanguageSelected] = useState(null)
+
+  const selectLang = async lang => {
+    setLanguageSelected(lang)
+
+    i18n.changeLanguage(lang.lang)
+    if (user) {
+      await updateUser({ language: lang.lang }, logout)
+    }
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -44,16 +51,6 @@ export default function MenuOptions (props) {
       }
     })
   }, [user])
-
-  const selectLang = async lang => {
-    setLanguageSelected(lang)
-   
-    i18n.changeLanguage(lang.lang)
-    if (user) {
-      await updateUser({ language: lang.lang }, logout)
-      setReloadUser(true)
-    }
-  }
 
   const textUser = user && `${user.name} ${user.lastname}`
   return (

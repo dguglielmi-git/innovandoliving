@@ -133,7 +133,6 @@ export default function MyApp ({ Component, pageProps }) {
 
   const cleaningCart = async logout => {
     await cleanCart(logout)
-    setReloadCart(true)
   }
 
   const settingsData = useMemo(
@@ -169,7 +168,7 @@ export default function MyApp ({ Component, pageProps }) {
         addProduct(idUser, product, quantity),
       getProductsCart: getCart,
       removeProductCart: product => removeProduct(product),
-      cleanCart: cleaningCart(logout)
+      cleanCart: () => cleaningCart(logout)
     }),
     [totalProductsCart]
   )

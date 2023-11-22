@@ -7,9 +7,20 @@ import { Typography } from '@material-ui/core'
 export default function DropdownLanguages (props) {
   const { onClick, languages, languageSelected } = props
 
+  const dropDownStyles = {
+    width: '1.5em',
+    height: '1.5em'
+  }
+
   return (
     <Dropdown
-      icon={<ReactCountryFlag countryCode={languageSelected?.flag} svg />}
+      icon={
+        <ReactCountryFlag
+          countryCode={languageSelected?.flag}
+          svg
+          style={dropDownStyles}
+        />
+      }
       pointing='top left'
     >
       <Dropdown.Menu>
@@ -22,7 +33,11 @@ export default function DropdownLanguages (props) {
               }}
               key={index}
             >
-              <ReactCountryFlag countryCode={lang.flag} svg/>
+              <ReactCountryFlag
+                countryCode={lang.flag}
+                svg
+                style={dropDownStyles}
+              />
               <div className='lang-list__text'>
                 <Typography variant='subtitle2'>{lang.text}</Typography>
               </div>

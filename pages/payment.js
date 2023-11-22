@@ -112,8 +112,7 @@ export default function Payment (props) {
     const response = await sendProductsToMercadoPago(
       getItemsDependingOnPaymentMethod()
     )
-    // const response = await res
-    console.log(response)
+
     const order = await createOrderJson(response)
     const orderRes = await saveOrder(order)
 
