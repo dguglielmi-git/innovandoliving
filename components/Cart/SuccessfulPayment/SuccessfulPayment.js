@@ -51,7 +51,7 @@ export default function SuccessfulPayment (props) {
           <strong>{t('businessName')} 💕 </strong>
         </p>
       </div>
-      <ButtonContinueShop label='Continue Shopping' />
+      <ButtonContinueShop label={t('continueShopping')} />
     </div>
   )
 }

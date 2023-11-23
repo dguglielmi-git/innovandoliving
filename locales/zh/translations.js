@@ -8,6 +8,7 @@ export const TRANSLATION_ZH = {
   statusOnTheWay: '在途中',
   statusDelivered: '發表',
   labelShipping: '船運',
+  continueShopping: '继续购物',
 
   /* Seo */
   seoTitle: 'Innovando Living 扶手椅',
@@ -16,6 +17,12 @@ export const TRANSLATION_ZH = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: '日期',
+  msgQueueProduct: '产品',
+  msgQueueUsername: '用户名',
+  msgQueueUnreadMsgs: '未读消息',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: '創建地址時出錯',
@@ -194,6 +201,8 @@ export const TRANSLATION_ZH = {
   headerMenuQueries: '查詢',
 
   /* Orders - Order */
+  orderTabActive: '活动订单',
+  orderTabClosed: '已关闭订单',
   orderTitle: '我的訂單',
   orderListEmptyLabel: '沒有訂單。',
   ordersOrderPurchaseOnItsWay: '訂單已發送至以下地址：',
@@ -282,6 +291,7 @@ export const TRANSLATION_ZH = {
   questionsSendMessageLabel: '發送問題',
   questionsLoadingProduct: '加載產品信息',
   questionsErrorSendQuestionNotLogged: '您必須登錄才能提交產品問題。',
+  questionsNoComments: '没有评论',
 
   /* Queries */
   queriesSendReply: '發送回复',

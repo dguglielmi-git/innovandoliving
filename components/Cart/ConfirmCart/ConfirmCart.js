@@ -51,30 +51,31 @@ export default function ConfirmCart (props) {
       }
     }
   }
-  useEffect( () => {
+  useEffect(() => {
     setLoading(true)
     setConfigurations()
     setLoading(false)
   }, [])
 
-  useEffect(() => {
+  const updateTotalPrice = async () => {
     let price = 0
-    ;(async () => {
-      await forEach(products, product => {
-        if (product.producto.discount) {
-          let discountPrice = getDiscountPrice(
-            parseFloat(product.producto?.price?.$numberDecimal),
-            product.producto.discount
-          )
-          price += parseFloat(discountPrice) * parseFloat(product.quantity)
-        } else {
-          price +=
-            parseFloat(product.producto?.price?.$numberDecimal) *
-            parseFloat(product.quantity)
-        }
-      })
-    })()
+    await forEach(products, product => {
+      if (product.producto.discount) {
+        let discountPrice = getDiscountPrice(
+          parseFloat(product.producto?.price?.$numberDecimal),
+          product.producto.discount
+        )
+        price += parseFloat(discountPrice) * parseFloat(product.quantity)
+      } else {
+        price +=
+          parseFloat(product.producto?.price?.$numberDecimal) *
+          parseFloat(product.quantity)
+      }
+    })
     setTotalPrice(price)
+  }
+  useEffect(() => {
+    updateTotalPrice()
   }, [products])
 
   return (

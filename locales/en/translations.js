@@ -8,6 +8,7 @@ export const TRANSLATION_EN = {
   statusOnTheWay: 'On the way',
   statusDelivered: 'Delivered',
   labelShipping: 'Shipping',
+  continueShopping: 'Continue Shopping',
 
   /* Seo */
   seoTitle: 'Innovando Living Armchairs',
@@ -16,6 +17,12 @@ export const TRANSLATION_EN = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Date',
+  msgQueueProduct: 'Product',
+  msgQueueUsername: 'Username',
+  msgQueueUnreadMsgs: 'Unread Msgs',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: 'Error creating address',
@@ -200,6 +207,8 @@ export const TRANSLATION_EN = {
   headerMenuQueries: 'Queries',
 
   /* Orders - Order */
+  orderTabActive: 'Active Orders',
+  orderTabClosed: 'Closed Orders',
   orderTitle: 'My Orders',
   orderListEmptyLabel: 'No Orders.',
   ordersOrderPurchaseOnItsWay:
@@ -290,6 +299,7 @@ export const TRANSLATION_EN = {
   questionsLoadingProduct: 'Loading Product information',
   questionsErrorSendQuestionNotLogged:
     'You must be logged in to submit product questions.',
+  questionsNoComments: 'no comments',
 
   /* Queries */
   queriesSendReply: 'Send Reply',
@@ -330,11 +340,11 @@ export const TRANSLATION_EN = {
   modalPayErrorUpdate: 'Error while trying to update the amount',
   modalPayTotalOustandingBalance: 'Total Outstanding Balance: ',
   modalPayAmountReceivedTitle: 'amount received',
-  modalPayAmountReceivedLabel:'Amount received',
+  modalPayAmountReceivedLabel: 'Amount received',
   modalPayAmountReceivedPlaceholder: 'Should be less than: ',
   modalPayAmountReceivedError: 'Amount is greater than pending',
-  modalPayBalanceUpdatingConfirmation: 'Are you sure you want to update the pending Balance?',
-
+  modalPayBalanceUpdatingConfirmation:
+    'Are you sure you want to update the pending Balance?',
 
   /* OptionsOrderStatus */
   optionsOrderStatusButtonLocked: 'Payment Received',

@@ -39,7 +39,6 @@ export default function ModalPaymentReceived (props) {
 
       await updatePendingPayment(order, paymentUpdate)
       setReloadOrder(true)
-      console.log('requesting reload orders')
       toast.success(t('modalPayUpdatedOk'))
       setOpen(false)
     } catch (error) {

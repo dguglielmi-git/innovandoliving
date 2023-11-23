@@ -8,6 +8,7 @@ export const TRANSLATION_DE = {
   statusOnTheWay: 'Auf dem Weg',
   statusDelivered: 'Geliefert',
   labelShipping: 'Versand',
+  continueShopping: 'Weiter einkaufen',
 
   /* Seo */
   seoTitle: 'Innovando Living Sessel',
@@ -16,6 +17,12 @@ export const TRANSLATION_DE = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Datum',
+  msgQueueProduct: 'Produkt',
+  msgQueueUsername: 'Benutzername',
+  msgQueueUnreadMsgs: 'Ungelesene Nachrichten',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: 'Fehler beim Erstellen der Adresse',
@@ -206,6 +213,8 @@ export const TRANSLATION_DE = {
   headerMenuQueries: 'Abfragen',
 
   /* Orders - Order */
+  orderTabActive: 'Aktive Bestellungen',
+  orderTabClosed: 'Abgeschlossene Bestellungen',
   orderTitle: 'Meine Bestellungen',
   orderListEmptyLabel: 'Keine Bestellungen.',
   ordersOrderPurchaseOnItsWay:
@@ -296,6 +305,7 @@ export const TRANSLATION_DE = {
   questionsLoadingProduct: 'Produktinformationen werden geladen',
   questionsErrorSendQuestionNotLogged:
     'Sie müssen angemeldet sein, um Produktfragen zu stellen.',
+  questionsNoComments: 'keine Kommentare',
 
   /* Queries */
   queriesSendReply: 'Antwort senden',

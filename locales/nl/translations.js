@@ -8,6 +8,7 @@ export const TRANSLATION_NL = {
   statusOnTheWay: 'Onderweg',
   statusDelivered: 'Afgeleverd',
   labelShipping: 'Verzenden',
+  continueShopping: 'Verder winkelen',
 
   /* Seo */
   seoTitle: 'Innovando Living Fauteuils',
@@ -16,6 +17,12 @@ export const TRANSLATION_NL = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Datum',
+  msgQueueProduct: 'Product',
+  msgQueueUsername: 'Gebruikersnaam',
+  msgQueueUnreadMsgs: 'Ongelezen Berichten',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: 'Fout bij aanmaken adres',
@@ -201,6 +208,8 @@ export const TRANSLATION_NL = {
   headerMenuQueries: 'Vragen',
 
   /* Orders - Order */
+  orderTabActive: 'Actieve Bestellingen',
+  orderTabClosed: 'Afgesloten Bestellingen',
   orderTitle: 'mijn bestellingen',
   orderListEmptyLabel: 'Geen bestellingen.',
   ordersOrderPurchaseOnItsWay:
@@ -291,6 +300,7 @@ export const TRANSLATION_NL = {
   questionsLoadingProduct: 'Productinformatie laden',
   questionsErrorSendQuestionNotLogged:
     'U moet ingelogd zijn om productvragen te kunnen stellen.',
+  questionsNoComments: 'geen opmerkingen',
 
   /* Queries */
   queriesSendReply: 'Stuur antwoord',

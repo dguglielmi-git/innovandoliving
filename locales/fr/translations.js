@@ -8,6 +8,7 @@ export const TRANSLATION_FR = {
   statusOnTheWay: 'En chemin',
   statusDelivered: 'Livré',
   labelShipping: 'Expédition',
+  continueShopping: 'Continuer vos achats',
 
   /* Seo */
   seoTitle: 'Innovando Living Les fauteuils',
@@ -16,6 +17,12 @@ export const TRANSLATION_FR = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Date',
+  msgQueueProduct: 'Produit',
+  msgQueueUsername: "Nom d'utilisateur",
+  msgQueueUnreadMsgs: 'Messages Non Lus',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: `Erreur lors de la création de l'adresse`,
@@ -202,6 +209,8 @@ export const TRANSLATION_FR = {
   headerMenuQueries: 'Requêtes',
 
   /* Orders - Order */
+  orderTabActive: 'Commandes Actives',
+  orderTabClosed: 'Commandes Fermées',
   orderTitle: 'Mes commandes',
   orderListEmptyLabel: 'Pas de commandes.',
   ordersOrderPurchaseOnItsWay: `La Commande a été envoyée à l'adresse suivante: `,
@@ -291,6 +300,7 @@ export const TRANSLATION_FR = {
   questionsLoadingProduct: 'Chargement des informations sur le produit',
   questionsErrorSendQuestionNotLogged:
     'Vous devez être connecté pour soumettre des questions sur les produits.',
+  questionsNoComments: 'pas de commentaires',
 
   /* Queries */
   queriesSendReply: 'Envoyer la réponse',

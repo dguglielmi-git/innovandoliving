@@ -34,11 +34,13 @@ export default function MenuOptions (props) {
     }
   }
 
+  const updateProductCounter = async () => {
+    const amount = await productsCart
+    setProdCounter(amount)
+  }
+
   useEffect(() => {
-    ;(async () => {
-      const amount = await productsCart
-      setProdCounter(amount)
-    })()
+    updateProductCounter()
   }, [productsCart])
 
   const defaultLang = () => (user ? user.language : i18n.language)

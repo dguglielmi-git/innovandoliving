@@ -8,6 +8,7 @@ export const TRANSLATION_ES = {
   statusOnTheWay: 'En Camino',
   statusDelivered: 'Entregado',
   labelShipping: 'Envio',
+  continueShopping: 'Continuar comprando',
 
   /* Seo */
   seoTitle: 'Innovando Living Sillones',
@@ -16,6 +17,12 @@ export const TRANSLATION_ES = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Fecha',
+  msgQueueProduct: 'Producto',
+  msgQueueUsername: 'Nombre de Usuario',
+  msgQueueUnreadMsgs: 'Mensajes No Leídos',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: 'Error al crear la direccion',
@@ -206,6 +213,8 @@ export const TRANSLATION_ES = {
   headerMenuQueries: 'Consultas',
 
   /* Orders - Order */
+  orderTabActive: 'Ordenes Activas',
+  orderTabClosed: 'Ordenes Cerradas',
   orderTitle: 'Mis Pedidos',
   orderListEmptyLabel: 'No hay pedidos.',
   ordersOrderPurchaseOnItsWay:
@@ -295,7 +304,7 @@ export const TRANSLATION_ES = {
   questionsSendMessageLabel: 'Enviar Consulta',
   questionsLoadingProduct: 'Cargando datos del Producto',
   questionsErrorSendQuestionNotLogged: `Debe iniciar sesión para enviar consultas sobre un producto.`,
-
+  questionsNoComments: 'no hay comentarios',
   /* Queries */
   queriesSendReply: 'Enviar Respuesta',
   queriesChatHeader: 'Consultas de los Clientes',

@@ -133,6 +133,7 @@ export default function MyApp ({ Component, pageProps }) {
 
   const cleaningCart = async logout => {
     await cleanCart(logout)
+    setTotalProductsCart(0)
   }
 
   const settingsData = useMemo(

@@ -8,6 +8,7 @@ export const TRANSLATION_PT = {
   statusOnTheWay: 'A caminho',
   statusDelivered: 'Entregue',
   labelShipping: 'Envio',
+  continueShopping: 'Continuar comprando',
 
   /* Seo */
   seoTitle: 'Innovando Living Poltronas',
@@ -16,6 +17,12 @@ export const TRANSLATION_PT = {
   /****************************************************************
    *                Components
    ****************************************************************/
+
+  /* Queue */
+  msgQueueDate: 'Data',
+  msgQueueProduct: 'Produto',
+  msgQueueUsername: 'Nome de Usuário',
+  msgQueueUnreadMsgs: 'Mensagens Não Lidas',
 
   /* Account - AddressForm */
   accountAddressFormErrorAddress: 'Erro ao criar endereço',
@@ -200,6 +207,8 @@ export const TRANSLATION_PT = {
   headerMenuQueries: 'Consultas',
 
   /* Orders - Order */
+  orderTabActive: 'Pedidos Ativos',
+  orderTabClosed: 'Pedidos Fechados',
   orderTitle: 'minhas ordens',
   orderListEmptyLabel: 'Sem Ordens.',
   ordersOrderPurchaseOnItsWay: 'A Ordem foi enviada para o seguinte endereço:',
@@ -289,6 +298,7 @@ export const TRANSLATION_PT = {
   questionsLoadingProduct: 'Carregando informações do produto',
   questionsErrorSendQuestionNotLogged:
     'Você deve estar logado para enviar perguntas sobre produtos.',
+  questionsNoComments: 'sem comentários',
 
   /* Queries */
   queriesSendReply: 'Enviar resposta',
