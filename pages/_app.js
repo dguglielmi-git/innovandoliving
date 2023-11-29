@@ -1,6 +1,8 @@
 import React, { useMemo, useEffect, useState } from 'react'
 import jwtDecode from 'jwt-decode'
 import PrimeReact from 'primereact/api'
+import { Provider } from 'react-redux'
+import store from '../redux/stores/main'
 import { useRouter } from 'next/router'
 import { faCoffee, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
@@ -177,27 +179,29 @@ export default function MyApp ({ Component, pageProps }) {
   if (auth === undefined) return null
 
   return (
-    <MsgsContext.Provider value={msgsData}>
-      <SettingsContext.Provider value={settingsData}>
-        <AuthContext.Provider value={authData}>
-          <CartContext.Provider value={cartData}>
-            <MyLivingContext>
-              <Component {...pageProps} />
-              <ToastContainer
-                position='top-right'
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable
-                pauseOnHover
-              />
-            </MyLivingContext>
-          </CartContext.Provider>
-        </AuthContext.Provider>
-      </SettingsContext.Provider>
-    </MsgsContext.Provider>
+    <Provider store={store}>
+      <MsgsContext.Provider value={msgsData}>
+        <SettingsContext.Provider value={settingsData}>
+          <AuthContext.Provider value={authData}>
+            <CartContext.Provider value={cartData}>
+              <MyLivingContext>
+                <Component {...pageProps} />
+                <ToastContainer
+                  position='top-right'
+                  autoClose={5000}
+                  hideProgressBar
+                  newestOnTop
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss={false}
+                  draggable
+                  pauseOnHover
+                />
+              </MyLivingContext>
+            </CartContext.Provider>
+          </AuthContext.Provider>
+        </SettingsContext.Provider>
+      </MsgsContext.Provider>
+    </Provider>
   )
 }
