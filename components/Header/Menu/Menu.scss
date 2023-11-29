@@ -23,7 +23,7 @@
       background: transparent;
 
       .icon {
-        margin-right: 10px !important;
+        // margin-right: 10px !important;
         color: $primary;
       }
 
@@ -39,6 +39,7 @@
             background-color: $background-dark-absolute;
           }
         }
+
         &.m-0 i {
           margin: 0 !important;
         }

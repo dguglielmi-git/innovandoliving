@@ -9,7 +9,7 @@ import OrderAdmin from '../components/Orders/OrderAdmin/OrderAdmin';
 import BasicLoading from '../components/BasicLoading/BasicLoading';
 import useAuth from '../hooks/useAuth';
 
-export default function orders() {
+export default function Orders() {
     const { t } = useTranslation();
     const { auth } = useAuth();
     const [loading, setLoading] = useState(true);

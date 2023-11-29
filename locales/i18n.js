@@ -20,7 +20,7 @@ export const languages = {
         },
         es: {
             text: 'Español',
-            flag: 'es',
+            flag: 'ar',
             lang: 'es',
             translation: TRANSLATION_ES,
         },

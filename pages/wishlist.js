@@ -1,11 +1,11 @@
 import React from 'react';
 import BasicLayout from "../layouts/BasicLayout";
-import Wishlist from '../components/Wishlist';
+import WishlistComponent from '../components/Wishlist';
 
-export default function wishlist() {
+export default function Wishlist() {
     return (
         <BasicLayout className="wishlist">
-            <Wishlist />
+            <WishlistComponent />
         </BasicLayout>
     )
 }

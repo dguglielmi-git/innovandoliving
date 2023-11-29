@@ -2,7 +2,7 @@ import React from "react";
 import { STEP_VERIFY_PRODUCTS } from "../../../utils/constants";
 import SummaryCart from "../SummaryCart";
 
-export default function VerifyProducts(props) {
+export default function CartProductList(props) {
     const {
         productsData,
         reloadCart,
