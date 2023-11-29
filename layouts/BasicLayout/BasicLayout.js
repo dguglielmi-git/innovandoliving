@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Header from "../../components/Header";
 
 export default function BasicLayout(props) {
-    const { children, className } = props;
+    const { children, className, style } = props;
 
     return (
         <>
@@ -12,7 +12,7 @@ export default function BasicLayout(props) {
                 [className]: className,
             }) }>
                 <Header />
-                <Container className="basic-layout-content">
+                <Container className="basic-layout-content" style={style}>
                     { children }
                 </Container>
             </Container>

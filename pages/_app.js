@@ -35,6 +35,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 PrimeReact.ripple = true
 
