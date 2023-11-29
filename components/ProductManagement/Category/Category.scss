@@ -25,6 +25,28 @@
             }
         }
 
-       
+        &__list {
+            display: flex;
+
+            &__headers {
+                display: flex;
+                justify-content: space-between;
+                width: 460px;
+                margin-left: 2rem;
+
+                &__label {
+                    h2 {
+                        font-size: 1.2rem;
+                        color: #7A7474;
+                    }
+                }
+            }
+
+            &__rows {}
+
+            &__actions {}
+        }
+
+
     }
 }
